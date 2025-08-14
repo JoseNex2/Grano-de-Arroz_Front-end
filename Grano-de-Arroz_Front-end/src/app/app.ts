@@ -6,7 +6,8 @@ import {Login} from './pages/public/auth/login/login';
   selector: 'app-root',
   imports: [RouterOutlet, Login],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  standalone: true
 })
 export class App {
   protected readonly title = signal('Grano-de-Arroz_Front-end');
