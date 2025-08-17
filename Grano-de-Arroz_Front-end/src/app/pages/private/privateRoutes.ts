@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Main } from './main/main';
-import { Home } from './main/home/home';
+import {Home} from './main/home/home';
 
 export const privateRoutes: Routes = [
   {

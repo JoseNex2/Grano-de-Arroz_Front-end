@@ -1,1 +1,15 @@
-<p>main works!</p>
+<div class="grid grid-cols-12 h-screen">
+  <aside class="col-span-2 bg-gray-100">
+    <app-menu-bar></app-menu-bar>
+  </aside>
+
+  <div class="col-span-10 flex flex-col">
+    <header class="border-b bg-white shadow">
+      <app-nav-bar></app-nav-bar>
+    </header>
+
+    <main class="flex-1 p-4 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
