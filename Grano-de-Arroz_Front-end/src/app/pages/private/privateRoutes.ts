@@ -1,13 +1,15 @@
 import { Routes } from '@angular/router';
 import { Main } from './main/main';
 import {Home} from './main/home/home';
+import {CustomerComponent} from './main/customer/customer.component';
 
 export const privateRoutes: Routes = [
   {
     path: 'main',
     component: Main,
     children: [
-      { path: '', component: Home }
+      { path: '', component: Home },
+      { path: 'clientes', component: CustomerComponent}
     ]
   }
 ];

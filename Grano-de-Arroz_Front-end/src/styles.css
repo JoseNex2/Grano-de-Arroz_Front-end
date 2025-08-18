@@ -10,6 +10,8 @@
   --color-primary: #3E4148;
   --color-secondary: #abcdef;
   --color-dashboard: #F2F2F2;
+  --p-breadcrumb-background: var(--color-dashboard) !important;
+  --p-breadcrumb-padding: 0 !important;
 }
 
 .color-fondo-dashboard{

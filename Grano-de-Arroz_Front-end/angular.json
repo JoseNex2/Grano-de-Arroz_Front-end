@@ -5,8 +5,11 @@
   "projects": {
     "Grano-de-Arroz_Front-end": {
       "projectType": "application",
-      "schematics": { "@schematics/angular:component": {
-        "standalone": true }
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": true,
+          "type": "component"
+        }
       },
       "root": "",
       "sourceRoot": "src",
