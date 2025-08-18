@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+*{
+  font-family: Inter, serif;
+}
+
+
+:root {
+  --color-primary: #3E4148;
+  --color-secondary: #abcdef;
+  --color-dashboard: #F2F2F2;
+}
+
+.color-fondo-dashboard{
+  background-color: var(--color-dashboard);
+}

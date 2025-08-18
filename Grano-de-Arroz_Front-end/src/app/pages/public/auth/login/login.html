@@ -1,0 +1,39 @@
+<div class="flex items-center justify-center">
+  <div class="pr-36">
+    <img src="/images/login/login-image.svg">
+  </div>
+  <div class="bg-white rounded-3xl shadow-lg w-xl h-3/5 p-8 flex flex-col items-center">
+    <div class="mb-4">
+    <img src="/images/login/GDA-logo.svg"/>
+
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">
+      Te damos la bienvenida
+    </h2>
+
+    <label class="w-full text-sm font-medium text-gray-600 mb-1">Usuario</label>
+    <input type="text" placeholder="Usuario"
+           class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-primary" />
+
+    <label class="w-full text-sm font-medium text-gray-600 mb-1">Contraseña</label>
+    <div class="relative w-full mb-4">
+      <input type="password" placeholder="Contraseña"
+             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary" />
+      <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500">👁️</span>
+    </div>
+
+    <div class="flex items-center w-full mb-6">
+      <input id="remember" type="checkbox" class="mr-2" />
+      <label for="remember" class="text-sm text-gray-600">Recordarme</label>
+    </div>
+
+    <button class="w-full bg-gray-700 text-white py-3 rounded-lg hover:bg-gray-900" (click)="irAlMain()">
+      Iniciar sesión
+    </button>
+
+    <a href="#" class="mt-6 text-sm text-gray-500 hover:underline">
+      ¿Olvidaste tu contraseña?
+    </a>
+  </div>
+</div>
