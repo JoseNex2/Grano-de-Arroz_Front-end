@@ -11,3 +11,7 @@
   --color-secondary: #abcdef;
   --color-dashboard: #F2F2F2;
 }
+
+.color-fondo-dashboard{
+  background-color: var(--color-dashboard);
+}
