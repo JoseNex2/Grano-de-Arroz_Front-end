@@ -17,3 +17,7 @@
 .color-fondo-dashboard{
   background-color: var(--color-dashboard);
 }
+
+.color-fondo{
+  background-color: var(--color-primary);
+}
