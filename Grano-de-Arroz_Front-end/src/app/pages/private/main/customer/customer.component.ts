@@ -17,5 +17,4 @@ export class CustomerComponent {
     {label: 'Inicio'},
     {label: 'Clientes'}
   ]
-
 }
