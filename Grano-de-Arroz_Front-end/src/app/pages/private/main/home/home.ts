@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { WelcomeCardComponent } from '../../shared/welcome-card/welcome-card.component';
-import { BatteryCardComponent } from '../../shared/battery-card/battery-card.component';
+import { WelcomeCardComponent } from './home-components/welcome-card/welcome-card.component';
+import { BatteryCardComponent } from './home-components/battery-card/battery-card.component';
 import { HistoryTableComponent } from '../../shared/history-table/history-table.component';
 
 @Component({
