@@ -3,8 +3,104 @@
   [title]= "'Registro de clientes'"
   [subtitle]= "'Vincula los datos del cliente con su batería con chip GDA.'">
 </app-titles-subtitles>
+<div class="flex justify-start  ">
+<div class="max-w-2xl ml-6 mt-6 bg-white rounded-2xl shadow p-6">
+  <form class="grid  grid-cols-2 gap-4 px-6">
 
-<div class="flex flex-col rounded-3xl bg-white justify-items-start">
-  <form>
+    <!-- Nombre -->
+    <div class="flex flex-col gap-1">
+      <label for="nombre" class="text-sm font-medium text-gray-700">Nombre</label>
+      <input
+        pInputText
+        id="nombre"
+        placeholder="Ej: Andrés"
+        class="w-full"
+      />
+    </div>
+    <!-- Apellido -->
+    <div class="flex flex-col gap-1">
+      <label for="apellido" class="text-sm font-medium text-gray-700">Apellido</label>
+      <input
+        pInputText
+        id="apellido"
+        placeholder="Ej: Moisés Azize"
+        class="w-full"
+      />
+    </div>
+    <!-- Número de GDA -->
+    <div class="flex flex-col gap-1">
+      <label for="gda" class="text-sm font-medium text-gray-700">Número de GDA</label>
+      <input
+        pInputText
+        id="gda"
+        placeholder="Ej: 0001"
+        class="w-full"
+      />
+    </div>
+
+    <!-- Número de documento -->
+    <div class="flex flex-col gap-1">
+      <label for="documento" class="text-sm font-medium text-gray-700">Número de documento</label>
+      <input
+        pInputText
+        id="documento"
+        placeholder="Ej: 41712158"
+        class="w-full"
+      />
+    </div>
+
+    <div class="col-span-2 flex flex-col gap-1">
+      <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+      <input
+        pInputText
+        id="email"
+        placeholder="Ej: andresmoisesazize@gmail.com"
+        class="w-full"
+      />
+    </div>
+    <!-- Fecha de venta -->
+    <div class="flex flex-col gap-1">
+      <label for="fecha" class="text-sm font-medium text-gray-700">Fecha de venta</label>
+      <input
+        pInputText
+        inputId="fecha"
+        dateFormat="dd/mm/yy"
+        placeholder="Ej: 06/09/2025"
+        class="w-full"
+      >
+    </div>
+
+    <!-- Teléfono -->
+    <div class="flex flex-col gap-1">
+      <label for="telefono" class="text-sm font-medium text-gray-700">Número de teléfono</label>
+      <input
+        pInputText
+        id="telefono"
+        placeholder="Ej: 3517139157"
+        class="w-full"
+      />
+    </div>
+
+    <!-- Botones (también a lo ancho completo) -->
+    <div class="col-span-2 flex justify-between pt-4">
+      <button
+        pButton
+        type="button"
+        label="Cancelar"
+        class="px-6 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300"
+      ></button>
+
+      <button
+        pButton
+        type="submit"
+        label="Añadir cliente"
+        class="px-6 py-2 rounded-lg bg-gray-700 text-white hover:bg-gray-800"
+      ></button>
+    </div>
   </form>
+</div>
+
+<div class="flex justify-center items-center ml-45">
+<img src="/images/customer/cuate.svg">
+</div>
 </div>
