@@ -1,15 +1,17 @@
 <div class="grid grid-cols-12 h-screen">
-  <div   class="col-span-2 color">
-    <app-menu-bar></app-menu-bar>
-  </div >
+    <!-- Sidebar -->
+    <div class="col-span-2 h-screen">
+        <app-menu-bar></app-menu-bar>
+    </div>
 
-  <div class="col-span-10 flex flex-col">
-    <header class="shadow">
-      <app-nav-bar></app-nav-bar>
-    </header>
+    <!-- Contenido -->
+    <div class="col-span-10 flex flex-col h-screen">
+        <header class="shadow relative z-10">
+            <app-nav-bar></app-nav-bar>
+        </header>
 
-    <main class="flex-1 p-4 color-fondo-dashboard overflow-y-auto sombra-nav">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
+        <main class="flex-1 p-4 color-fondo-dashboard overflow-y-auto sombra-nav relative z-0">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
 </div>
