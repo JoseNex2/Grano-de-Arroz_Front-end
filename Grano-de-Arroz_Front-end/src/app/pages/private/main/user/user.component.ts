@@ -9,6 +9,7 @@ import { TitlesSubtitlesComponent } from '../../shared/titles-subtitles/titles-s
   imports: [BreadcrumbComponent, UserTableComponent, TitlesSubtitlesComponent],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
+  standalone: true
 })
 export class UserComponent {
   steps: MenuItem[] = [{ label: 'Inicio' }, { label: 'Gestion de usuario' }];

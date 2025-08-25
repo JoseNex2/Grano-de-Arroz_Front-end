@@ -4,6 +4,7 @@ import { Home } from './main/home/home';
 import { CustomerComponent } from './main/customer/customer.component';
 import { CustomerRegistrationComponent } from './main/customer-registration/customer-registration.component';
 import { UserComponent } from './main/user/user.component';
+import { UserRegistrationComponent } from './main/user-registration/user-registration.component';
 
 export const privateRoutes: Routes = [
   {
@@ -17,6 +18,7 @@ export const privateRoutes: Routes = [
         component: CustomerRegistrationComponent,
       },
       { path: 'usuario', component: UserComponent },
+      { path: 'registro-de-usuario', component: UserRegistrationComponent },
     ],
   },
 ];
