@@ -12,13 +12,10 @@ export const privateRoutes: Routes = [
     component: Main,
     children: [
       { path: '', component: Home },
-      { path: 'clientes', component: CustomerComponent },
-      {
-        path: 'registro-de-clientes',
-        component: CustomerRegistrationComponent,
-      },
-      { path: 'usuario', component: UserComponent },
-      { path: 'registro-de-usuario', component: UserRegistrationComponent },
+      { path: 'clientes',             component: CustomerComponent },
+      { path: 'registro-de-clientes', component: CustomerRegistrationComponent,},
+      { path: 'usuarios',             component: UserComponent },
+      { path: 'registro-de-usuario',  component: UserRegistrationComponent },
     ],
   },
 ];
