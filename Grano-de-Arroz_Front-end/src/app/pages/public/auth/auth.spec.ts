@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Auth } from './auth';
 
-describe('Auth', () => {
+describe('AuthService', () => {
   let component: Auth;
   let fixture: ComponentFixture<Auth>;
 
