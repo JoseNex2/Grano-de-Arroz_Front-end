@@ -16,17 +16,17 @@ import { jwtDecode } from 'jwt-decode';
 
 export class Login {
 
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   errorMsg = '';
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
-    this.loginForm = this.fb.group({
-      userEmail: ['', Validators.required,Validators.email],
-      password: ['', Validators.required]
-    });
   }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required]]
+    });
   }
 
   irAlMain() {
@@ -34,9 +34,6 @@ export class Login {
   }
 
   onSubmit() {
-
-    console.log(this.loginForm)
-
     if (this.loginForm.invalid) {
       this.errorMsg = 'Complete todos los campos';
       return;
