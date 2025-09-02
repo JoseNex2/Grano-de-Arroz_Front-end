@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../../enviroments/develop.enviroment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {ApiResponse} from '../../interfaces/api-response';
+import {UserInterface} from '../../interfaces/userInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  //falta interfaz user
-
-  getUsers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/Access/UsersSearch`);
+  getUsers(): Observable<ApiResponse<UserInterface>> {
+    return this.http.get<ApiResponse<UserInterface>>(`${this.apiUrl}/Access/UsersSearch`);
   }
 
 }
