@@ -10,4 +10,8 @@
       Administrador
     </p>
   </div>
+  <div class="">
+  <p-menu #menu [model]="items" [popup]="true" appendTo="body"  />
+  <p-button styleClass="p-button-text p-button-plain" (click)="menu.toggle($event)" icon="pi pi-angle-down"/>
+  </div>
 </div>

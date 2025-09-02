@@ -42,19 +42,19 @@
 
     <ng-template pTemplate="body" let-user>
       <tr class="hover:bg-gray-100">
-        <td>{{ user.nombre }}</td>
-        <td>{{ user.apellido }}</td>
-        <td>{{ user.dni }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.nationalId}}</td>
         <td>
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold"
             [ngClass]="{
-              'bg-blue-200 text-blue-800': user.rol === 'Administrador',
-              'bg-green-200 text-green-800': user.rol === 'Laboratorio',
-              'bg-pink-200 text-pink-800': user.rol === 'Sucursal'
+              'bg-blue-200 text-blue-800': user.role === 'Administrador',
+              'bg-green-200 text-green-800': user.role === 'Laboratorio',
+              'bg-pink-200 text-pink-800': user.role === 'Sucursal'
             }"
           >
-            {{ user.rol }}
+            {{ user.role }}
           </span>
         </td>
         <td>

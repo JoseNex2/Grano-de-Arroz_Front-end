@@ -14,7 +14,7 @@ export class UserService {
 
   //falta interfaz user
 
-  getUser(): Observable<any> {
+  getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Access/UsersSearch`);
   }
 

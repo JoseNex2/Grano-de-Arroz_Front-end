@@ -1,0 +1,4 @@
+.p-menu {
+  position: absolute !important;
+  z-index: 1100 !important; /* más alto que tu header */
+}
