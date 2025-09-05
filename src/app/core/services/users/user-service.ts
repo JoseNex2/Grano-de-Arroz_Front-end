@@ -14,9 +14,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<ApiResponse<any>> {
-    return this.http.get<ApiResponse<any>>(`${this.apiUrl}/Access/UsersSearch`);
+  getUsers(): Observable<ApiResponse<UserInterface[]>> {
+    return this.http.get<ApiResponse<UserInterface[]>>(`${this.apiUrl}/Access/UsersSearch`);
   }
-
 }
 

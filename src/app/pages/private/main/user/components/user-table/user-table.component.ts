@@ -16,16 +16,16 @@ import { UserService } from '../../../../../../core/services/users/user-service'
 })
 export class UserTableComponent implements OnInit {
 
-  // Agrega esta declaración de variable
-  usuarios: any[] = [];
+  usuarios: UserInterface[] = [];
 
   constructor(private readonly router: Router, private readonly userService: UserService) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe({
       next: (res) => {
-        console.log('Respuesta del servidor:', res);
+        if (res.code == 200){
         this.usuarios = res.response;
+        }
       },
       error: (err) => {
         console.error('Error al obtener usuarios:', err);
