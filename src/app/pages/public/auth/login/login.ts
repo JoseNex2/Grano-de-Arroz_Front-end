@@ -57,8 +57,6 @@ export class Login {
           // Decodificar token para obtener información adicional
           try {
             const decodedToken: DecodedToken = jwtDecode(res.response.token);
-            console.log('Token decodificado:', decodedToken);
-
             // Guardar información adicional del token si es necesario
             if (decodedToken.exp) {
               localStorage.setItem('token_exp', decodedToken.exp.toString());

@@ -17,5 +17,9 @@ export class UserService {
   getUsers(): Observable<ApiResponse<UserInterface[]>> {
     return this.http.get<ApiResponse<UserInterface[]>>(`${this.apiUrl}/Access/UsersSearch`);
   }
+
+  createUser(body: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/Access/registry`, body);
+  }
 }
 

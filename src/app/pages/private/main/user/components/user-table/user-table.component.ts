@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { UserInterface } from '../../../../../../core/interfaces/userInterface';
@@ -18,19 +18,27 @@ export class UserTableComponent implements OnInit {
 
   usuarios: UserInterface[] = [];
 
+
+
   constructor(private readonly router: Router, private readonly userService: UserService) {}
 
   ngOnInit() {
+    this.loadTable();
+  }
+
+  loadTable() {
     this.userService.getUsers().subscribe({
       next: (res) => {
         if (res.code == 200){
         this.usuarios = res.response;
         }
       },
-      error: (err) => {
-        console.error('Error al obtener usuarios:', err);
-      }
-    });
+      error: (err) => {}
+    })
+  }
+
+  goToRegister() {
+    this.router.navigate(['/main/registro-de-usuario']);
   }
 
   searchValue: string = '';
