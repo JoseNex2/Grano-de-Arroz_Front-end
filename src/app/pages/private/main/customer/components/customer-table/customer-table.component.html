@@ -1,42 +1,75 @@
-<div class="p-6 bg-white rounded-xl shadow-md mt-6 ">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-lg font-bold">Lista de usuarios</h2>
-      <span class="p-input-icon-right">
-      <i class="pi pi-search"></i>
-      <input type="text" pInputText placeholder="Buscar usuario" [(ngModel)]="searchValue" />
-    </span>
+<div class="p-6 bg-white rounded-xl shadow-md mt-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-lg text-[#1E293B] font-bold">Lista de clientes</h2>
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <i class="pi pi-search text-gray-400"></i>
+        </div>
+        <input
+          type="text"
+          placeholder="Buscar cliente"
+          [(ngModel)]="searchValue"
+          class="border border-gray-300 text-[#64748B] rounded-lg px-3 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+        />
+      </div>
     </div>
-
-    <p-table
-      [value]="usuarios"
-      [paginator]="true"
-      [rows]="5"
-      [globalFilterFields]="['nombre','apellido','dni','email','bateria','codigo']"
-      [rowsPerPageOptions]="[5,10,20]"
-      [filterDelay]="0"
-      [filters]="{ global: { value: searchValue, matchMode: 'contains' } }"
-      class="shadow rounded-xl overflow-hidden"
-    >
-      <ng-template pTemplate="header">
-        <tr class="bg-gray-50">
-          <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-          <th pSortableColumn="apellido">Apellido <p-sortIcon field="apellido"></p-sortIcon></th>
-          <th pSortableColumn="dni">DNI <p-sortIcon field="dni"></p-sortIcon></th>
-          <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-          <th pSortableColumn="bateria">Última batería <p-sortIcon field="bateria"></p-sortIcon></th>
-          <th pSortableColumn="codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-user>
-        <tr class="hover:bg-gray-100">
-          <td>{{ user.nombre }}</td>
-          <td>{{ user.apellido }}</td>
-          <td>{{ user.dni }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.bateria }}</td>
-          <td>{{ user.codigo }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
   </div>
+
+  <p-table
+    [value]="client"
+    [paginator]="true"
+    [rows]="5"
+    [globalFilterFields]="['nationalId', 'name', 'lastName', 'email']"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [filterDelay]="0"
+    [filters]="{ global: { value: searchValue, matchMode: 'contains' } }"
+    class="shadow rounded-xl overflow-hidden"
+  >
+    <ng-template pTemplate="header">
+      <tr class="bg-gray-50">
+        <th pSortableColumn="nationalId">
+          DNI <p-sortIcon field="nationalId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="name">
+          Nombre <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="lastName">Apellido <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th style="width: 40px"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-client>
+      <tr class="hover:bg-gray-100">
+        <td>{{ client.nationalId }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.lastName }}</td>
+        <td>{{ client.email }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-ellipsis-v"
+            class="p-button-text p-button-rounded"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorleft">
+      <div class="flex-1"></div>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorright">
+      <button
+        pButton
+        type="button"
+        label="Registrar cliente"
+        icon="pi pi-user-plus"
+        (click)="goToRegister()"
+        class="p-button-raised p-button-secondary px-6 py-2 font-semibold text-base ml-4"
+      ></button>
+    </ng-template>
+  </p-table>
+</div>

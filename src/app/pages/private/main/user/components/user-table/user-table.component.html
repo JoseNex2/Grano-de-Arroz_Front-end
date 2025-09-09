@@ -34,6 +34,9 @@
         <th pSortableColumn="apellido">
           Apellido <p-sortIcon field="apellido"></p-sortIcon>
         </th>
+          <th pSortableColumn="email">
+              Correo electr <p-sortIcon field="apellido"></p-sortIcon>
+          </th>
         <th pSortableColumn="dni">DNI <p-sortIcon field="dni"></p-sortIcon></th>
         <th pSortableColumn="rol">Rol <p-sortIcon field="rol"></p-sortIcon></th>
         <th style="width: 40px"></th>
@@ -44,6 +47,7 @@
       <tr class="hover:bg-gray-100">
         <td>{{ user.name }}</td>
         <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
         <td>{{ user.nationalId}}</td>
         <td>
           <span

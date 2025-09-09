@@ -18,8 +18,6 @@ export class UserTableComponent implements OnInit {
 
   usuarios: UserInterface[] = [];
 
-
-
   constructor(private readonly router: Router, private readonly userService: UserService) {}
 
   ngOnInit() {
