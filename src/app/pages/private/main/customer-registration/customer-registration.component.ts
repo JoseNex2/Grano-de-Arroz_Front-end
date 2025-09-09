@@ -3,6 +3,7 @@ import {BreadcrumbComponent} from "../../shared/breadcrumb/breadcrumb";
 import {MenuItem} from 'primeng/api';
 import {TitlesSubtitlesComponent} from '../../shared/titles-subtitles/titles-subtitles.component';
 import {InputText} from 'primeng/inputtext';
+import {CustomerRegistrationFormComponent} from './components/customer-registration-form/customer-registration-form.component';
 
 
 
@@ -12,9 +13,10 @@ import {InputText} from 'primeng/inputtext';
     BreadcrumbComponent,
     TitlesSubtitlesComponent,
     InputText,
+  CustomerRegistrationFormComponent
   ],
   templateUrl: './customer-registration.component.html',
-  styleUrl: './customer-registration.component.css',
+  styleUrls: ['./customer-registration.component.css'],
   standalone: true,
 })
 export class CustomerRegistrationComponent {

@@ -1,104 +1,20 @@
 <app-breadcrumb [items]="steps"></app-breadcrumb>
 <app-titles-subtitles
-  [title]= "'Registro de clientes'"
-  [subtitle]= "'Vincula los datos del cliente con su batería con chip GDA.'">
+  [title]="'Registro de clientes'"
+  [subtitle]="'Vincula los datos del cliente con su batería con chip GDA.'">
 </app-titles-subtitles>
-<div class="flex justify-start  ">
-<div class="max-w-2xl ml-6 mt-6 bg-white rounded-2xl shadow p-6">
-  <form class="grid  grid-cols-2 gap-4 px-6">
 
-    <!-- Nombre -->
-    <div class="flex flex-col gap-1">
-      <label for="nombre" class="text-sm font-medium text-gray-700">Nombre</label>
-      <input
-        pInputText
-        id="nombre"
-        placeholder="Ej: Andrés"
-        class="w-full"
-      />
+<div class="grid grid-cols-12 gap-6 mt-6 px-6">
+  <!-- Formulario -->
+  <div class="col-span-12 lg:col-span-8">
+    <div class="bg-white rounded-2xl shadow p-6 h-full">
+      <app-customer-registration-form></app-customer-registration-form>
     </div>
-    <!-- Apellido -->
-    <div class="flex flex-col gap-1">
-      <label for="apellido" class="text-sm font-medium text-gray-700">Apellido</label>
-      <input
-        pInputText
-        id="apellido"
-        placeholder="Ej: Moisés Azize"
-        class="w-full"
-      />
+  </div>
+  <!-- Ilustración -->
+  <div class="hidden lg:block col-span-4">
+    <div class="h-full flex items-center justify-center">
+      <img src="/images/customer/cuate.svg" alt="Registro de cliente" class="max-w-full h-auto select-none pointer-events-none" />
     </div>
-    <!-- Número de GDA -->
-    <div class="flex flex-col gap-1">
-      <label for="gda" class="text-sm font-medium text-gray-700">Número de GDA</label>
-      <input
-        pInputText
-        id="gda"
-        placeholder="Ej: 0001"
-        class="w-full"
-      />
-    </div>
-
-    <!-- Número de documento -->
-    <div class="flex flex-col gap-1">
-      <label for="documento" class="text-sm font-medium text-gray-700">Número de documento</label>
-      <input
-        pInputText
-        id="documento"
-        placeholder="Ej: 41712158"
-        class="w-full"
-      />
-    </div>
-
-    <div class="col-span-2 flex flex-col gap-1">
-      <label for="email" class="text-sm font-medium text-gray-700">Email</label>
-      <input
-        pInputText
-        id="email"
-        placeholder="Ej: andresmoisesazize@gmail.com"
-        class="w-full"
-      />
-    </div>
-    <!-- Fecha de venta -->
-    <div class="flex flex-col gap-1">
-      <label for="fecha" class="text-sm font-medium text-gray-700">Fecha de venta</label>
-      <input
-        pInputText
-        inputId="fecha"
-        dateFormat="dd/mm/yy"
-        placeholder="Ej: 06/09/2025"
-        class="w-full"
-      >
-    </div>
-
-    <!-- Teléfono -->
-    <div class="flex flex-col gap-1">
-      <label for="telefono" class="text-sm font-medium text-gray-700">Número de teléfono</label>
-      <input
-        pInputText
-        id="telefono"
-        placeholder="Ej: 3517139157"
-        class="w-full"
-      />
-    </div>
-
-    <!-- Botones (también a lo ancho completo) -->
-    <div class="flex flex-col md:flex-row gap-4 md:items-center">
-      <button
-        type="button"
-        class="w-full md:w-64 px-8 py-3 rounded-md border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 md:mr-auto">
-        Cancelar
-      </button>
-      <button
-        type="button"
-        class="w-full md:w-64 px-8 py-3 rounded-md bg-gray-700 text-white shadow-sm hover:bg-gray-800 md:mr-[2.083%]">
-        Crear usuario
-      </button>
-
-    </div>
-  </form>
-</div>
-
-<div class="flex justify-center items-center ml-45">
-<img src="/images/customer/cuate.svg">
-</div>
+  </div>
 </div>
