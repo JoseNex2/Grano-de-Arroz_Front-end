@@ -70,21 +70,25 @@
         </div>
       </div>
 
-      <!-- Rol -->
+<!-- Rol - usando p-select en lugar de p-cascadeSelect -->
       <div class="grid grid-cols-12 items-center gap-4">
         <label for="role" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Rol:</label>
         <div class="col-span-12 md:col-span-10">
-          <p-cascadeSelect
+          <p-select
             inputId="role"
             [options]="roleOptions"
-            formControlName="Role"
+            formControlName="RoleId"
             optionLabel="label"
-            [optionGroupChildren]="['roles']"
+            optionValue="value"
             placeholder="Selecciona el rol del usuario"
             [appendTo]="'body'"
-            styleClass="w-full rounded-md border border-gray-300 shadow-sm"
-            [panelStyle]="{ borderRadius: '0.5rem', minWidth: '18rem' }">
-          </p-cascadeSelect>
+            styleClass="w-full">
+          </p-select>
+          <!-- Mensaje de error -->
+          <small *ngIf="userForm.get('Role')?.invalid && userForm.get('Role')?.touched" 
+                 class="text-red-500 mt-1 block">
+            El rol es requerido
+          </small>
         </div>
       </div>
 
