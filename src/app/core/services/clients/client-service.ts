@@ -20,4 +20,5 @@ export class ClientService {
     createClient(body: any): Observable<any> {
         return this.http.post(`${this.apiUrl}/Client/registryClient`, body);
     }
+    
 }

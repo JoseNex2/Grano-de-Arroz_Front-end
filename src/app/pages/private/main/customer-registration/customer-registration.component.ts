@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {BreadcrumbComponent} from "../../shared/breadcrumb/breadcrumb";
 import {MenuItem} from 'primeng/api';
 import {TitlesSubtitlesComponent} from '../../shared/titles-subtitles/titles-subtitles.component';
-import {InputText} from 'primeng/inputtext';
 import {CustomerRegistrationFormComponent} from './components/customer-registration-form/customer-registration-form.component';
 
 
@@ -12,7 +11,6 @@ import {CustomerRegistrationFormComponent} from './components/customer-registrat
   imports: [
     BreadcrumbComponent,
     TitlesSubtitlesComponent,
-    InputText,
   CustomerRegistrationFormComponent
   ],
   templateUrl: './customer-registration.component.html',
