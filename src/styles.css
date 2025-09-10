@@ -21,3 +21,18 @@
   background-color: var(--color-primary);
 }
 
+.loader-bg {
+  position: fixed;            /* fijo en toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(15px);   /* blur para difuminar fondo */
+  background-color: rgba(30, 30, 30, 0.5); /* gris translúcido */
+  display: flex;               /* activamos flexbox */
+  align-items: center;         /* centra verticalmente */
+  justify-content: center;     /* centra horizontalmente */
+  z-index: 999999 !important;
+
+  /* por encima del nav y contenido */
+}

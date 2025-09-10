@@ -45,19 +45,18 @@ export class Login {
       return;
     }
 
-    this.errorMsg = ''; // Limpiar mensaje de error anterior
+    this.errorMsg = '';
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (res: ApiResponse<any>) => {
         if (res.code == 200) {
-          // Login exitoso
+          localStorage.setItem('meUser', JSON.stringify(res.response));
           localStorage.setItem('access_token', res.response.token);
-          localStorage.setItem('rol', res.response.role);
+          localStorage.setItem('rol', JSON.stringify(res.response.role));
           localStorage.setItem('email', res.response.email);
 
           try {
             const decodedToken: DecodedToken = jwtDecode(res.response.token);
-            console.log('Token decodificado:', decodedToken);
 
             if (decodedToken.exp) {
               localStorage.setItem('token_exp', decodedToken.exp.toString());
@@ -68,7 +67,6 @@ export class Login {
 
           this.router.navigate(['/main']);
         } else {
-          // Credenciales incorrectas (código != 200)
           this.errorMsg = res.message || 'Ingrese los datos correctamente';
           this.loginForm.reset(); 
         }
@@ -76,11 +74,9 @@ export class Login {
       error: (error) => {
         console.error('Error completo:', error);
         
-        // Si el error tiene una respuesta estructurada con ApiResponse
         if (error.error && error.error.message) {
           this.errorMsg = error.error.message;
         } 
-        // Manejo por códigos de estado HTTP
         else if (error.status === 401 || error.status === 400) {
           this.errorMsg = 'Ingrese los datos correctamente';
         } else if (error.status === 404) {

@@ -22,7 +22,7 @@
           <input
             formControlName="Lastname"
             pInputText
-            placeholder="Ingrese el nombre del usuario"
+            placeholder="Ingrese el apellido del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
         </div>
@@ -36,7 +36,7 @@
             pInputText
             id="email"
             type="email"
-            placeholder="Ingrese el nombre del usuario"
+            placeholder="Ingrese el email del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
         </div>
@@ -50,7 +50,7 @@
                   formControlName="NationalId"
             pInputText
             id="dni"
-            placeholder="Ingrese el nombre del usuario"
+            placeholder="Ingrese el DNI del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
         </div>
@@ -74,16 +74,16 @@
       <div class="grid grid-cols-12 items-center gap-4">
         <label for="role" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Rol:</label>
         <div class="col-span-12 md:col-span-10">
-          <p-select
-            inputId="role"
-            [options]="roleOptions"
-            formControlName="RoleId"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="Selecciona el rol del usuario"
-            [appendTo]="'body'"
-            styleClass="w-full">
-          </p-select>
+            <p-select
+                    inputId="role"
+                    [options]="roleOptions"
+                    formControlName="RoleId"
+                    optionLabel="label"
+                    optionValue="value"
+                    placeholder="Selecciona el rol del usuario"
+                    [appendTo]="'body'"
+                    styleClass="w-full">
+            </p-select>
           <!-- Mensaje de error -->
           <small *ngIf="userForm.get('Role')?.invalid && userForm.get('Role')?.touched" 
                  class="text-red-500 mt-1 block">
@@ -116,3 +116,6 @@
     </div>
   </form>
 </div>
+
+
+<p-toast></p-toast>

@@ -1,9 +1,9 @@
 export interface ClientInterface{
-    NationalId: string;
+    id: number;
+    nationalId: string;
     name: string;
-    lastname: string;
+    lastName: string;
     email: string;
     phoneNumber: string;
     dateRegistered: string;
-    totalClients: number;
 }

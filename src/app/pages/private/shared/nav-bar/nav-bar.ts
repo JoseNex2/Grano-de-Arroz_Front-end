@@ -18,6 +18,7 @@ export class NavBar implements OnInit{
   }
 
   items: any;
+  user = JSON.parse(localStorage.getItem('meUser')|| '{}');
 
   ngOnInit() {
   this.items= [

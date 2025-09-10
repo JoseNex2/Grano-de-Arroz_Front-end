@@ -14,14 +14,13 @@ interface MenuButton {
   templateUrl: './menu-bar.html',
 })
 export class MenuBar {
-  userRole: 'Administrador' | 'Gestor' | 'Sucursal' = 'Administrador';
+
+  userRole = JSON.parse(localStorage.getItem('rol') || '{}');
 
   menuButtons: MenuButton[] = [];
 
   constructor(private router: Router) {
     this.loadMenu();
-
-
   }
 
   goTo(route: string) {
@@ -29,7 +28,7 @@ export class MenuBar {
   }
 
   loadMenu() {
-    if (this.userRole === 'Administrador') {
+    if (this.userRole === 'Admin') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main' },
         { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
@@ -38,7 +37,7 @@ export class MenuBar {
       ];
     }
 
-    if (this.userRole === 'Gestor') {
+    if (this.userRole === 'UserLab') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main'},
         { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
@@ -47,11 +46,11 @@ export class MenuBar {
       ];
     }
 
-    if (this.userRole === 'Sucursal') {
+    if (this.userRole === 'UserSales') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main'},
         { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
-        { label: 'Registro de clientes', icon: 'pi pi-id-card', route: '/clientes' }
+        { label: 'Registro de clientes', icon: 'pi pi-id-card', route: '/main/clientes' }
       ];
     }
   }

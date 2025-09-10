@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ApiResponse } from "../../interfaces/api-response";
 import { ClientInterface } from "../../interfaces/clientinterface";
+import {ClientsResponse} from "../../interfaces/client/ClientResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class ClientService {
 
     constructor(private http: HttpClient) {}
 
-    getClients(): Observable<ApiResponse<ClientInterface[]>> {
-        return this.http.get<ApiResponse<ClientInterface[]>>(`${this.apiUrl}/Client/ClientsSearch`);
+    getClients(): Observable<ApiResponse<ClientsResponse>> {
+        return this.http.get<ApiResponse<ClientsResponse>>(
+            `${this.apiUrl}/Client/ClientsSearch`
+        );
     }
 
     createClient(body: any): Observable<any> {

@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { ClientService } from '../../../../../../core/services/clients/client-service';
 import { ClientInterface } from '../../../../../../core/interfaces/clientinterface';
+import {ClientsResponse} from "../../../../../../core/interfaces/client/ClientResponse";
+import {ApiResponse} from "../../../../../../core/interfaces/api-response";
 
 
 @Component({
@@ -20,26 +22,26 @@ export class CustomerTableComponent implements OnInit {
   client: ClientInterface[] = [];
   
 
-  constructor(private readonly router: Router, private readonly clientSer: ClientService) {}
+  constructor(private readonly router: Router, private readonly clientService: ClientService) {}
 
   ngOnInit() {
     this.loadTable();
   }
 
   loadTable() {
-    this.clientSer.getClients().subscribe({
-      next: (res) => {
-        if (res.code == 200) {
-          this.client = res.response;
-          console.log("disclinea",this.client);
+    this.clientService.getClients().subscribe({
+      next: (res: ApiResponse<ClientsResponse>) => {  // 👈 tipar bien
+        if (res.code === 200 && res.response?.clients) {
+          this.client = res.response.clients;
+          console.log('Clientes cargados:', this.client);
         }
       },
       error: (err) => {
         console.error('Error cargando clientes:', err);
       }
     });
-    
   }
+
 
   goToRegister() {
     this.router.navigate(['/main/registro-de-clientes']);
