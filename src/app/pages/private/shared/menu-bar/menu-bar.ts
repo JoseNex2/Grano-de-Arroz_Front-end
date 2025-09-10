@@ -40,8 +40,8 @@ export class MenuBar {
     if (this.userRole === 'UserLab') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main'},
-        { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
         { label: 'Analizar batería', icon: 'pi pi-bolt', route: '/main'},
+        { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
         { label: 'Métricas generales', icon: 'pi pi-chart-bar', route: '/main'}
       ];
     }

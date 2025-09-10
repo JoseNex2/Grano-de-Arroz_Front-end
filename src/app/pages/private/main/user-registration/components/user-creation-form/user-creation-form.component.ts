@@ -77,7 +77,7 @@ export class UserCreationFormComponent implements OnInit{
             severity: 'success',
             summary: 'Éxito',
             detail: 'Usuario creado correctamente',
-            life: 2000
+            life: 3000
           });
           setTimeout(() => {
             this.route.navigate(['/main/usuarios']);
