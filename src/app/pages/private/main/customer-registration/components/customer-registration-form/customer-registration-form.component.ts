@@ -44,7 +44,7 @@ export class CustomerRegistrationFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.customerForm.invalid) {
-      this.customerForm.markAllAsTouched();
+      // this.customerForm.markAllAsTouched();
       this.errorMsg = 'Completa los campos requeridos.';
       return;
     }
