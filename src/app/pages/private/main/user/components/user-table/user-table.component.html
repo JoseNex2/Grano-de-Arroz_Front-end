@@ -25,20 +25,20 @@
     [filterDelay]="0"
     [filters]="{ global: { value: searchValue, matchMode: 'contains' } }"
     class="shadow rounded-xl overflow-hidden"
-  >
+    >
     <ng-template pTemplate="header">
       <tr class="bg-gray-50">
-        <th pSortableColumn="nombre">
+        <th pSortableColumn="name">
           Nombre <p-sortIcon field="nombre"></p-sortIcon>
         </th>
-        <th pSortableColumn="apellido">
+        <th pSortableColumn="lastname">
           Apellido <p-sortIcon field="apellido"></p-sortIcon>
         </th>
           <th pSortableColumn="email">
-              Correo electr <p-sortIcon field="apellido"></p-sortIcon>
+              Correo electrónico <p-sortIcon field="email"></p-sortIcon>
           </th>
-        <th pSortableColumn="dni">DNI <p-sortIcon field="dni"></p-sortIcon></th>
-        <th pSortableColumn="rol">Rol <p-sortIcon field="rol"></p-sortIcon></th>
+        <th pSortableColumn="nationalId">DNI <p-sortIcon field="dni"></p-sortIcon></th>
+        <th pSortableColumn="role">Rol <p-sortIcon field="rol"></p-sortIcon></th>
         <th style="width: 40px"></th>
       </tr>
     </ng-template>

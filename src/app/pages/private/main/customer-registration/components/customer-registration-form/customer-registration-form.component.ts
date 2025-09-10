@@ -56,9 +56,10 @@ export class CustomerRegistrationFormComponent implements OnInit {
     
     this.clientService.createClient(this.customerForm.value).subscribe({
       next: (res: ApiResponse<any>) => {
-        if (res.code === 200) {
+        if (res.code === 200 || res.code === 201) {
           this.successMsg = res.message || 'Cliente creado correctamente.';
           this.customerForm.reset();
+          this.router.navigate(['/main/clientes']);
         } else {
           this.errorMsg = res.message || 'Error al crear cliente.';
         }

@@ -9,24 +9,22 @@ import {UserService} from "../../../../../../core/services/users/user-service";
 import {Router} from "@angular/router";
 import {RoleService} from "../../../../../../core/services/roles/role-service";
 import {Select} from "primeng/select";
-import {Toast} from "primeng/toast";
-import {MessageService} from "primeng/api";
 import {mapRolesForDropdown} from "../../../../../../core/mappers/roleMap";
 
 @Component({
   selector: 'app-user-creation-form',
   standalone: true,
-  imports: [CommonModule, ButtonModule, InputTextModule, ReactiveFormsModule, CascadeSelectModule, Select, Toast],
+  imports: [CommonModule, ButtonModule, InputTextModule, ReactiveFormsModule, CascadeSelectModule, Select],
   templateUrl: './user-creation-form.component.html',
   styleUrls: ['./user-creation-form.component.css'],
-  providers: [MessageService]
+  providers: []
 })
 export class UserCreationFormComponent implements OnInit{
   isLoading = true;
   userForm!: FormGroup;
   private errorMsg: string | undefined;
 
-  constructor(private messageService: MessageService ,private fb: FormBuilder, private userService: UserService, private route: Router, private roleService: RoleService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private route: Router, private roleService: RoleService) {
   }
 
   ngOnInit(): void {
@@ -73,35 +71,32 @@ export class UserCreationFormComponent implements OnInit{
     this.userService.createUser(this.userForm.value).subscribe({
       next: (res: ApiResponse<any>) => {
         if (res.code === 200 || res.code === 201) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Éxito',
-            detail: 'Usuario creado correctamente',
-            life: 3000
-          });
-          setTimeout(() => {
+          // this.messageService.add({
+          //   severity: 'success',
+          //   summary: 'Éxito',
+          //   detail: 'Usuario creado correctamente',
+          //   life: 3000
+          // });
             this.route.navigate(['/main/usuarios']);
-
-          },1000)
 
         } else {
 
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: res.message || 'No se pudo crear el usuario',
-            life: 3000
-          });
+          // this.messageService.add({
+          //   severity: 'error',
+          //   summary: 'Error',
+          //   detail: res.message || 'No se pudo crear el usuario',
+          //   life: 3000
+          // });
         }
       },
       error: (err) => {
         this.isLoading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'No se pudo crear el usuario. Intente nuevamente',
-          life: 3000
-        });
+        // this.messageService.add({
+        //   severity: 'error',
+        //   summary: 'Error',
+        //   detail: 'No se pudo crear el usuario. Intente nuevamente',
+        //   life: 3000
+        // });
       },
     });
   }

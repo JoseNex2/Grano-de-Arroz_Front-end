@@ -33,7 +33,7 @@ export class CustomerTableComponent implements OnInit {
       next: (res: ApiResponse<ClientsResponse>) => {  // 👈 tipar bien
         if (res.code === 200 && res.response?.clients) {
           this.client = res.response.clients;
-          console.log('Clientes cargados:', this.client);
+          this.client = [...this.client].reverse();
         }
       },
       error: (err) => {

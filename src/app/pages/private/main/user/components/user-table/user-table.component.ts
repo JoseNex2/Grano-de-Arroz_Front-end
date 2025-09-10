@@ -29,6 +29,7 @@ export class UserTableComponent implements OnInit {
       next: (res) => {
         if (res.code == 200){
         this.usuarios = res.response;
+        this.usuarios = [...this.usuarios].reverse();
         }
       },
       error: (err) => {}

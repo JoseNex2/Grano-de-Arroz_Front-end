@@ -1,11 +1,11 @@
 <div class="grid grid-cols-10 gap-4 mt-4 items-stretch">
-    @if ( user.role === 'Admin'){
+    @if ( user.role === 'Administrador'){
         <app-welcome-card class="col-span-7 h-full"></app-welcome-card>
         <app-battery-card class="col-span-3 h-full"></app-battery-card>
-    } @else if ( user.role === 'UserSales' ) {
+    } @else if ( user.role === 'Sucursal' ) {
         <app-welcome-card class="col-span-7 h-full"></app-welcome-card>
         <app-sales-card class="col-span-3 h-full"></app-sales-card>
-    } @else if ( user.role === 'UserLab' ) {
+    } @else if ( user.role === 'Laboratorio' ) {
         <app-welcome-lab class="col-span-7 h-full"> </app-welcome-lab>
         <app-evaluation-status-charts class="col-span-3 h-full"></app-evaluation-status-charts>
     }

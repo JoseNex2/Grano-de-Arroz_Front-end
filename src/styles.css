@@ -32,7 +32,15 @@
   display: flex;               /* activamos flexbox */
   align-items: center;         /* centra verticalmente */
   justify-content: center;     /* centra horizontalmente */
-  z-index: 999999 !important;
+  z-index: 9999 !important;
 
   /* por encima del nav y contenido */
+}
+
+.p-toast {
+  z-index: 1000000 !important; /* Por encima del loader */
+}
+
+.p-toast .p-toast-message {
+  z-index: 1000001 !important;
 }

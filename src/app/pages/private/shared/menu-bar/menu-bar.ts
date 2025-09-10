@@ -28,7 +28,7 @@ export class MenuBar {
   }
 
   loadMenu() {
-    if (this.userRole === 'Admin') {
+    if (this.userRole === 'Administrador') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main' },
         { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
@@ -37,7 +37,7 @@ export class MenuBar {
       ];
     }
 
-    if (this.userRole === 'UserLab') {
+    if (this.userRole === 'Laboratorio') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main'},
         { label: 'Analizar batería', icon: 'pi pi-bolt', route: '/main'},
@@ -46,7 +46,7 @@ export class MenuBar {
       ];
     }
 
-    if (this.userRole === 'UserSales') {
+    if (this.userRole === 'Sucursal') {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/main'},
         { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
