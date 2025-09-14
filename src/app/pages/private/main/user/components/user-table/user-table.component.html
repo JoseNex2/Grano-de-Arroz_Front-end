@@ -28,27 +28,27 @@
     >
     <ng-template pTemplate="header">
       <tr class="bg-gray-50">
-        <th pSortableColumn="name">
+        <th pSortableColumn="name" class="!text-black">
           Nombre <p-sortIcon field="nombre"></p-sortIcon>
         </th>
-        <th pSortableColumn="lastname">
+        <th pSortableColumn="lastname" class="!text-black">
           Apellido <p-sortIcon field="apellido"></p-sortIcon>
         </th>
-          <th pSortableColumn="email">
-              Correo electrónico <p-sortIcon field="email"></p-sortIcon>
+          <th pSortableColumn="email" class="!text-black">
+              Correo electrónico <p-sortIcon field="email" ></p-sortIcon>
           </th>
-        <th pSortableColumn="nationalId">DNI <p-sortIcon field="dni"></p-sortIcon></th>
-        <th pSortableColumn="role">Rol <p-sortIcon field="rol"></p-sortIcon></th>
+        <th pSortableColumn="nationalId" class="!text-black">DNI <p-sortIcon field="dni"></p-sortIcon></th>
+        <th pSortableColumn="role" class="!text-black">Rol  <p-sortIcon field="rol"></p-sortIcon></th>
         <th style="width: 40px"></th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-user>
       <tr class="hover:bg-gray-100">
-        <td>{{ user.name }}</td>
-        <td>{{ user.lastname }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.nationalId}}</td>
+        <td class="text-gray-600">{{ user.name }}</td>
+        <td class="text-gray-600">{{ user.lastname }}</td>
+        <td class="text-gray-600">{{ user.email }}</td>
+        <td class="text-gray-600">{{ user.nationalId}}</td>
         <td>
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold"

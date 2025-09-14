@@ -44,3 +44,93 @@
 .p-toast .p-toast-message {
   z-index: 1000001 !important;
 }
+
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: white !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background-color: white !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #f9fafb !important; 
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border: none !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+}
+
+
+.p-paginator {
+  background-color: white !important;
+  border: none !important;
+  border-top: 1px solid #f3f4f6 !important;
+  padding: 1rem !important;
+}
+
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  color: #4b5563 !important; 
+  margin: 0 2px !important;
+  border-radius: 6px !important;
+}
+
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #3b82f6 !important; 
+  border-color: #3b82f6 !important;
+  color: white !important;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  color: #4b5563 !important;
+  border-radius: 6px !important;
+  margin: 0 2px !important;
+}
+
+
+.p-paginator .p-paginator-first:not(.p-disabled):hover,
+.p-paginator .p-paginator-prev:not(.p-disabled):hover,
+.p-paginator .p-paginator-next:not(.p-disabled):hover,
+.p-paginator .p-paginator-last:not(.p-disabled):hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+.p-paginator .p-paginator-first.p-disabled,
+.p-paginator .p-paginator-prev.p-disabled,
+.p-paginator .p-paginator-next.p-disabled,
+.p-paginator .p-paginator-last.p-disabled {
+  color: #9ca3af !important; 
+  border-color: #f3f4f6 !important;
+}
+
+
+.p-paginator .p-dropdown {
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 6px !important;
+}
+
+
+.p-paginator .p-paginator-current {
+  color: #4b5563 !important; 
+  font-size: 0.875rem !important;
+}
+

@@ -1,3 +1,19 @@
 .p-menu {
   position: absolute !important;
 }
+
+:host ::ng-deep .white-button {
+  background-color: white !important;
+  border-color: #e5e7eb !important;
+  color: #4b5563 !important;
+}
+
+:host ::ng-deep .white-button.p-button-text {
+  background-color: white !important;
+  border: none !important;
+  color: #4b5563 !important;
+}
+
+:host ::ng-deep .icon-gray-600 .pi {
+  color: #4b5563 !important;
+}
