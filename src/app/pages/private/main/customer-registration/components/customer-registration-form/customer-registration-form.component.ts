@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { ClientService } from '../../../../../../core/services/clients/client-service';
 import { ApiResponse } from '../../../../../../core/interfaces/api-response';
+import { MessageService } from 'primeng/api';
 // import { ClientInterface } from '../../../../../core/interfaces/clientinterface'; 
 
 @Component({
@@ -26,7 +27,8 @@ export class CustomerRegistrationFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private clientService: ClientService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -58,15 +60,33 @@ export class CustomerRegistrationFormComponent implements OnInit {
       next: (res: ApiResponse<any>) => {
         if (res.code === 200 || res.code === 201) {
           this.successMsg = res.message || 'Cliente creado correctamente.';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Éxito',
+            detail: this.successMsg,
+            life: 3000
+          });
           this.customerForm.reset();
-          this.router.navigate(['/main/clientes']);
+          // this.router.navigate(['/main/clientes']);
         } else {
           this.errorMsg = res.message || 'Error al crear cliente.';
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: this.errorMsg,
+            life: 3000
+          });
         }
         this.submitting = false;
       },
       error: (err) => {
         this.errorMsg = 'Error de red o servidor.';
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: this.errorMsg,
+          life: 3000
+        });
         this.submitting = false;
         console.error('Error creación cliente:', err);
       }
