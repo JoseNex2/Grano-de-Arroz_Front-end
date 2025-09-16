@@ -5,7 +5,8 @@ import { CustomerComponent } from './main/customer/customer.component';
 import { CustomerRegistrationComponent } from './main/customer-registration/customer-registration.component';
 import { UserComponent } from './main/user/user.component';
 import { UserRegistrationComponent } from './main/user-registration/user-registration.component';
-import { SalesCard } from './main/home/home-components/sales-card/sales-card';
+import { SearchReportComponent } from './main/search-report/search-report.component';
+
 
 export const privateRoutes: Routes = [
   {
@@ -17,7 +18,8 @@ export const privateRoutes: Routes = [
       { path: 'registro-de-clientes', component: CustomerRegistrationComponent,},
       { path: 'usuarios',             component: UserComponent },
       { path: 'registro-de-usuario',  component: UserRegistrationComponent },
-      { path: 'prueba-laboratorio',   component: SalesCard }
+      { path: 'prueba-buscarReporte',   component: SearchReportComponent}
+
     ],
   },
 ];
