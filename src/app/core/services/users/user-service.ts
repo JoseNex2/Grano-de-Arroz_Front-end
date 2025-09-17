@@ -15,11 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<ApiResponse<UserInterface[]>> {
-    return this.http.get<ApiResponse<UserInterface[]>>(`${this.apiUrl}/Access/UsersSearch`);
+    return this.http.get<ApiResponse<UserInterface[]>>(`${this.apiUrl}/access/userssearch`);
   }
 
   createUser(body: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Access/registry`, body);
+    return this.http.post(`${this.apiUrl}/access/registry`, body);
   }
 }
 

@@ -16,12 +16,12 @@ export class ClientService {
 
     getClients(): Observable<ApiResponse<ClientsResponse>> {
         return this.http.get<ApiResponse<ClientsResponse>>(
-            `${this.apiUrl}/Client/ClientsSearch`
+            `${this.apiUrl}/client/clientssearch`
         );
     }
 
     createClient(body: any): Observable<any> {
-        return this.http.post(`${this.apiUrl}/Client/registryClient`, body);
+        return this.http.post(`${this.apiUrl}/client/registryclient`, body);
     }
     
 }

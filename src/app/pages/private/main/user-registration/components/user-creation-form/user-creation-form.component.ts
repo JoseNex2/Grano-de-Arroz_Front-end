@@ -79,7 +79,7 @@ export class UserCreationFormComponent implements OnInit{
             life: 3000
           });
           this.isLoading = false;
-          // this.route.navigate(['/main/usuarios']);
+          this.route.navigate(['/main/usuarios']);
 
         } else {
 
