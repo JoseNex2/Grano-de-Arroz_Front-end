@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { TagModule } from 'primeng/tag';
-import { TitlesSubtitlesComponent } from '../../../../shared/titles-subtitles/titles-subtitles.component';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search-table',
-  imports: [TitlesSubtitlesComponent,TableModule,CommonModule,TagModule],
+  imports: [TableModule,CommonModule,TagModule],
   templateUrl: './search-table.component.html',
   styleUrls: ['./search-table.component.css']
 })
