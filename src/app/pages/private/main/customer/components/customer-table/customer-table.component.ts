@@ -15,7 +15,7 @@ import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-customer-table',
   standalone: true,
-  imports: [CommonModule,FormsModule,TableModule,ButtonModule, MenuModule, MenuItemContent],
+  imports: [CommonModule,FormsModule,TableModule,ButtonModule, MenuModule],
   templateUrl: './customer-table.component.html',
   styleUrls: ['./customer-table.component.css']
 })
