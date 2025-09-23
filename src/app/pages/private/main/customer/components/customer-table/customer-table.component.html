@@ -63,8 +63,7 @@
             type="button"
             icon="pi pi-ellipsis-v"
             class="p-button-text p-button-rounded"
-            (click)="menu.toggle($event)"
-            aria-label="Abrir menú"
+            (click)="onMenuButtonClick($event, menu)"
           ></button>
         </td>
       </tr>
@@ -86,3 +85,14 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog
+  [(visible)]="showAssignModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="true"
+  [style]="{ width: '62rem', maxWidth: '95vw' }"
+>
+  <app-battery-assign-modal></app-battery-assign-modal>
+</p-dialog>

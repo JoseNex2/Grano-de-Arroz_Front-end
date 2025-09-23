@@ -10,18 +10,24 @@ import {ClientsResponse} from "../../../../../../core/interfaces/client/ClientRe
 import {ApiResponse} from "../../../../../../core/interfaces/api-response";
 import { MenuItemContent, MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
+import { BatteryAssignModalComponent } from '../../../battery-assign-modal/battery-assign-modal.component';
+import { DialogModule } from 'primeng/dialog';
+import { Menu } from 'primeng/menu';
 
 
 @Component({
   selector: 'app-customer-table',
-  standalone: true,
-  imports: [CommonModule,FormsModule,TableModule,ButtonModule, MenuModule],
+  imports: [CommonModule,FormsModule,TableModule,ButtonModule, MenuModule,BatteryAssignModalComponent,DialogModule],
   templateUrl: './customer-table.component.html',
-  styleUrls: ['./customer-table.component.css']
+  styleUrls: ['./customer-table.component.css'],
+  standalone: true,
 })
 export class CustomerTableComponent implements OnInit {
 
   client: ClientInterface[] = [];
+
+  showAssignModal = false;
+  selectedClient: ClientInterface | null = null;
   
 
   constructor(private readonly router: Router, private readonly clientService: ClientService) {}
@@ -68,6 +74,13 @@ export class CustomerTableComponent implements OnInit {
   }
 
   onAssociateBattery(c:any) {console.log('Asociar batería a cliente:', c);
+    this.selectedClient = c;
+    this.showAssignModal = true;
+  }
 
+  onMenuButtonClick(event: MouseEvent, menu: Menu) {
+    event.preventDefault();
+    event.stopPropagation();
+    menu.toggle(event);
   }
 }
