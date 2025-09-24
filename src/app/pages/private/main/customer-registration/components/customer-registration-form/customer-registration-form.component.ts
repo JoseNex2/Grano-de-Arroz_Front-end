@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { ClientService } from '../../../../../../core/services/clients/client-service';
 import { ApiResponse } from '../../../../../../core/interfaces/api-response';
 import { MessageService } from 'primeng/api';
-// import { ClientInterface } from '../../../../../core/interfaces/clientinterface'; 
 
 @Component({
   selector: 'app-customer-registration-form',
@@ -33,12 +32,10 @@ export class CustomerRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
-      // GdaNumber: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
       Name: ['', Validators.required],
       Lastname: ['', Validators.required],
       NationalId: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      // SaleDate: ['', Validators.required],
       PhoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
     });
   }
@@ -46,7 +43,6 @@ export class CustomerRegistrationFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.customerForm.invalid) {
-      // this.customerForm.markAllAsTouched();
       this.errorMsg = 'Completa los campos requeridos.';
       return;
     }
@@ -67,7 +63,7 @@ export class CustomerRegistrationFormComponent implements OnInit {
             life: 3000
           });
           this.customerForm.reset();
-          // this.router.navigate(['/main/clientes']);
+          this.router.navigate(['/main/clientes']);
         } else {
           this.errorMsg = res.message || 'Error al crear cliente.';
           this.messageService.add({
