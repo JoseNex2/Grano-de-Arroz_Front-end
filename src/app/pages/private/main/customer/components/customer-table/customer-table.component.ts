@@ -8,12 +8,14 @@ import { ClientService } from '../../../../../../core/services/clients/client-se
 import { ClientInterface } from '../../../../../../core/interfaces/clientinterface';
 import {ClientsResponse} from "../../../../../../core/interfaces/client/ClientResponse";
 import {ApiResponse} from "../../../../../../core/interfaces/api-response";
+import { MenuItemContent, MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 
 
 @Component({
   selector: 'app-customer-table',
   standalone: true,
-  imports: [CommonModule,FormsModule,TableModule,ButtonModule],
+  imports: [CommonModule,FormsModule,TableModule,ButtonModule, MenuModule],
   templateUrl: './customer-table.component.html',
   styleUrls: ['./customer-table.component.css']
 })
@@ -48,4 +50,24 @@ export class CustomerTableComponent implements OnInit {
   }
 
   searchValue: string = '';
+
+ getRowMenuItems(c: any): MenuItem[] {
+    return [
+      { label: 'Editar', icon: 'pi pi-pencil', command: () => this.onEdit(c) },
+      { label: 'Eliminar', icon: 'pi pi-trash', command: () => this.onDelete(c) },
+      { label: 'Asociar batería', icon: 'pi pi-plus-circle', command: () => this.onAssociateBattery(c) },
+    ];
+  }
+
+  onEdit(c:any) {console.log('Editar cliente:', c);
+
+  }
+
+  onDelete(c:any) {console.log('Eliminar cliente:', c);
+
+  }
+
+  onAssociateBattery(c:any) {console.log('Asociar batería a cliente:', c);
+
+  }
 }

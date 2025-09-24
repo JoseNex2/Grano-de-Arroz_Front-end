@@ -50,12 +50,21 @@
         <td class="text-gray-600">{{ client.name }}</td>
         <td class="text-gray-600">{{ client.lastName }}</td>
         <td class="text-gray-600">{{ client.email }}</td>
-        <td>
+        <td class="text-right">
+          <p-menu
+            #menu
+            [popup]="true"
+            [model]="getRowMenuItems(client)"
+            [appendTo]="'body'"
+          ></p-menu>
+
           <button
             pButton
             type="button"
             icon="pi pi-ellipsis-v"
             class="p-button-text p-button-rounded"
+            (click)="menu.toggle($event)"
+            aria-label="Abrir menú"
           ></button>
         </td>
       </tr>
