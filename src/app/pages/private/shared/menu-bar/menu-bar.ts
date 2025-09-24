@@ -30,27 +30,27 @@ export class MenuBar {
   loadMenu() {
     if (this.userRole === 'Administrador') {
       this.menuButtons = [
-        { label: 'Home', icon: 'pi pi-home', route: '/main' },
-        { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
-        { label: 'Gestión de usuarios', icon: 'pi pi-users', route: '/main/usuarios'},
-        { label: 'Métricas generales', icon: 'pi pi-chart-bar', route: '/main' }
+        { label: 'Home', icon: 'pi pi-home', route: '/inicio' },
+        { label: 'Registros históricos', icon: 'pi pi-book', route: '/inicio'},
+        { label: 'Gestión de usuarios', icon: 'pi pi-users', route: '/inicio/usuarios'},
+        { label: 'Métricas generales', icon: 'pi pi-chart-bar', route: '/inicio' }
       ];
     }
 
     if (this.userRole === 'Laboratorio') {
       this.menuButtons = [
-        { label: 'Home', icon: 'pi pi-home', route: '/main'},
-        { label: 'Analizar batería', icon: 'pi pi-bolt', route: '/main'},
-        { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
-        { label: 'Métricas generales', icon: 'pi pi-chart-bar', route: '/main'}
+        { label: 'Home', icon: 'pi pi-home', route: '/inicio'},
+        { label: 'Analizar batería', icon: 'pi pi-bolt', route: '/inicio'},
+        { label: 'Registros históricos', icon: 'pi pi-book', route: '/inicio'},
+        { label: 'Métricas generales', icon: 'pi pi-chart-bar', route: '/inicio'}
       ];
     }
 
     if (this.userRole === 'Sucursal') {
       this.menuButtons = [
-        { label: 'Home', icon: 'pi pi-home', route: '/main'},
-        { label: 'Registros históricos', icon: 'pi pi-book', route: '/main'},
-        { label: 'Registro de clientes', icon: 'pi pi-id-card', route: '/main/clientes' }
+        { label: 'Home', icon: 'pi pi-home', route: '/inicio'},
+        { label: 'Registros históricos', icon: 'pi pi-book', route: '/inicio'},
+        { label: 'Registro de clientes', icon: 'pi pi-id-card', route: '/inicio/clientes' }
       ];
     }
   }

@@ -37,7 +37,7 @@ export class UserTableComponent implements OnInit {
   }
 
   goToRegister() {
-    this.router.navigate(['/main/registro-de-usuario']);
+    this.router.navigate(['/inicio/usuarios/registro-de-usuarios']);
   }
 
   searchValue: string = '';

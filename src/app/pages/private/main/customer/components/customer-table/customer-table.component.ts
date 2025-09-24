@@ -52,7 +52,7 @@ export class CustomerTableComponent implements OnInit {
 
 
   goToRegister() {
-    this.router.navigate(['/main/registro-de-clientes']);
+    this.router.navigate(['/inicio/clientes/registro-de-clientes']);
   }
 
   searchValue: string = '';

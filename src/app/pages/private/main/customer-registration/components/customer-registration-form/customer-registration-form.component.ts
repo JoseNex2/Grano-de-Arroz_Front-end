@@ -33,13 +33,12 @@ export class CustomerRegistrationFormComponent implements OnInit {
   ngOnInit(): void {
     this.customerForm = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],
-      Name: ['', Validators.required],
-      Lastname: ['', Validators.required],
+      Name: ['', [Validators.required, Validators.maxLength(30)]],
+      Lastname: ['', [Validators.required, Validators.maxLength(30)]],
       NationalId: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       PhoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
     });
   }
-
 
   onSubmit(): void {
     if (this.customerForm.invalid) {
@@ -50,7 +49,6 @@ export class CustomerRegistrationFormComponent implements OnInit {
     this.errorMsg = null;
     this.successMsg = null;
     this.submitting = true;
-
     
     this.clientService.createClient(this.customerForm.value).subscribe({
       next: (res: ApiResponse<any>) => {
@@ -63,7 +61,7 @@ export class CustomerRegistrationFormComponent implements OnInit {
             life: 3000
           });
           this.customerForm.reset();
-          this.router.navigate(['/main/clientes']);
+          this.router.navigate(['/inicio/clientes']);
         } else {
           this.errorMsg = res.message || 'Error al crear cliente.';
           this.messageService.add({
@@ -93,6 +91,6 @@ export class CustomerRegistrationFormComponent implements OnInit {
     this.customerForm.reset();
     this.errorMsg = null;
     this.successMsg = null;
-    this.router.navigate(['/main/clientes']); 
+    this.router.navigate(['/inicio/clientes']);
   }
 }

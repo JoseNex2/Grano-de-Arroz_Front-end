@@ -65,7 +65,7 @@ export class Login {
             console.error('Error decodificando token:', error);
           }
 
-          this.router.navigate(['/main']);
+          this.router.navigate(['/inicio']);
         } else {
           this.errorMsg = res.message || 'Ingrese los datos correctamente';
           this.loginForm.reset(); 
