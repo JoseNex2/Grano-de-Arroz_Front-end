@@ -32,7 +32,7 @@ export class Login {
       private fb: FormBuilder,
       private authService: AuthService,
       private router: Router,
-      private messageService: MessageService   // 👈 tipo correcto
+      private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +61,27 @@ export class Login {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res: ApiResponse<any>) => {
         if (res.code == 200) {
-          // ... tu lógica de login
+          localStorage.setItem('meUser', JSON.stringify(res.response));
+          localStorage.setItem('access_token', res.response.token);
+          localStorage.setItem('rol', JSON.stringify(res.response.role));
+          localStorage.setItem('email', res.response.email);
+
+          try {
+            const decodedToken: DecodedToken = jwtDecode(res.response.token);
+            if (decodedToken.exp) {
+              localStorage.setItem('token_exp', decodedToken.exp.toString());
+            }
+          } catch (error) {
+            console.error('Error decodificando token:', error);
+          }
+
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Bienvenido',
+            detail: 'Inicio de sesión exitoso',
+            life: 2000
+          });
+
           this.router.navigate(['/inicio']);
         } else {
           this.errorMsg = res.message || 'Ingrese los datos correctamente';
@@ -76,7 +96,21 @@ export class Login {
         }
       },
       error: (error) => {
-        this.errorMsg = 'Error de red o servidor.';
+        console.error('Error completo:', error);
+
+        if (error.error && error.error.message) {
+          this.errorMsg = error.error.message;
+        }
+        else if (error.status === 401 || error.status === 400) {
+          this.errorMsg = 'Ingrese los datos correctamente';
+        } else if (error.status === 404) {
+          this.errorMsg = 'Usuario no encontrado';
+        } else if (error.status >= 500) {
+          this.errorMsg = 'Error del servidor. Intente nuevamente';
+        } else {
+          this.errorMsg = 'Error de red o servidor.';
+        }
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

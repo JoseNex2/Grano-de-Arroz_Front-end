@@ -16,10 +16,26 @@ import { Router } from '@angular/router';
 export class SalesCard implements OnInit, OnDestroy {
   clientsTotal: number = 0;
   private destroy$ = new Subject<void>();
+  totalClients = 0 ;
 
-  constructor(private clientService: ClientService, private router: Router) {}
+  constructor(private clientService: ClientService, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.getTotalCustomers()
+  }
+
+  getTotalCustomers() {
+    this.clientService.getClients().subscribe({
+      next: (res) => {
+        if (res.code == 200) {
+          this.totalClients = res.response.clients.length;
+        }
+      },
+      error: (err) => {
+        console.error("Error al obtener clientes:", err);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -29,6 +45,6 @@ export class SalesCard implements OnInit, OnDestroy {
 
 
   goToRegister() {
-    this.router.navigate(['/main/registro-de-clientes']);
+    this.router.navigate(['/inicio/clientes/registro-de-clientes']);
   }
 }
