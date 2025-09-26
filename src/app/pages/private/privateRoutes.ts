@@ -6,6 +6,7 @@ import { CustomerRegistrationComponent } from './main/customer-registration/cust
 import { UserComponent } from './main/user/user.component';
 import { UserRegistrationComponent } from './main/user-registration/user-registration.component';
 import { BatteryAssignModalComponent } from './main/battery-assign-modal/battery-assign-modal.component';
+import { SearchReportComponent } from './main/search-report/search-report.component';
 
 
 export const privateRoutes: Routes = [
@@ -18,7 +19,8 @@ export const privateRoutes: Routes = [
       { path: 'registro-de-clientes', component: CustomerRegistrationComponent,},
       { path: 'usuarios',             component: UserComponent },
       { path: 'registro-de-usuario',  component: UserRegistrationComponent },
-      { path: 'prueba-bateria',   component: BatteryAssignModalComponent}
+      { path: 'prueba-bateria',   component: BatteryAssignModalComponent},
+      { path: 'search-report',   component: SearchReportComponent }
 
     ],
   },
