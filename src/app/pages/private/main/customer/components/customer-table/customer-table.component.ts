@@ -8,11 +8,10 @@ import { ClientService } from '../../../../../../core/services/clients/client-se
 import { ClientInterface } from '../../../../../../core/interfaces/clientinterface';
 import {ClientsResponse} from "../../../../../../core/interfaces/client/ClientResponse";
 import {ApiResponse} from "../../../../../../core/interfaces/api-response";
-import { MenuItemContent, MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { BatteryAssignModalComponent } from '../../../battery-assign-modal/battery-assign-modal.component';
 import { DialogModule } from 'primeng/dialog';
-import { Menu } from 'primeng/menu';
+import { Menu, MenuModule } from 'primeng/menu';
 
 
 @Component({
