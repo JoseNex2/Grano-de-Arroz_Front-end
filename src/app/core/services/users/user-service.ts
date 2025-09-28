@@ -21,5 +21,10 @@ export class UserService {
   createUser(body: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/access/registry`, body);
   }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/access/userdelete?id=${id}`, {});
+  }
+
 }
 
