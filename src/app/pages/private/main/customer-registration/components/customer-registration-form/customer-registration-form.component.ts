@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { ClientService } from '../../../../../../core/services/clients/client-service';
 import { ApiResponse } from '../../../../../../core/interfaces/api-response';
 import { MessageService } from 'primeng/api';
-// import { ClientInterface } from '../../../../../core/interfaces/clientinterface'; 
 
 @Component({
   selector: 'app-customer-registration-form',
@@ -33,20 +32,16 @@ export class CustomerRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
-      // GdaNumber: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
-      Name: ['', Validators.required],
-      Lastname: ['', Validators.required],
+      Name: ['', [Validators.required, Validators.maxLength(30)]],
+      Lastname: ['', [Validators.required, Validators.maxLength(30)]],
       NationalId: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      // SaleDate: ['', Validators.required],
       PhoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
     });
   }
 
-
   onSubmit(): void {
     if (this.customerForm.invalid) {
-      // this.customerForm.markAllAsTouched();
       this.errorMsg = 'Completa los campos requeridos.';
       return;
     }
@@ -54,7 +49,6 @@ export class CustomerRegistrationFormComponent implements OnInit {
     this.errorMsg = null;
     this.successMsg = null;
     this.submitting = true;
-
     
     this.clientService.createClient(this.customerForm.value).subscribe({
       next: (res: ApiResponse<any>) => {
@@ -67,7 +61,7 @@ export class CustomerRegistrationFormComponent implements OnInit {
             life: 3000
           });
           this.customerForm.reset();
-          // this.router.navigate(['/main/clientes']);
+          this.router.navigate(['/inicio/clientes']);
         } else {
           this.errorMsg = res.message || 'Error al crear cliente.';
           this.messageService.add({
@@ -97,6 +91,6 @@ export class CustomerRegistrationFormComponent implements OnInit {
     this.customerForm.reset();
     this.errorMsg = null;
     this.successMsg = null;
-    this.router.navigate(['/main/clientes']); 
+    this.router.navigate(['/inicio/clientes']);
   }
 }
