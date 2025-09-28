@@ -58,21 +58,40 @@ export class CustomerTableComponent implements OnInit {
 
  getRowMenuItems(c: any): MenuItem[] {
     return [
-      { label: 'Editar', icon: 'pi pi-pencil', command: () => this.onEdit(c) },
-      { label: 'Eliminar', icon: 'pi pi-trash', command: () => this.onDelete(c) },
-      { label: 'Asociar batería', icon: 'pi pi-plus-circle', command: () => this.onAssociateBattery(c) },
+      { 
+        label: 'Editar', 
+        icon: 'pi pi-pencil', 
+        command: () => {
+          setTimeout(() => this.onEdit(c), 0);
+        }
+      },
+      { 
+        label: 'Asociar batería', 
+        icon: 'pi pi-plus-circle', 
+        command: () => {
+          setTimeout(() => this.onAssociateBattery(c), 0);
+        }
+      },
     ];
   }
 
-  onEdit(c:any) {console.log('Editar cliente:', c);
-
+  onEdit(c: any) {
+    // Navegar al formulario de registro con los datos del cliente para editar
+    this.router.navigate(['/inicio/clientes/registro-de-clientes'], {
+      queryParams: { 
+        edit: true, 
+        id: c.id,
+        name: c.name,
+        lastname: c.lastName,
+        email: c.email,
+        nationalId: c.nationalId,
+        phoneNumber: c.phoneNumber
+      }
+    });
   }
 
-  onDelete(c:any) {console.log('Eliminar cliente:', c);
-
-  }
-
-  onAssociateBattery(c:any) {console.log('Asociar batería a cliente:', c);
+  onAssociateBattery(c: any) {
+    console.log('Asociar batería a cliente:', c);
     this.selectedClient = c;
     this.showAssignModal = true;
   }
@@ -80,6 +99,12 @@ export class CustomerTableComponent implements OnInit {
   onMenuButtonClick(event: MouseEvent, menu: Menu) {
     event.preventDefault();
     event.stopPropagation();
-    menu.toggle(event);
+    
+    // Cerrar cualquier menú abierto primero
+    if (menu.visible) {
+      menu.hide();
+    } else {
+      menu.toggle(event);
+    }
   }
 }

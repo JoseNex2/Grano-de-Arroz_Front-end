@@ -10,11 +10,13 @@
                             formControlName="Name"
                             pInputText
                             placeholder="Ingrese el nombre del cliente"
-                            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+                            [class]="'w-full rounded-md border px-4 py-3 shadow-sm focus:outline-none focus:ring-2 ' + 
+                                    (isEditMode ? 'border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed' : 'border-gray-300 bg-white text-gray-800 focus:ring-gray-300')"
+                            [disabled]="isEditMode"
                     />
                     <small class="text-red-500 text-sm"
                            *ngIf="customerForm.get('Name')?.invalid && customerForm.get('Name')?.touched">
-                        El nombre es obligatorio (máx. 30 caracteres).
+                        *El nombre es obligatorio.
                     </small>
                 </div>
             </div>
@@ -27,11 +29,13 @@
                             formControlName="Lastname"
                             pInputText
                             placeholder="Ingrese el apellido del cliente"
-                            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+                            [class]="'w-full rounded-md border px-4 py-3 shadow-sm focus:outline-none focus:ring-2 ' + 
+                                    (isEditMode ? 'border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed' : 'border-gray-300 bg-white text-gray-800 focus:ring-gray-300')"
+                            [disabled]="isEditMode"
                     />
                     <small class="text-red-500 text-sm pt-0"
                            *ngIf="customerForm.get('Lastname')?.invalid && customerForm.get('Lastname')?.touched">
-                        El apellido es obligatorio (máx. 30 caracteres).
+                        * El apellido es obligatorio.
                     </small>
                 </div>
             </div>
@@ -64,7 +68,9 @@
                             pInputText
                             id="dni"
                             placeholder="Ingrese el DNI del cliente"
-                            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+                            [class]="'w-full rounded-md border px-4 py-3 shadow-sm focus:outline-none focus:ring-2 ' + 
+                                    (isEditMode ? 'border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed' : 'border-gray-300 bg-white text-gray-800 focus:ring-gray-300')"
+                            [disabled]="isEditMode"
                     />
                     <small class="text-red-500 text-sm"
                            *ngIf="customerForm.get('NationalId')?.invalid && customerForm.get('NationalId')?.touched">
@@ -105,7 +111,7 @@
                         <button
                                 type="submit"
                                 class="w-full md:w-64 px-8 py-3 rounded-md bg-gray-700 text-white shadow-sm hover:bg-gray-800 md:mr-[2.083%]">
-                            Crear cliente
+                            {{ isEditMode ? 'Actualizar cliente' : 'Crear cliente' }}
                         </button>
                     </div>
                 </div>

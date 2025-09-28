@@ -23,5 +23,8 @@ export class ClientService {
     createClient(body: any): Observable<any> {
         return this.http.post(`${this.apiUrl}/client/registryclient`, body);
     }
-    
+
+    updateClient(id: number, body: any): Observable<any> {
+        return this.http.put(`${this.apiUrl}/client/clientupdate?id=${id}`, body);
+    }
 }
