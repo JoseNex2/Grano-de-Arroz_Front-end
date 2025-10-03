@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl:'https://devgda.marbrus.com.ar/api'
+  apiUrl:'https://frontgdadev.marbrus.com.ar/api'
 }
