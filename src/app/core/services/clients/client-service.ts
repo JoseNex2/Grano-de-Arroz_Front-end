@@ -16,12 +16,15 @@ export class ClientService {
 
     getClients(): Observable<ApiResponse<ClientsResponse>> {
         return this.http.get<ApiResponse<ClientsResponse>>(
-            `${this.apiUrl}/Client/ClientsSearch`
+            `${this.apiUrl}/client/clientssearch`
         );
     }
 
     createClient(body: any): Observable<any> {
-        return this.http.post(`${this.apiUrl}/Client/registryClient`, body);
+        return this.http.post(`${this.apiUrl}/client/registryclient`, body);
     }
-    
+
+    updateClient(id: number, body: any): Observable<any> {
+        return this.http.put(`${this.apiUrl}/client/clientupdate?id=${id}`, body);
+    }
 }

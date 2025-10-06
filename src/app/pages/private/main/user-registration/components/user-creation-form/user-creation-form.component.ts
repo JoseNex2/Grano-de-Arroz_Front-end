@@ -6,7 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import {ApiResponse} from "../../../../../../core/interfaces/api-response";
 import {UserService} from "../../../../../../core/services/users/user-service";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {RoleService} from "../../../../../../core/services/roles/role-service";
 import {Select} from "primeng/select";
 import {mapRolesForDropdown} from "../../../../../../core/mappers/roleMap";
@@ -24,13 +24,51 @@ export class UserCreationFormComponent implements OnInit{
   isLoading = true;
   userForm!: FormGroup;
   private errorMsg: string | undefined;
+  isEditMode = false;
+  userId: number | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private route: Router, private roleService: RoleService, private messageService: MessageService) {
+  constructor(
+    private fb: FormBuilder, 
+    private userService: UserService, 
+    private route: Router, 
+    private activatedRoute: ActivatedRoute,
+    private roleService: RoleService, 
+    private messageService: MessageService
+  ) {
   }
 
   ngOnInit(): void {
-
+    this.initializeForm();
+    this.checkEditMode();
     this.loadRoles();
+  }
+
+  checkEditMode() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['edit'] === 'true') {
+        this.isEditMode = true;
+        this.userId = parseInt(params['id']);
+        this.loadUserData(params);
+      }
+    });
+  }
+
+  loadUserData(params: any) {
+    // Cargar los datos del usuario en el formulario
+    const userData = {
+      Name: params['name'] || '',
+      Lastname: params['lastname'] || '',
+      Email: params['email'] || '',
+      NationalId: params['nationalId'] || '',
+      PhoneNumber: params['phoneNumber'] || '',
+      RoleId: params['role'] || ''
+    };
+    
+    // Actualizar el formulario con los datos del usuario
+    this.userForm.patchValue(userData);
+  }
+
+  initializeForm() {
     this.userForm = this.fb.group({
       Name: ['', [Validators.required]],
       Lastname: ['', [Validators.required]],
@@ -69,42 +107,76 @@ export class UserCreationFormComponent implements OnInit{
 
     this.isLoading = true;
 
-    this.userService.createUser(this.userForm.value).subscribe({
-      next: (res: ApiResponse<any>) => {
-        if (res.code === 200 || res.code === 201) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Éxito',
-            detail: 'Usuario creado correctamente',
-            life: 3000
-          });
+    if (this.isEditMode && this.userId) {
+      // Modo edición
+      this.userService.updateUser(this.userId, this.userForm.value).subscribe({
+        next: (res: ApiResponse<any>) => {
+          if (res.code === 200 || res.code === 201) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Usuario actualizado correctamente',
+              life: 3000
+            });
+            this.isLoading = false;
+            this.route.navigate(['/inicio/usuarios']);
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: res.message || 'No se pudo actualizar el usuario',
+              life: 3000
+            });
+            this.isLoading = false;
+          }
+        },
+        error: (err) => {
           this.isLoading = false;
-          // this.route.navigate(['/main/usuarios']);
-
-        } else {
-
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: res.message || 'No se pudo crear el usuario',
+            detail: 'No se pudo actualizar el usuario. Intente nuevamente',
             life: 3000
           });
+        },
+      });
+    } else {
+      // Modo creación
+      this.userService.createUser(this.userForm.value).subscribe({
+        next: (res: ApiResponse<any>) => {
+          if (res.code === 200 || res.code === 201) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'Usuario creado correctamente',
+              life: 3000
+            });
+            this.isLoading = false;
+            this.route.navigate(['/inicio/usuarios']);
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: res.message || 'No se pudo crear el usuario',
+              life: 3000
+            });
+            this.isLoading = false;
+          }
+        },
+        error: (err) => {
           this.isLoading = false;
-        }
-      },
-      error: (err) => {
-        this.isLoading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'No se pudo crear el usuario. Intente nuevamente',
-          life: 3000
-        });
-      },
-    });
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'No se pudo crear el usuario. Intente nuevamente',
+            life: 3000
+          });
+        },
+      });
+    }
   }
 
   goBack() {
-    this.route.navigate([ '/main/usuarios']);
+    this.route.navigate([ '/inicio/usuarios']);
   }
 }

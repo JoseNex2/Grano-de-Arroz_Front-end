@@ -1,6 +1,6 @@
 import {TableModule} from 'primeng/table';
 import {FormsModule} from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
@@ -23,10 +23,13 @@ import { Menu, MenuModule } from 'primeng/menu';
 })
 export class CustomerTableComponent implements OnInit {
 
+  @ViewChild('rowMenu') rowMenu!: Menu;
+
   client: ClientInterface[] = [];
 
   showAssignModal = false;
   selectedClient: ClientInterface | null = null;
+  menuItems: MenuItem[] = [];
   
 
   constructor(private readonly router: Router, private readonly clientService: ClientService) {}
@@ -51,35 +54,45 @@ export class CustomerTableComponent implements OnInit {
 
 
   goToRegister() {
-    this.router.navigate(['/main/registro-de-clientes']);
+    this.router.navigate(['/inicio/clientes/registro-de-clientes']);
   }
 
   searchValue: string = '';
 
- getRowMenuItems(c: any): MenuItem[] {
-    return [
-      { label: 'Editar', icon: 'pi pi-pencil', command: () => this.onEdit(c) },
-      { label: 'Eliminar', icon: 'pi pi-trash', command: () => this.onDelete(c) },
-      { label: 'Asociar batería', icon: 'pi pi-plus-circle', command: () => this.onAssociateBattery(c) },
+  openMenu(event: MouseEvent, client: any) {
+    this.menuItems = [
+      { 
+        label: 'Editar', 
+        icon: 'pi pi-pencil', 
+        command: () => this.onEdit(client)
+      },
+      { 
+        label: 'Asociar batería', 
+        icon: 'pi pi-plus-circle', 
+        command: () => this.onAssociateBattery(client)
+      },
     ];
+    this.rowMenu.toggle(event);
   }
 
-  onEdit(c:any) {console.log('Editar cliente:', c);
-
+  onEdit(c: any) {
+    // Navegar al formulario de registro con los datos del cliente para editar
+    this.router.navigate(['/inicio/clientes/registro-de-clientes'], {
+      queryParams: { 
+        edit: true, 
+        id: c.id,
+        name: c.name,
+        lastname: c.lastName,
+        email: c.email,
+        nationalId: c.nationalId,
+        phoneNumber: c.phoneNumber
+      }
+    });
   }
 
-  onDelete(c:any) {console.log('Eliminar cliente:', c);
-
-  }
-
-  onAssociateBattery(c:any) {console.log('Asociar batería a cliente:', c);
+  onAssociateBattery(c: any) {
+    console.log('Asociar batería a cliente:', c);
     this.selectedClient = c;
     this.showAssignModal = true;
-  }
-
-  onMenuButtonClick(event: MouseEvent, menu: Menu) {
-    event.preventDefault();
-    event.stopPropagation();
-    menu.toggle(event);
   }
 }

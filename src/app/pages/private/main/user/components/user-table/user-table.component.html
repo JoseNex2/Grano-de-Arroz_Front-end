@@ -62,24 +62,20 @@
           </span>
         </td>
         <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-ellipsis-v"
+            class="p-button-text p-button-rounded"
+            (click)="showMenu($event, user)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
 
-          <ng-template pTemplate="paginatorleft">
-          <div class="flex-1"></div>
-          </ng-template>
-          <p-menu
-     #menu
-     [popup]="true"
-     [model]="getRowMenuItems(usuarios)"
-     [appendTo]="'body'"
-    ></p-menu>
-
-    <button
-     pButton
-     type="button"
-     icon="pi pi-ellipsis-v"
-     class="p-button-text p-button-rounded"
-     (click)="onMenuButtonClick($event, menu)"
-     ></button>
+    <ng-template pTemplate="paginatorleft">
+      <div class="flex-1"></div>
+    </ng-template>
 
     <ng-template pTemplate="paginatorright">
       <button
@@ -91,8 +87,14 @@
         class="p-button-raised p-button-secondary px-6 py-2 font-semibold text-base ml-4"
       ></button>
     </ng-template>
-        </td>
-      </tr>
-    </ng-template>
   </p-table>
 </div>
+
+<p-menu
+  #contextMenu
+  [popup]="true"
+  [model]="menuItems"
+  [appendTo]="'body'"
+></p-menu>
+
+<p-confirmDialog></p-confirmDialog>

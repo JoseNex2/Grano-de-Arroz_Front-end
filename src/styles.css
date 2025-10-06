@@ -37,11 +37,16 @@
   /* por encima del nav y contenido */
 }
 
-
 .p-toast {
   z-index: 1000000 !important; 
 }
 
 .p-toast .p-toast-message {
   z-index: 1000001 !important;
+}
+
+::ng-deep .p-breadcrumb .p-breadcrumb-item:last-child {
+  font-weight: 700 !important;
+  color: #1f2937;   /* Gris oscuro, se lee mejor */
+  /* semibold */
 }

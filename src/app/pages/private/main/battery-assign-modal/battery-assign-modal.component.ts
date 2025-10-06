@@ -39,7 +39,14 @@ export class BatteryAssignModalComponent {
   }
 
   onCancel() {
+    this.resetForm();
     this.closed.emit(false);
+  }
+
+  resetForm() {
+    this.form.reset();
+    this.form.markAsUntouched();
+    this.form.markAsPristine();
   }
 
   onSubmit() {
@@ -66,7 +73,7 @@ export class BatteryAssignModalComponent {
           });
           this.submitted.emit(payload);
           this.closed.emit(true);
-          this.form.reset();
+          this.resetForm();
         } else {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: res.message || 'No se pudo asociar' });
         }
