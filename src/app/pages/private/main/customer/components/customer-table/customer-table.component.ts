@@ -59,17 +59,21 @@ export class CustomerTableComponent implements OnInit {
 
   searchValue: string = '';
 
-  openMenu(event: MouseEvent, client: any) {
-    this.menuItems = [
+ getRowMenuItems(c: any): MenuItem[] {
+    return [
       { 
         label: 'Editar', 
         icon: 'pi pi-pencil', 
-        command: () => this.onEdit(client)
+        command: () => {
+          setTimeout(() => this.onEdit(c), 0);
+        }
       },
       { 
         label: 'Asociar batería', 
         icon: 'pi pi-plus-circle', 
-        command: () => this.onAssociateBattery(client)
+        command: () => {
+          setTimeout(() => this.onAssociateBattery(c), 0);
+        }
       },
     ];
     this.rowMenu.toggle(event);
@@ -94,5 +98,17 @@ export class CustomerTableComponent implements OnInit {
     console.log('Asociar batería a cliente:', c);
     this.selectedClient = c;
     this.showAssignModal = true;
+  }
+
+  onMenuButtonClick(event: MouseEvent, menu: Menu) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Cerrar cualquier menú abierto primero
+    if (menu.visible) {
+      menu.hide();
+    } else {
+      menu.toggle(event);
+    }
   }
 }
