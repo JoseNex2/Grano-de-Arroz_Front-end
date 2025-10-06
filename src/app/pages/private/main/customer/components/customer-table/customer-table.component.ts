@@ -1,6 +1,6 @@
 import {TableModule} from 'primeng/table';
 import {FormsModule} from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
@@ -23,10 +23,13 @@ import { Menu, MenuModule } from 'primeng/menu';
 })
 export class CustomerTableComponent implements OnInit {
 
+  @ViewChild('rowMenu') rowMenu!: Menu;
+
   client: ClientInterface[] = [];
 
   showAssignModal = false;
   selectedClient: ClientInterface | null = null;
+  menuItems: MenuItem[] = [];
   
 
   constructor(private readonly router: Router, private readonly clientService: ClientService) {}
@@ -73,6 +76,7 @@ export class CustomerTableComponent implements OnInit {
         }
       },
     ];
+    this.rowMenu.toggle(event);
   }
 
   onEdit(c: any) {
