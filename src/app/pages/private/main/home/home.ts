@@ -10,7 +10,7 @@ import {
 
 @Component({
   selector: 'app-home',
-  imports: [WelcomeCardComponent, BatteryCardComponent, HistoryTableComponent, SalesCard, WelcomeLabComponent, EvaluationStatusChartsComponent,],
+    imports: [WelcomeCardComponent, BatteryCardComponent, HistoryTableComponent, SalesCard, WelcomeLabComponent, EvaluationStatusChartsComponent,],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
   standalone: true,
@@ -18,6 +18,8 @@ import {
 export class Home implements OnInit{
   user = JSON.parse(localStorage.getItem('meUser')|| '{}');
 
- ngOnInit() {}
+ ngOnInit() {
+
+ }
 
 }

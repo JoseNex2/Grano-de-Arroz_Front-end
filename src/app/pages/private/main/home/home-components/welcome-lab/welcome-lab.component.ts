@@ -1,17 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TitlesSubtitlesComponent } from '../../../../shared/titles-subtitles/titles-subtitles.component';
 import { EvaluationStatusChartsComponent } from "../evaluation-status-charts/evaluation-status-charts.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-welcome-lab',
   imports: [ButtonModule, TitlesSubtitlesComponent],
   templateUrl: './welcome-lab.component.html',
+  standalone: true,
 })
 export class WelcomeLabComponent {
-  @Input() labName = 'ITHURBIDE';
-  @Output() start = new EventEmitter<void>();
-  onStart() {
-    this.start.emit();
+
+  constructor(private router: Router) {
   }
+
+  goTo(route: string) {
+    this.router.navigate(['inicio/analizar-bateria']);
+  }
+
 }

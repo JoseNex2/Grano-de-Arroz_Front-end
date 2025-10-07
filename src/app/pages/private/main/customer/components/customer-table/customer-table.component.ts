@@ -59,56 +59,54 @@ export class CustomerTableComponent implements OnInit {
 
   searchValue: string = '';
 
- getRowMenuItems(c: any): MenuItem[] {
+  getRowMenuItems(client: ClientInterface): MenuItem[] {
     return [
       { 
         label: 'Editar', 
         icon: 'pi pi-pencil', 
         command: () => {
-          setTimeout(() => this.onEdit(c), 0);
+          this.onEdit(client);
         }
       },
       { 
         label: 'Asociar batería', 
         icon: 'pi pi-plus-circle', 
         command: () => {
-          setTimeout(() => this.onAssociateBattery(c), 0);
+          this.onAssociateBattery(client);
         }
       },
     ];
-    this.rowMenu.toggle(event);
   }
 
-  onEdit(c: any) {
+  onEdit(client: ClientInterface) {
     // Navegar al formulario de registro con los datos del cliente para editar
     this.router.navigate(['/inicio/clientes/registro-de-clientes'], {
       queryParams: { 
         edit: true, 
-        id: c.id,
-        name: c.name,
-        lastname: c.lastName,
-        email: c.email,
-        nationalId: c.nationalId,
-        phoneNumber: c.phoneNumber
+        id: client.id,
+        name: client.name,
+        lastname: client.lastName,
+        email: client.email,
+        nationalId: client.nationalId,
+        phoneNumber: client.phoneNumber
       }
     });
   }
 
-  onAssociateBattery(c: any) {
-    console.log('Asociar batería a cliente:', c);
-    this.selectedClient = c;
+  onAssociateBattery(client: ClientInterface) {
+    console.log('Asociar batería a cliente:', client);
+    this.selectedClient = client;
     this.showAssignModal = true;
   }
 
-  onMenuButtonClick(event: MouseEvent, menu: Menu) {
+  onMenuButtonClick(event: MouseEvent, client: ClientInterface) {
     event.preventDefault();
     event.stopPropagation();
     
-    // Cerrar cualquier menú abierto primero
-    if (menu.visible) {
-      menu.hide();
-    } else {
-      menu.toggle(event);
-    }
+    // Configurar los items del menú para el cliente específico
+    this.menuItems = this.getRowMenuItems(client);
+    
+    // Toggle del menú
+    this.rowMenu.toggle(event);
   }
 }

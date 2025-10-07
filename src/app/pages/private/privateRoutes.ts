@@ -10,6 +10,8 @@ import { SearchReportComponent } from './main/search-report/search-report.compon
 
 import {rutaClientes} from "./main/routes/rutaClientes";
 import {rutaUsuarios} from "./main/routes/rutaUsuarios";
+import {rutaReportes} from "./main/routes/rutaReportes";
+import {StepperLabComponent} from "./main/stepper-lab/stepper-lab.component";
 
 
 
@@ -21,8 +23,10 @@ export const privateRoutes: Routes = [
       { path: '', component: Home },
       { path: '', children: rutaClientes },
       { path: '', children: rutaUsuarios },
+      { path: '', children: rutaReportes },
       { path: 'prueba-bateria',   component: BatteryAssignModalComponent},
-      { path: 'search-report',   component: SearchReportComponent }
+      { path: 'search-report',   component: SearchReportComponent },
+      {path: 'analizar-bateria', component: StepperLabComponent}
     ],
   },
 ];
