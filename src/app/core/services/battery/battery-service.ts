@@ -18,5 +18,12 @@ export class BatteryService {
    postBattery(body: BatteryInterface): Observable<ApiResponse<any>> {
     return this.http.post<ApiResponse<any>>(`${this.apiUrl}/battery/registrybattery`, body);
   }
+
+  getRatteriesByClientData(body: BatteryInterface): Observable<ApiResponse<any>> {
+        return this.http.post<ApiResponse<any>>(`${this.apiUrl}/battery/batteriessearchwithfilter`, body);
   }
+
+
+
+}
 

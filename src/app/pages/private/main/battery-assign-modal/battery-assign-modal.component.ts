@@ -28,7 +28,7 @@ export class BatteryAssignModalComponent {
   constructor(private fb: FormBuilder, private batteryService: BatteryService, private messageService: MessageService) {
     this.form = this.fb.group({
       ChipId: ['', [Validators.required, Validators.maxLength(100)]],
-      Ot: ['', [Validators.required, Validators.maxLength(100)]],
+      WorkOrder: ['', [Validators.required, Validators.maxLength(100)]],
       SaleDate: [null, Validators.required], 
     });
   }
@@ -57,7 +57,7 @@ export class BatteryAssignModalComponent {
     const raw = this.form.value;
     const payload: BatteryInterface = {
       ChipId: raw.ChipId,
-      Ot: raw.Ot || '',
+      WorkOrder: raw.Ot || '',
       SaleDate: this.normalizeDate(raw.SaleDate),
       ClientId: String(this.client.id)
     };

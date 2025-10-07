@@ -1,6 +1,6 @@
 export interface BatteryInterface {
   ChipId: string;
-  Ot: string;
+  WorkOrder: string;
   SaleDate: string;
   ClientId: string;
 }
