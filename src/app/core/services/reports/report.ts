@@ -15,8 +15,5 @@ export class Report {
   constructor(private http: HttpClient) {}
 
 
-
-  get
-
 }
 
