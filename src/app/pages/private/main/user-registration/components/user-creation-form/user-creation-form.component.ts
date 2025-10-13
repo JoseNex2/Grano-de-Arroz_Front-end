@@ -54,7 +54,6 @@ export class UserCreationFormComponent implements OnInit{
   }
 
   loadUserData(params: any) {
-    // Cargar los datos del usuario en el formulario
     const userData = {
       Name: params['name'] || '',
       Lastname: params['lastname'] || '',
@@ -63,8 +62,6 @@ export class UserCreationFormComponent implements OnInit{
       PhoneNumber: params['phoneNumber'] || '',
       RoleId: params['role'] || ''
     };
-    
-    // Actualizar el formulario con los datos del usuario
     this.userForm.patchValue(userData);
   }
 

@@ -40,7 +40,7 @@ export class CustomerTableComponent implements OnInit {
 
   loadTable() {
     this.clientService.getClients().subscribe({
-      next: (res: ApiResponse<ClientsResponse>) => {  // 👈 tipar bien
+      next: (res: ApiResponse<ClientsResponse>) => {
         if (res.code === 200 && res.response?.clients) {
           this.client = res.response.clients;
           this.client = [...this.client].reverse();

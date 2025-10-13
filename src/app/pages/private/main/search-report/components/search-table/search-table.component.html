@@ -1,39 +1,45 @@
-
 <div class="bg-white rounded-3xl shadow-md p-6">
-  <div class="mb-4">
-    <h3 class="text-xl font-semibold text-gray-900">Analisis encontrados:</h3>
-    <p class="text-sm text-gray-500">
-      Hace click en alguno de los siguientes resultados para visualizarlo
-    </p>
-  </div>
+    <div class="mb-4">
+        <h3 class="text-xl font-semibold text-gray-900">
+            Análisis encontrados: {{ rows?.length || 0 }}
+        </h3>
+        <p class="text-sm text-gray-500">
+            Hace click en alguno de los siguientes resultados para visualizarlo
+        </p>
+    </div>
 
-  <p-table
-    [value]="rows"
-    class="rounded-xl overflow-hidden border border-gray-100"
-    [tableStyle]="{ 'min-width': '100%' }"
-  >
-    <ng-template pTemplate="header">
-      <tr class="bg-gray-50">
-        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Cliente</th>
-        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">GDA</th>
-        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Estado del analisis</th>
-        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Date</th>
-      </tr>
-    </ng-template>
+    @if (rows && rows.length > 0) {
+        <p-table
+                [value]="rows"
+                class="rounded-xl overflow-hidden border border-gray-100"
+                [tableStyle]="{ 'min-width': '100%' }"
+        >
+            <ng-template pTemplate="header">
+                <tr class="bg-gray-50">
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Cliente</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">GDA</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Estado del análisis</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Fecha</th>
+                </tr>
+            </ng-template>
 
-    <ng-template pTemplate="body" let-row>
-      <tr class="hover:bg-gray-50 cursor-pointer">
-        <td class="px-6 py-4 text-sm text-gray-900">{{ row.cliente }}</td>
-        <td class="px-6 py-4 text-sm text-gray-700">{{ row.gda }}</td>
-        <td class="px-6 py-4">
-          <p-tag
-            [severity]="row.severity"
-            [value]="row.estado"
-            [rounded]="true"
-          ></p-tag>
-        </td>
-        <td class="px-6 py-4 text-sm text-gray-700">{{ row.fecha }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+            <ng-template pTemplate="body" let-row>
+                <tr class="hover:bg-gray-50 cursor-pointer">
+                    <td class="px-6 py-4 text-sm text-gray-900">{{ row.cliente }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-700">{{ row.gda }}</td>
+                    <td class="px-6 py-4">
+                        <p-tag [severity]="row.severity" [value]="row.estado" [rounded]="true"></p-tag>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-700">{{ row.fecha }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    } @else {
+        <div class="flex flex-col items-start gap-2 p-6 border border-dashed border-gray-300 rounded-xl bg-gray-50 text-gray-600">
+            <span class="font-medium">No se encontraron análisis.</span>
+            <span class="text-sm">
+        Completa el formulario de la izquierda y presiona “Buscar” para visualizar los resultados aquí.
+      </span>
+        </div>
+    }
 </div>
