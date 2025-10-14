@@ -13,5 +13,5 @@ import { SearchTableComponent } from './components/search-table/search-table.com
   standalone: true
 })
 export class SearchReportComponent {
-  steps: MenuItem[] = [{ label: 'Inicio' }, { label: 'Registro Historico' },{ label: 'Buscar Reporte' }];
+  steps: MenuItem[] = [{ label: 'Inicio' }, { label: 'Registro Historico' },{ label: 'Generar Reporte' }];
 }

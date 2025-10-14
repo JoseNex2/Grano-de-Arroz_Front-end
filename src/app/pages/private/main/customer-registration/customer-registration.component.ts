@@ -4,8 +4,6 @@ import {MenuItem} from 'primeng/api';
 import {TitlesSubtitlesComponent} from '../../shared/titles-subtitles/titles-subtitles.component';
 import {CustomerRegistrationFormComponent} from './components/customer-registration-form/customer-registration-form.component';
 
-
-
 @Component({
   selector: 'app-customer-registration',
   imports: [
@@ -18,11 +16,9 @@ import {CustomerRegistrationFormComponent} from './components/customer-registrat
   standalone: true,
 })
 export class CustomerRegistrationComponent {
-
   steps: MenuItem[] = [
     {label: 'Inicio'},
     {label: 'Clientes'},
-    {label: 'Resgistro de clientes'}
+    {label: 'Registro de clientes'}
   ]
-
 }

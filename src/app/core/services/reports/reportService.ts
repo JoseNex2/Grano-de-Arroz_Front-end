@@ -8,12 +8,15 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class Report {
+export class ReportService {
 
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-
+  generateReport(chipId: string): Observable<ApiResponse<any>> {
+    const body = { ChipId: chipId };
+    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/report/reportcreate`, body);
+  }
 }
 

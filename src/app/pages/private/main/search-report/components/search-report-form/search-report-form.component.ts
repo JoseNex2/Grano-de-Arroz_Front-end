@@ -92,7 +92,6 @@ export class SearchReportFormComponent implements OnInit {
 
   resetForm(): void {
     this.batteryForm.reset();
-    // Limpiar la tabla cuando se resetea el formulario
     this.batteryService.batteriesByClientData.set(null);
   }
 }

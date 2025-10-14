@@ -8,7 +8,7 @@ export const rutaClientes: Routes = [
         path: 'clientes',
         children: [
             { path: '', component: CustomerComponent },
-            { path: 'registro-de-clientes', component: CustomerRegistrationComponent }, // ✅ Corregido
+            { path: 'registro-de-clientes', component: CustomerRegistrationComponent },
         ],
     },
 ];

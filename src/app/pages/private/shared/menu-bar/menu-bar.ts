@@ -50,7 +50,8 @@ export class MenuBar {
       this.menuButtons = [
         { label: 'Home', icon: 'pi pi-home', route: '/inicio'},
         { label: 'Registros históricos', icon: 'pi pi-book', route: '/inicio'},
-        { label: 'Registro de clientes', icon: 'pi pi-id-card', route: '/inicio/clientes' }
+        { label: 'Registro de clientes', icon: 'pi pi-id-card', route: '/inicio/clientes' },
+        { label: 'Generar Reporte', icon: 'pi pi-file-arrow-up', route: '/inicio/reportes'},
       ];
     }
   }

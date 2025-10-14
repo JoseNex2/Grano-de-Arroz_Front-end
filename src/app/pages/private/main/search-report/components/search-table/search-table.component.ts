@@ -3,10 +3,14 @@ import { TagModule } from 'primeng/tag';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import {BatteryService} from "../../../../../../core/services/battery/battery-service";
+import {Button} from "primeng/button";
+import {ReportService} from "../../../../../../core/services/reports/reportService";
+import {ApiResponse} from "../../../../../../core/interfaces/api-response";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-search-table',
-  imports: [TableModule, CommonModule, TagModule],
+  imports: [TableModule, CommonModule, TagModule, Button],
   templateUrl: './search-table.component.html',
   styleUrls: ['./search-table.component.css'],
   standalone: true
@@ -14,7 +18,9 @@ import {BatteryService} from "../../../../../../core/services/battery/battery-se
 export class SearchTableComponent implements OnInit {
   rows: any[] = [];
 
-  constructor(private batteryService: BatteryService) {
+  constructor(private batteryService: BatteryService,
+              private messageService: MessageService,
+              private reportsService: ReportService) {
     effect(() => {
       const data = this.batteryService.batteriesByClientData();
       const list = Array.isArray(data)
@@ -36,6 +42,7 @@ export class SearchTableComponent implements OnInit {
           const fecha = fechaRaw ? new Date(fechaRaw).toLocaleDateString() : new Date().toLocaleDateString();
 
           return {
+            id: b.Id ?? b.id ?? b.ID ?? '',
             cliente,
             gda,
             estado,
@@ -50,7 +57,39 @@ export class SearchTableComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.rows);
   }
+
+  generateReport(chipId: string) {
+    this.reportsService.generateReport(chipId).subscribe({
+      next: (res: ApiResponse<any>) => {
+        if (res.code === 200 || res.code === 201) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Éxito',
+            detail: 'Reporte generado correctamente',
+            life: 3000
+          });
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: res.message || 'No se pudo generar el reporte',
+            life: 3000
+          });
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudo generar el reporte. Intente nuevamente',
+          life: 3000
+        });
+      },
+    });
+  }
+
   getSeverity(status: string): string {
     const s = (status || '').toString().toLowerCase();
     switch (s) {
