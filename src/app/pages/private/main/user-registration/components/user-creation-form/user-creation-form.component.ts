@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
@@ -26,6 +26,58 @@ export class UserCreationFormComponent implements OnInit{
   private errorMsg: string | undefined;
   isEditMode = false;
   userId: number | null = null;
+
+
+  private static nameValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return null; 
+    }
+
+    const namePattern = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    if (!namePattern.test(value)) {
+      return { invalidName: true };
+    }
+    return null;
+  }
+
+  private static lastNameValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return null; 
+    }
+ 
+    const lastNamePattern = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    if (!lastNamePattern.test(value)) {
+      return { invalidLastName: true };
+    }
+    return null;
+  }
+
+  private static dniValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return null; 
+    }
+
+    const dniPattern = /^\d{8}$/;
+    if (!dniPattern.test(value)) {
+      return { invalidDni: true };
+    }
+    return null;
+  }
+
+  private static phoneValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (!value) {
+      return null; 
+    }
+    const phonePattern = /^\d{8,15}$/;
+    if (!phonePattern.test(value)) {
+      return { invalidPhone: true };
+    }
+    return null;
+  }
 
   constructor(
     private fb: FormBuilder, 
@@ -67,11 +119,25 @@ export class UserCreationFormComponent implements OnInit{
 
   initializeForm() {
     this.userForm = this.fb.group({
-      Name: ['', [Validators.required]],
-      Lastname: ['', [Validators.required]],
-      Email: ['', [Validators.required]],
-      NationalId: ['', [Validators.required]],
-      PhoneNumber: ['', [Validators.required]],
+      Name: ['', [
+        Validators.required,
+        Validators.maxLength(30),
+        UserCreationFormComponent.nameValidator
+      ]],
+      Lastname: ['', [
+        Validators.required,
+        Validators.maxLength(30),
+        UserCreationFormComponent.lastNameValidator
+      ]],
+      Email: ['', [Validators.required, Validators.email]],
+      NationalId: ['', [
+        Validators.required,
+        UserCreationFormComponent.dniValidator
+      ]],
+      PhoneNumber: ['', [
+        Validators.required,
+        UserCreationFormComponent.phoneValidator
+      ]],
       RoleId: ['', [Validators.required]],
     });
   }
@@ -98,7 +164,8 @@ export class UserCreationFormComponent implements OnInit{
 
   onSubmit() {
     if (this.userForm.invalid) {
-      this.errorMsg = 'Complete todos los campos';
+      this.userForm.markAllAsTouched();
+      this.errorMsg = 'Por favor, corrija los errores en el formulario.';
       return;
     }
 
