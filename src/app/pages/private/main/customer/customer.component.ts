@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BreadcrumbComponent} from '../../shared/breadcrumb/breadcrumb';
+import {BreadcrumbComponent, BreadcrumbItem} from '../../shared/breadcrumb/breadcrumb';
 import {MenuItem} from 'primeng/api';
 import {CustomerTableComponent} from "./components/customer-table/customer-table.component";
 
@@ -13,8 +13,8 @@ import {CustomerTableComponent} from "./components/customer-table/customer-table
   styleUrl: './customer.component.css'
 })
 export class CustomerComponent {
-  steps: MenuItem[] = [
-    {label: 'Inicio'},
-    {label: 'Clientes'}
-  ]
+  steps: BreadcrumbItem[] = [
+    { label: 'Inicio', route: '/inicio' },
+    { label: 'Clientes' } // Página actual
+  ];
 }
