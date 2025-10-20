@@ -12,6 +12,18 @@
             placeholder="Ingrese el nombre del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('Name')?.invalid && userForm.get('Name')?.touched">
+            <small *ngIf="userForm.get('Name')?.errors?.['required']">
+              El nombre es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('Name')?.errors?.['invalidName']">
+              El nombre solo puede contener letras y espacios.
+            </small>
+            <small *ngIf="userForm.get('Name')?.errors?.['maxlength']">
+              El nombre no puede exceder 30 caracteres.
+            </small>
+          </div>
         </div>
       </div>
 
@@ -25,6 +37,18 @@
             placeholder="Ingrese el apellido del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('Lastname')?.invalid && userForm.get('Lastname')?.touched">
+            <small *ngIf="userForm.get('Lastname')?.errors?.['required']">
+              El apellido es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('Lastname')?.errors?.['invalidLastName']">
+              El apellido solo puede contener letras y espacios.
+            </small>
+            <small *ngIf="userForm.get('Lastname')?.errors?.['maxlength']">
+              El apellido no puede exceder 30 caracteres.
+            </small>
+          </div>
         </div>
       </div>
 
@@ -39,6 +63,15 @@
             placeholder="Ingrese el email del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('Email')?.invalid && userForm.get('Email')?.touched">
+            <small *ngIf="userForm.get('Email')?.errors?.['required']">
+              El email es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('Email')?.errors?.['email']">
+              Ingrese un email válido.
+            </small>
+          </div>
         </div>
       </div>
 
@@ -53,6 +86,15 @@
             placeholder="Ingrese el DNI del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('NationalId')?.invalid && userForm.get('NationalId')?.touched">
+            <small *ngIf="userForm.get('NationalId')?.errors?.['required']">
+              El DNI es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('NationalId')?.errors?.['invalidDni']">
+              El DNI debe contener solo números (7-8 dígitos).
+            </small>
+          </div>
         </div>
       </div>
 
@@ -67,6 +109,15 @@
             placeholder="Ingresa el número de telefono del usuario"
             class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('PhoneNumber')?.invalid && userForm.get('PhoneNumber')?.touched">
+            <small *ngIf="userForm.get('PhoneNumber')?.errors?.['required']">
+              El teléfono es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('PhoneNumber')?.errors?.['invalidPhone']">
+              El teléfono debe contener solo números (8-15 dígitos).
+            </small>
+          </div>
         </div>
       </div>
 
@@ -84,11 +135,13 @@
                     [appendTo]="'body'"
                     styleClass="w-full">
             </p-select>
-          <!-- Mensaje de error -->
-          <small *ngIf="userForm.get('Role')?.invalid && userForm.get('Role')?.touched" 
-                 class="text-red-500 mt-1 block">
-            El rol es requerido
-          </small>
+
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('RoleId')?.invalid && userForm.get('RoleId')?.touched">
+            <small *ngIf="userForm.get('RoleId')?.errors?.['required']">
+              El rol es obligatorio.
+            </small>
+          </div>
         </div>
       </div>
 

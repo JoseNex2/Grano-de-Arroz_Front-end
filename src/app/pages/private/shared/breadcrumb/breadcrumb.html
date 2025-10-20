@@ -1,3 +1,39 @@
 <div class="ml-8">
-<p-breadcrumb class="color-fondo-dashboard" [model]="items"></p-breadcrumb>
+  <p-breadcrumb 
+    class="breadcrumb-custom"
+    [model]="items">
+  </p-breadcrumb>
 </div>
+
+<style>
+  .breadcrumb-custom .p-breadcrumb {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  
+  .breadcrumb-custom .p-breadcrumb-list {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Pasos anteriores (navegables) - Gris oscuro */
+  .breadcrumb-custom .p-menuitem-link:not(.p-disabled) {
+    color: #0062ec !important; /* gray-800 */
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+    font-weight: 600 !important;
+  }
+  
+  .breadcrumb-custom .p-menuitem-link:not(.p-disabled):hover {
+    color: #2563eb !important; /* blue-600 */
+    cursor: pointer !important;
+  }
+  
+  /* Paso actual (donde estás) - Gris claro */
+  .breadcrumb-custom .p-menuitem-link.p-disabled {
+    color: #9ca3af !important; /* gray-400 */
+    font-weight: 500 !important;
+    cursor: default !important;
+  }
+</style>
