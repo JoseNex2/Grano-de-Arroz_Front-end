@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchReportFormComponent } from './search-report-form.component';
+import { SearchReportFormLabComponent } from './search-report-form-lab.component';
 
 describe('SearchReportFormLabComponent', () => {
-  let component: SearchReportFormComponent;
-  let fixture: ComponentFixture<SearchReportFormComponent>;
+  let component: SearchReportFormLabComponent;
+  let fixture: ComponentFixture<SearchReportFormLabComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchReportFormComponent]
+      imports: [SearchReportFormLabComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchReportFormComponent);
+    fixture = TestBed.createComponent(SearchReportFormLabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
