@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {BreadcrumbComponent, BreadcrumbItem} from '../../shared/breadcrumb/breadcrumb';
+import {BreadcrumbComponent} from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 import {MenuItem} from 'primeng/api';
 import {CustomerTableComponent} from "./components/customer-table/customer-table.component";
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { BreadcrumbComponent, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 import { TitlesSubtitlesComponent } from '../../shared/titles-subtitles/titles-subtitles.component';
 import { UserCreationFormComponent } from './components/user-creation-form/user-creation-form.component';
 
@@ -16,6 +16,6 @@ export class UserRegistrationComponent {
   steps: BreadcrumbItem[] = [
     { label: 'Inicio', route: '/inicio' }, 
     { label: 'Gestión de usuario', route: '/inicio/usuarios' }, 
-    { label: 'Crear nuevo usuario' } // Sin route = página actual, no clickeable
+    { label: 'Crear nuevo usuario' } 
   ];
 }

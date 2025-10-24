@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { BreadcrumbComponent, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { TitlesSubtitlesComponent } from '../../shared/titles-subtitles/titles-subtitles.component';
 import {UserService} from '../../../../core/services/users/user-service';

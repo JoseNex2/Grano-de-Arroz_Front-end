@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {BreadcrumbComponent, BreadcrumbItem} from "../../shared/breadcrumb/breadcrumb";
+import {BreadcrumbComponent} from "../../shared/breadcrumb/breadcrumb";
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 import {MenuItem} from 'primeng/api';
 import {TitlesSubtitlesComponent} from '../../shared/titles-subtitles/titles-subtitles.component';
 import {CustomerRegistrationFormComponent} from './components/customer-registration-form/customer-registration-form.component';
