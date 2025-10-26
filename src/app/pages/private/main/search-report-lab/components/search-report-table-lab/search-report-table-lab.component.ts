@@ -6,6 +6,7 @@ import {Button} from "primeng/button";
 import {ReportService} from "../../../../../../core/services/reports/reportService";
 import {ApiResponse} from "../../../../../../core/interfaces/api-response";
 import {MessageService} from "primeng/api";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class SearchReportTableLabComponent implements OnInit {
 
   constructor(private reportService: ReportService,
               private messageService: MessageService,
-              private reportsService: ReportService) {
+              private reportsService: ReportService,
+              private router: Router) {
     effect(() => {
       const data = this.reportService.reportsByData();
       const list = Array.isArray(data)
@@ -69,21 +71,24 @@ export class SearchReportTableLabComponent implements OnInit {
     console.log(this.rows);
   }
 
-  generateReport(chipId: string) {
-    this.reportsService.generateReport(chipId).subscribe({
+  getIdReportToAnalize(reportId: string | number) {
+    this.reportsService.getIdReportToAnalize(reportId).subscribe({
       next: (res: ApiResponse<any>) => {
         if (res.code === 200 || res.code === 201) {
+          console.log('Datos del reporte:', res.response);
+          this.reportService.currentAnalisis.set(res.response);
           this.messageService.add({
             severity: 'success',
             summary: 'Éxito',
-            detail: 'Reporte generado correctamente',
+            detail: 'Reporte obtenido correctamente',
             life: 3000
           });
+          void this.router.navigate(['/inicio/analizar-bateria']);
         } else {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: res.message || 'No se pudo generar el reporte',
+            detail: res.message || 'No se pudo obtener el reporte',
             life: 3000
           });
         }
@@ -92,7 +97,7 @@ export class SearchReportTableLabComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'No se pudo generar el reporte. Intente nuevamente',
+          detail: 'No se pudo obtener el reporte. Intente nuevamente',
           life: 3000
         });
       },
