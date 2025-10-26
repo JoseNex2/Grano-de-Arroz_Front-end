@@ -57,13 +57,17 @@ export class SearchReportFormComponent implements OnInit {
           this.batteryService.batteriesByClientData.set(null);
         }
       },
-      error: () => {
+      error: (err) => {
         this.batteryService.batteriesByClientData.set(null);
+
+        const backendMessage =
+            err?.error?.message || 'Error al comunicarse con el servidor';
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'No se pudo acceder al reporte',
-          life: 3000,
+          detail: backendMessage,
+          life: 4000,
         });
       },
     });
