@@ -2,11 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {Breadcrumb} from 'primeng/breadcrumb';
 import {Router} from '@angular/router';
-
-export interface BreadcrumbItem {
-  label: string;
-  route?: string;
-}
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -37,7 +33,7 @@ export class BreadcrumbComponent implements OnInit {
         label: item.label,
         routerLink: item.route && !isLastItem ? item.route : undefined,
         command: item.route && !isLastItem ? () => this.router.navigate([item.route]) : undefined,
-        disabled: !item.route || isLastItem, // Último item siempre deshabilitado
+        disabled: !item.route || isLastItem,
         styleClass: isLastItem ? 'current-page' : ''
       };
     });

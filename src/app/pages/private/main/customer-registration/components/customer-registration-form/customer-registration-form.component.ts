@@ -152,11 +152,20 @@ export class CustomerRegistrationFormComponent implements OnInit {
           this.submitting = false;
         },
         error: (err) => {
-          this.errorMsg = 'Error de red o servidor.';
+          if (err.status === 409) {
+            this.errorMsg = 'El DNI ya se encuentra registrado';
+          } else if (err.error && err.error.message) {
+            this.errorMsg = err.error.message;
+          } else if (err.status >= 500) {
+            this.errorMsg = 'Error del servidor. Intente nuevamente';
+          } else {
+            this.errorMsg = 'Error de red o servidor.';
+          }
+          
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: this.errorMsg,
+            detail: this.errorMsg || 'Error desconocido',
             life: 3000
           });
           this.submitting = false;

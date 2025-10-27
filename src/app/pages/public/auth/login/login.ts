@@ -38,8 +38,17 @@ export class Login {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required]]
+      Password: ['', [Validators.required]],
+      Remember: [false]
     });
+
+    const rememberedEmail = this.authService.getRememberedEmail();
+    if (rememberedEmail) {
+      this.loginForm.patchValue({
+        Email: rememberedEmail,
+        Remember: true
+      });
+    }
   }
 
   onSubmit() {
@@ -65,6 +74,12 @@ export class Login {
           localStorage.setItem('access_token', res.response.token);
           localStorage.setItem('rol', JSON.stringify(res.response.role));
           localStorage.setItem('email', res.response.email);
+          
+          if (this.loginForm.get('Remember')?.value) {
+            this.authService.saveRememberedEmail(res.response.email);
+          } else {
+            this.authService.clearRememberedEmail();
+          }
 
           try {
             const decodedToken: DecodedToken = jwtDecode(res.response.token);

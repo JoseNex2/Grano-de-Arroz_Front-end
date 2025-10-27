@@ -14,7 +14,21 @@ export class AuthService {
   user = this._user.asReadonly();
 
   private apiUrl = environment.apiUrl;
+  private readonly REMEMBERED_EMAIL_KEY = 'remembered_email';
+  
   constructor(private http: HttpClient, private router: Router) {}
+
+  getRememberedEmail(): string | null {
+    return localStorage.getItem(this.REMEMBERED_EMAIL_KEY);
+  }
+
+  saveRememberedEmail(email: string): void {
+    localStorage.setItem(this.REMEMBERED_EMAIL_KEY, email);
+  }
+
+  clearRememberedEmail(): void {
+    localStorage.removeItem(this.REMEMBERED_EMAIL_KEY);
+  }
 
   login(credentials: { Email: string, Password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/Access/login`, credentials);

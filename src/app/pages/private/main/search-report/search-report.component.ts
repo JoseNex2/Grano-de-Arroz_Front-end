@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { BreadcrumbComponent, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 import { TitlesSubtitlesComponent } from '../../shared/titles-subtitles/titles-subtitles.component';
 import { SearchReportFormComponent } from './components/search-report-form/search-report-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
