@@ -42,10 +42,12 @@ export class Login {
       Remember: [false]
     });
 
-    const rememberedEmail = this.authService.getRememberedEmail();
-    if (rememberedEmail) {
+    // Cargar credenciales encriptadas si existen
+    const credentials = this.authService.getRememberedCredentials();
+    if (credentials) {
       this.loginForm.patchValue({
-        Email: rememberedEmail,
+        Email: credentials.email,
+        Password: credentials.password,
         Remember: true
       });
     }
@@ -75,10 +77,13 @@ export class Login {
           localStorage.setItem('rol', JSON.stringify(res.response.role));
           localStorage.setItem('email', res.response.email);
           
+          // Guardar o limpiar credenciales encriptadas según el checkbox
           if (this.loginForm.get('Remember')?.value) {
-            this.authService.saveRememberedEmail(res.response.email);
+            const email = this.loginForm.get('Email')?.value;
+            const password = this.loginForm.get('Password')?.value;
+            this.authService.saveRememberedCredentials(email, password);
           } else {
-            this.authService.clearRememberedEmail();
+            this.authService.clearRememberedCredentials();
           }
 
           try {
