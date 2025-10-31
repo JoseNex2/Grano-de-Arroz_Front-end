@@ -14,6 +14,8 @@ export class ReportService {
 
   reportsByData = signal<any | null>(null);
 
+  currentAnalisis = signal<any | null>(null);
+
   constructor(private http: HttpClient) {}
 
   generateReport(chipId: string): Observable<ApiResponse<any>> {
@@ -23,6 +25,11 @@ export class ReportService {
 
   getReportByData(body: any ): Observable<ApiResponse<any>> {
     return this.http.post<ApiResponse<any>>(`${this.apiUrl}/report/reportssearch`, body);
+  }
+
+  getIdReportToAnalize(reportId: string | number): Observable<ApiResponse<any>> {
+    const params = { reportId: String(reportId) };
+    return this.http.get<ApiResponse<any>>(`${this.apiUrl}/report/reportgetbyid`, { params });
   }
 
 }
