@@ -16,7 +16,7 @@ export class WelcomeLabComponent {
   }
 
   goTo(route: string) {
-    this.router.navigate(['inicio/analizar-bateria']);
+    this.router.navigate(['inicio/search-report']);
   }
 
 }
