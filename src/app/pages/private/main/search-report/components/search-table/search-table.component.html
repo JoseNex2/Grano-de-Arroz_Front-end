@@ -18,7 +18,6 @@
                 <tr class="bg-gray-50">
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Cliente</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">GDA</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Estado del análisis</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Fecha</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700"></th>
 
@@ -29,9 +28,6 @@
                 <tr class="hover:bg-gray-50 cursor-pointer">
                     <td class="px-6 py-4 text-sm text-gray-900">{{ row.cliente }}</td>
                     <td class="px-6 py-4 text-sm text-gray-700">{{ row.gda }}</td>
-                    <td class="px-6 py-4">
-                        <p-tag [severity]="row.severity" [value]="row.estado" [rounded]="true"></p-tag>
-                    </td>
                     <td class="px-6 py-4 text-sm text-gray-700">{{ row.fecha }}</td>
                     <td class="px-4 py-3 text-right">
                         <p-button icon="pi pi-chevron-right" (onClick)="generateReport(row.gda)"> </p-button>

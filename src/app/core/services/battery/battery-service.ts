@@ -2,7 +2,7 @@ import {Injectable, signal} from '@angular/core';
 import { BatteryInterface } from '../../interfaces/batteryinterface';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../../interfaces/api-response';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../enviroments/develop.enviroment';
 import {ClientsResponse} from "../../interfaces/client/ClientResponse";
 
@@ -23,6 +23,12 @@ export class BatteryService {
   }
 
   getRatteriesByClientData(body: BatteryInterface): Observable<ApiResponse<any>> {
+        return this.http.post<ApiResponse<any>>(`${this.apiUrl}/battery/batteriessearchwithfilter`, body);
+  }
+
+  // Convenience: search batteries by data using only ChipId
+  getBatteriesByDataFromChipId(chipId: string): Observable<ApiResponse<any>> {
+        const body = { ChipId: chipId } as any;
         return this.http.post<ApiResponse<any>>(`${this.apiUrl}/battery/batteriessearchwithfilter`, body);
   }
 
@@ -51,6 +57,15 @@ export class BatteryService {
         });
     }
 
-
-
+    getBatteriesById(id: string[]): Observable<ApiResponse<any>> {
+        let params = new HttpParams();
+        if (Array.isArray(id)) {
+            id.filter(v => v != null && v !== '').forEach(v => {
+                params = params.append('id', String(v));
+            });
+        } else if (id != null as any) {
+            params = params.set('id', String(id as any));
+        }
+        return this.http.get<ApiResponse<any>>(`${this.apiUrl}/battery/batterysearchwithid`, { params });
+    }
 }
