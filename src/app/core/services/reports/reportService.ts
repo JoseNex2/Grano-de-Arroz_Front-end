@@ -32,5 +32,11 @@ export class ReportService {
     return this.http.get<ApiResponse<any>>(`${this.apiUrl}/report/reportgetbyid`, { params });
   }
 
-}
+  updateMeasurementReport(body: any): Observable<ApiResponse<any>> {
+    return this.http.put<ApiResponse<any>>(
+        `${this.apiUrl}/report/updatemeasurementreport`,
+        body
+    );
+  }
 
+}

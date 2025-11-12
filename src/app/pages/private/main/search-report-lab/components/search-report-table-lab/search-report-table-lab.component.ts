@@ -30,7 +30,7 @@ export class SearchReportTableLabComponent implements OnInit {
           : (data?.batteries ?? data?.clients ?? data?.reports ?? []);
 
       if (Array.isArray(list) && list.length > 0) {
-        this.rows = list.map((b: any) => {
+        const mapped = list.map((b: any) => {
           const fullNameRaw = (
             b.ClientFullName ?? b.clientFullName ?? b.fullName ?? b.client_full_name ?? b.Client ?? b.clientNameFull
           );
@@ -61,8 +61,11 @@ export class SearchReportTableLabComponent implements OnInit {
             fecha,
           };
         });
+        // Defer assignment to avoid ExpressionChangedAfterItHasBeenCheckedError
+        setTimeout(() => { this.rows = mapped; });
       } else {
-        this.rows = [];
+        // Defer clearing as well to keep updates outside current CD tick
+        setTimeout(() => { this.rows = []; });
       }
     });
   }
