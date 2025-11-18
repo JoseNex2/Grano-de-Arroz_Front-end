@@ -37,7 +37,7 @@
   /* por encima del nav y contenido */
 }
 
-.p-toast {
+.p-toast, .modal {
   z-index: 1000000 !important; 
 }
 

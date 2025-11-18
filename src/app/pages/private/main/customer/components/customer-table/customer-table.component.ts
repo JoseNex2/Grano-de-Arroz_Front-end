@@ -1,6 +1,6 @@
 import {TableModule} from 'primeng/table';
 import {FormsModule} from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
@@ -23,10 +23,13 @@ import { Menu, MenuModule } from 'primeng/menu';
 })
 export class CustomerTableComponent implements OnInit {
 
+  @ViewChild('rowMenu') rowMenu!: Menu;
+
   client: ClientInterface[] = [];
 
   showAssignModal = false;
   selectedClient: ClientInterface | null = null;
+  menuItems: MenuItem[] = [];
   
 
   constructor(private readonly router: Router, private readonly clientService: ClientService) {}
@@ -37,7 +40,7 @@ export class CustomerTableComponent implements OnInit {
 
   loadTable() {
     this.clientService.getClients().subscribe({
-      next: (res: ApiResponse<ClientsResponse>) => {  // 👈 tipar bien
+      next: (res: ApiResponse<ClientsResponse>) => {
         if (res.code === 200 && res.response?.clients) {
           this.client = res.response.clients;
           this.client = [...this.client].reverse();
@@ -56,55 +59,61 @@ export class CustomerTableComponent implements OnInit {
 
   searchValue: string = '';
 
- getRowMenuItems(c: any): MenuItem[] {
+  getRowMenuItems(client: ClientInterface): MenuItem[] {
     return [
+      {
+        label: 'Ver perfil',
+        icon: 'pi pi-pencil',
+        command: () => {
+          this.onEdit(client);
+        }
+      },
+
       { 
         label: 'Editar', 
         icon: 'pi pi-pencil', 
         command: () => {
-          setTimeout(() => this.onEdit(c), 0);
+          this.onEdit(client);
         }
       },
+
       { 
         label: 'Asociar batería', 
         icon: 'pi pi-plus-circle', 
         command: () => {
-          setTimeout(() => this.onAssociateBattery(c), 0);
+          this.onAssociateBattery(client);
         }
       },
     ];
   }
 
-  onEdit(c: any) {
-    // Navegar al formulario de registro con los datos del cliente para editar
+  onEdit(client: ClientInterface) {
     this.router.navigate(['/inicio/clientes/registro-de-clientes'], {
       queryParams: { 
         edit: true, 
-        id: c.id,
-        name: c.name,
-        lastname: c.lastName,
-        email: c.email,
-        nationalId: c.nationalId,
-        phoneNumber: c.phoneNumber
+        id: client.id,
+        name: client.name,
+        lastname: client.lastName,
+        email: client.email,
+        nationalId: client.nationalId,
+        phoneNumber: client.phoneNumber
       }
     });
   }
 
-  onAssociateBattery(c: any) {
-    console.log('Asociar batería a cliente:', c);
-    this.selectedClient = c;
+  onAssociateBattery(client: ClientInterface) {
+    this.selectedClient = client;
     this.showAssignModal = true;
   }
 
-  onMenuButtonClick(event: MouseEvent, menu: Menu) {
+  
+
+
+  onMenuButtonClick(event: MouseEvent, client: ClientInterface) {
     event.preventDefault();
     event.stopPropagation();
     
-    // Cerrar cualquier menú abierto primero
-    if (menu.visible) {
-      menu.hide();
-    } else {
-      menu.toggle(event);
-    }
+    this.menuItems = this.getRowMenuItems(client);
+    this.rowMenu.toggle(event);
   }
 }

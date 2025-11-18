@@ -38,8 +38,19 @@ export class Login {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       Email: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required]]
+      Password: ['', [Validators.required]],
+      Remember: [false]
     });
+
+    // Cargar credenciales encriptadas si existen
+    const credentials = this.authService.getRememberedCredentials();
+    if (credentials) {
+      this.loginForm.patchValue({
+        Email: credentials.email,
+        Password: credentials.password,
+        Remember: true
+      });
+    }
   }
 
   onSubmit() {
@@ -65,6 +76,15 @@ export class Login {
           localStorage.setItem('access_token', res.response.token);
           localStorage.setItem('rol', JSON.stringify(res.response.role));
           localStorage.setItem('email', res.response.email);
+          
+          // Guardar o limpiar credenciales encriptadas según el checkbox
+          if (this.loginForm.get('Remember')?.value) {
+            const email = this.loginForm.get('Email')?.value;
+            const password = this.loginForm.get('Password')?.value;
+            this.authService.saveRememberedCredentials(email, password);
+          } else {
+            this.authService.clearRememberedCredentials();
+          }
 
           try {
             const decodedToken: DecodedToken = jwtDecode(res.response.token);

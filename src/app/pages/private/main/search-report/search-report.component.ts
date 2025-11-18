@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb';
+import { BreadcrumbItem } from '../../../../core/interfaces/breadcrumbitem';
 import { TitlesSubtitlesComponent } from '../../shared/titles-subtitles/titles-subtitles.component';
 import { SearchReportFormComponent } from './components/search-report-form/search-report-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
@@ -13,5 +14,9 @@ import { SearchTableComponent } from './components/search-table/search-table.com
   standalone: true
 })
 export class SearchReportComponent {
-  steps: MenuItem[] = [{ label: 'Inicio' }, { label: 'Registro Historico' },{ label: 'Buscar Reporte' }];
+  steps: BreadcrumbItem[] = [
+    { label: 'Inicio', route: '/inicio' }, 
+    { label: 'Registro Histórico', route: '/inicio/reportes' }, 
+    { label: 'Buscar Reporte' } // Página actual
+  ];
 }

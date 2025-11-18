@@ -1,4 +1,11 @@
 <div class="p-6 bg-white rounded-xl shadow-md mt-6">
+  <p-menu
+    #rowMenu
+    [popup]="true"
+    [model]="menuItems"
+    [appendTo]="'body'"
+  ></p-menu>
+
   <div class="flex justify-between items-center mb-4">
     <h2 class="text-lg text-[#1E293B] font-bold">Lista de clientes</h2>
     <div class="flex items-center gap-4">
@@ -51,19 +58,12 @@
         <td class="text-gray-600">{{ client.lastName }}</td>
         <td class="text-gray-600">{{ client.email }}</td>
         <td class="text-right">
-          <p-menu
-            #menu
-            [popup]="true"
-            [model]="getRowMenuItems(client)"
-            [appendTo]="'body'"
-          ></p-menu>
-
           <button
             pButton
             type="button"
             icon="pi pi-ellipsis-v"
             class="p-button-text p-button-rounded"
-            (click)="onMenuButtonClick($event, menu)"
+            (click)="onMenuButtonClick($event, client)"
           ></button>
         </td>
       </tr>
@@ -80,7 +80,7 @@
         label="Registrar cliente"
         icon="pi pi-user-plus"
         (click)="goToRegister()"
-        class="p-button-raised p-button-secondary px-6 py-2 text-white font-semibold ml-4"
+        class="p-button-raised p-button-secondary mt-4 px-6 py-2 text-white font-semibold ml-4"
       ></button>
     </ng-template>
   </p-table>
@@ -92,7 +92,11 @@
   [draggable]="false"
   [resizable]="false"
   [dismissableMask]="true"
+  [showHeader]="false"
   [style]="{ width: '62rem', maxWidth: '95vw' }"
 >
-  <app-battery-assign-modal></app-battery-assign-modal>
+  <app-battery-assign-modal
+    [client]="selectedClient"
+    (closed)="showAssignModal = false"
+  ></app-battery-assign-modal>
 </p-dialog>

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchReportFormComponent } from './search-report-form.component';
 
-describe('SearchReportFormComponent', () => {
+describe('SearchReportFormLabComponent', () => {
   let component: SearchReportFormComponent;
   let fixture: ComponentFixture<SearchReportFormComponent>;
 

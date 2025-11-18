@@ -1,0 +1,104 @@
+<app-titles-subtitles   [title]="'Generar reporte'"
+                        [subtitle]="'Evaluá cada parametro para generar un informe completo.'">
+</app-titles-subtitles>
+<form [formGroup]="measurementsForm">
+
+<div class="card flex justify-center mt-6">
+    <p-stepper [value]="1" class="basis-[50rem]">
+        <p-step-list>
+            <p-step [value]="1">Tensión</p-step>
+            <p-step [value]="2">Temperatura</p-step>
+            <p-step [value]="3">Densidad</p-step>
+            <p-step [value]="4">Resistencia</p-step>
+            <p-step [value]="5">CCA</p-step>
+            <p-step [value]="6">Enviar reporte</p-step>
+        </p-step-list>
+        <p-step-panels>
+            <p-step-panel [value]="1">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-full">
+                        <div class="flex-auto flex justify-center items-center font-medium">
+                            <app-report-chart [magnitude]="'tension'"></app-report-chart>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-center">
+                        <app-stepper-actions [currentStep]="1" [totalSteps]="6" [activateCallback]="activateCallback" [group]="measurementsForm.get('tension')" (submitForm)="onSubmitFinal()"></app-stepper-actions>
+<!--                        <p-button label="Siguiente" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />-->
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="2">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-full">
+                        <div class="flex-auto flex justify-center items-center font-medium">
+                            <app-report-chart [magnitude]="'temperatura'"></app-report-chart>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-center">
+                        <app-stepper-actions [currentStep]="2" [totalSteps]="6" [activateCallback]="activateCallback" [group]="measurementsForm.get('temperatura')" (submitForm)="onSubmitFinal()"></app-stepper-actions>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="3">
+            <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex flex-col h-full">
+                    <div class="flex-auto flex justify-center items-center font-medium">
+                        <app-report-chart [magnitude]="'densidad'"></app-report-chart>
+                    </div>
+                </div>
+                <div class="flex pt-6 justify-center">
+                    <app-stepper-actions [currentStep]="3" [totalSteps]="6" [activateCallback]="activateCallback" [group]="measurementsForm.get('densidad')" (submitForm)="onSubmitFinal()"></app-stepper-actions>
+                </div>
+            </ng-template>
+        </p-step-panel>
+
+            <p-step-panel [value]="4">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-full">
+                        <div class="flex-auto flex justify-center items-center font-medium">
+                            <app-report-chart [magnitude]="'resistencia'"></app-report-chart>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-center">
+                        <app-stepper-actions [currentStep]="4" [totalSteps]="6" [activateCallback]="activateCallback" [group]="measurementsForm.get('resistencia')" (submitForm)="onSubmitFinal()"></app-stepper-actions>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="5">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-full">
+                        <div class="flex-auto flex justify-center items-center font-medium">
+                            <app-report-chart [magnitude]="'cca'"></app-report-chart>
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-center">
+                        <app-stepper-actions [currentStep]="5" [totalSteps]="6" [activateCallback]="activateCallback" [group]="measurementsForm.get('cca')" (submitForm)="onSubmitFinal()"></app-stepper-actions>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+
+            <p-step-panel [value]="6">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                                class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        >
+                            Enviar reporte
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-center">
+                        <app-stepper-actions [currentStep]="6" [totalSteps]="6" [activateCallback]="activateCallback" [isLast]="true" (submitForm)="onSubmitFinal()"></app-stepper-actions>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            
+        </p-step-panels>
+    </p-stepper>
+</div>
+
+</form>

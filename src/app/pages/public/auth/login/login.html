@@ -12,10 +12,16 @@
       Te damos la bienvenida
     </h2>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <label class="w-full text-sm font-medium text-gray-600 mb-1">Email</label>
-        <input formControlName="Email" type="text" placeholder="Ingrese el email"
-               class="w-full border border-gray-300 rounded-lg placeholder-opacity-50 text-black placeholder-[#6C6C6C] p-3 py-2 mb-4" />
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm" name="loginForm" autocomplete="on">
+      <label class="w-full text-sm font-medium text-gray-600 mb-1">Email</label>
+      <input 
+        formControlName="Email" 
+        type="email"
+        name="email"
+        id="email"
+        autocomplete="email"
+        placeholder="Ingrese el email"
+        class="w-full border border-gray-300 rounded-lg placeholder-opacity-50 text-black placeholder-[#6C6C6C] p-3 py-2 mb-4" />
 
         <label class="w-full text-sm font-medium text-gray-600 mb-1">Contraseña</label>
         <div class="w-full mb-4">
@@ -29,11 +35,10 @@
             </p-password>
         </div>
 
-
-    <div class="flex items-center w-full mb-6">
-      <input id="remember" type="checkbox" class="mr-2" />
-      <label for="remember" class="text-sm text-gray-600">Recordarme</label>
-    </div>
+      <div class="flex items-center w-full mb-6">
+        <input formControlName="Remember" id="remember" type="checkbox" class="mr-2" />
+        <label for="remember" class="text-sm text-gray-600">Recordarme</label>
+      </div>
 
     <button class="w-full bg-gray-700 text-white py-3 rounded-lg hover:bg-gray-900" type="submit">
       Iniciar sesión
