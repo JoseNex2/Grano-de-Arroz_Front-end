@@ -23,10 +23,17 @@
         <div class="flex-1" variant="on">
             <p-float-label>Comentario técnico:</p-float-label>
             <textarea pTextarea id="over_label" rows="5" cols="30" [(ngModel)]="comentario" style="resize: none" class="w-full"></textarea>
+            <div class="text-xs text-gray-600 mt-1 flex items-center gap-1" *ngIf="(estado || '').toLowerCase() === 'desaprobado' && ((comentario || '').trim().length === 0)">
+                <span class="text-red-600">*</span>
+                <span>Se debe realizar un comentario.</span>
+            </div>
+            <div class="text-red-600 text-sm mt-1" *ngIf="(estado || '').toLowerCase() === 'desaprobado' && ((comentario || '').trim().length === 0) && triedToProceed">
+                El comentario es obligatorio cuando el estado es Desaprobado.
+            </div>
         </div>
 
-        <div class="flex flex-col ml-4 gap-2">
-            <p-button styleClass="w-full" [label]="isLast ? 'Enviar' : 'Siguiente'" (onClick)="onPrimary()"></p-button>
+        <div class="flex flex-col mt-8 ml-4 gap-2">
+            <p-button styleClass="w-full" [label]="isLast ? 'Enviar' : 'Siguiente'" (onClick)="onPrimary()" [disabled]="!canProceed()"></p-button>
             <p-button styleClass="w-full" label="Atras" (onClick)="onBack()" [disabled]="currentStep <= 1"></p-button>
         </div>
     </div>

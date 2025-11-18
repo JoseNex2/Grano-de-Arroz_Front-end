@@ -1,1 +1,1 @@
-.ng-invalid.ng-touched input { border-color: #dc2626; }
+input.ng-invalid.ng-touched { border-color: #dc2626; }

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RadioButton } from 'primeng/radiobutton';
 import { FormsModule } from "@angular/forms";
 import { FloatLabel } from "primeng/floatlabel";
@@ -9,6 +10,7 @@ import { AbstractControl } from '@angular/forms';
 @Component({
   selector: 'app-stepper-actions',
   imports: [
+    CommonModule,
     FormsModule,
     RadioButton,
     FloatLabel,
@@ -30,6 +32,7 @@ export class StepperActionsComponent implements OnChanges {
 
   estado: string = 'aprobado';
   comentario: string = '';
+  triedToProceed: boolean = false;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['group'] && this.group) {
@@ -51,8 +54,18 @@ export class StepperActionsComponent implements OnChanges {
     this.group.patchValue({ estado: this.estado, comentario: this.comentario }, { emitEvent: true });
   }
 
+  canProceed(): boolean {
+    const needsComment = (this.estado || '').toLowerCase() === 'desaprobado';
+    const hasComment = (this.comentario || '').trim().length > 0;
+    return !needsComment || hasComment;
+  }
+
   onPrimary(): void {
+    this.triedToProceed = true;
     this.syncToGroup();
+    if (!this.canProceed()) {
+      return;
+    }
     if (this.isLast) {
       this.submitForm.emit();
       return;
