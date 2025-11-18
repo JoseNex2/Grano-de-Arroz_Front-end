@@ -61,6 +61,14 @@ export class CustomerTableComponent implements OnInit {
 
   getRowMenuItems(client: ClientInterface): MenuItem[] {
     return [
+      {
+        label: 'Ver perfil',
+        icon: 'pi pi-pencil',
+        command: () => {
+          this.onEdit(client);
+        }
+      },
+
       { 
         label: 'Editar', 
         icon: 'pi pi-pencil', 
@@ -68,6 +76,7 @@ export class CustomerTableComponent implements OnInit {
           this.onEdit(client);
         }
       },
+
       { 
         label: 'Asociar batería', 
         icon: 'pi pi-plus-circle', 
@@ -79,7 +88,6 @@ export class CustomerTableComponent implements OnInit {
   }
 
   onEdit(client: ClientInterface) {
-    // Navegar al formulario de registro con los datos del cliente para editar
     this.router.navigate(['/inicio/clientes/registro-de-clientes'], {
       queryParams: { 
         edit: true, 
@@ -94,19 +102,18 @@ export class CustomerTableComponent implements OnInit {
   }
 
   onAssociateBattery(client: ClientInterface) {
-    console.log('Asociar batería a cliente:', client);
     this.selectedClient = client;
     this.showAssignModal = true;
   }
+
+  
+
 
   onMenuButtonClick(event: MouseEvent, client: ClientInterface) {
     event.preventDefault();
     event.stopPropagation();
     
-    // Configurar los items del menú para el cliente específico
     this.menuItems = this.getRowMenuItems(client);
-    
-    // Toggle del menú
     this.rowMenu.toggle(event);
   }
 }

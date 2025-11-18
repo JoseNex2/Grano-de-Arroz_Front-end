@@ -23,7 +23,7 @@ export class CustomerRegistrationComponent {
   steps: BreadcrumbItem[] = [
     { label: 'Inicio', route: '/inicio' },
     { label: 'Clientes', route: '/inicio/clientes' },
-    { label: 'Registro de clientes' } // Página actual
+    { label: 'Registro de clientes' }
   ];
 
 }
