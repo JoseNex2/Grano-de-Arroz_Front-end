@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {Login} from './auth/login/login';
 import {Auth} from './auth/auth';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 
 export const publicRoutes: Routes = [
   {
@@ -8,7 +9,7 @@ export const publicRoutes: Routes = [
     component: Auth,
     children: [
       { path: 'login', component: Login},
-      //{ path: 'recuperar-contraseña', component:  }
+      { path: 'forgot-password', component: ForgotPasswordComponent }
     ]
   }
 ];
