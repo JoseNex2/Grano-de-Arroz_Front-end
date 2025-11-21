@@ -8,6 +8,7 @@ export const publicRoutes: Routes = [
     path: '',
     component: Auth,
     children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: Login},
       { path: 'forgot-password', component: ForgotPasswordComponent }
     ]
