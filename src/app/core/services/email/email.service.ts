@@ -47,4 +47,20 @@ export class EmailService {
       NewPassword 
     });
   }
+
+  /**
+   * Actualiza la contraseña del usuario
+   * @param id ID del usuario
+   * @param newPassword Nueva contraseña
+   * @param currentPassword Contraseña actual
+   * @returns Observable con la respuesta del backend
+   */
+  updatePassword(id: string, newPassword: string, currentPassword: string): Observable<ApiResponse<any>> {
+    const payload = {
+      Id: id,
+      NewPassword: newPassword,
+      CurrentPassword: currentPassword
+    };
+    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/access/passwordupdate`, payload);
+  }
 }
