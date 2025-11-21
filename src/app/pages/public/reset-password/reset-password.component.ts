@@ -18,6 +18,7 @@ export class ResetPasswordComponent implements OnInit {
   errorMsg: string | null = null;
   successMsg: string | null = null;
   token: string | null = null;
+  userId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -30,11 +31,13 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
-      if (!this.token) {
+      this.userId = params['id'];
+      
+      if (!this.token || !this.userId) {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Token inválido o expirado',
+          detail: 'Token o ID de usuario inválido',
           life: 3000
         });
         setTimeout(() => {
@@ -92,11 +95,11 @@ export class ResetPasswordComponent implements OnInit {
       return;
     }
 
-    if (!this.token) {
+    if (!this.token || !this.userId) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Token inválido o expirado',
+        detail: 'Token o ID de usuario inválido',
         life: 3000
       });
       return;
@@ -108,18 +111,7 @@ export class ResetPasswordComponent implements OnInit {
 
     const newPassword = this.resetPasswordForm.get('newPassword')?.value;
 
-    console.log('Contraseña válida:', newPassword);
-    this.successMsg = 'Contraseña válida! (simulación sin backend)';
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Éxito',
-      detail: this.successMsg,
-      life: 3000
-    });
-    this.resetPasswordForm.reset();
-    this.submitting = false;
-
-    this.emailService.resetPassword(this.token!, newPassword).subscribe({
+    this.emailService.resetPassword(this.userId!, this.token!, newPassword).subscribe({
       next: (res) => {
         if (res.code === 200 || res.code === 201) {
           this.successMsg = res.message || 'Contraseña actualizada correctamente';
