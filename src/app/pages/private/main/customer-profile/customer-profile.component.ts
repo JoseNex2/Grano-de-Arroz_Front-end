@@ -4,10 +4,12 @@ import {TitlesSubtitlesComponent} from "../../shared/titles-subtitles/titles-sub
 import {BreadcrumbItem} from "../../../../core/interfaces/breadcrumbitem";
 import { ClientStore } from '../../../../core/stores/client-store';
 import { ClientService } from '../../../../core/services/clients/client-service';
-import {InputText} from "primeng/inputtext";
-import {ReactiveFormsModule} from "@angular/forms";
+import {InputText, InputTextModule} from "primeng/inputtext";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Button} from "primeng/button";
 import {TableModule} from "primeng/table";
+import {BatteryService} from "../../../../core/services/battery/battery-service";
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-customer-profile',
@@ -15,9 +17,12 @@ import {TableModule} from "primeng/table";
     BreadcrumbComponent,
     TitlesSubtitlesComponent,
     InputText,
+    InputTextModule,
+    FormsModule,
     ReactiveFormsModule,
     Button,
-    TableModule
+    TableModule,
+    CommonModule
   ],
   templateUrl: './customer-profile.component.html',
   styleUrl: './customer-profile.component.css'
@@ -32,10 +37,13 @@ export class CustomerProfileComponent implements OnInit {
 
   client: any = null;
   initials: string = '';
+  batteries: any[] = [];
+  searchValue: string = '';
 
   constructor(
     private readonly clientStore: ClientStore,
     private readonly clientService: ClientService,
+    private readonly batteryService: BatteryService
   ) {
     effect(() => {
       const id = this.clientStore.selectedClientId();
@@ -43,15 +51,29 @@ export class CustomerProfileComponent implements OnInit {
         this.clientService.getClientById(id).subscribe(res => {
           this.client = res?.response ?? res;
           this.initials = this.getInitials(this.client?.name, this.client?.lastName);
+          this.batteryService.getBatteriesByUserId(id).subscribe({
+            next: (res) => {
+              const list = res?.response ?? [];
+              const allBatteries = Array.isArray(list) ? list : [];
+              // Limitar a 7 baterías
+              this.batteries = allBatteries.slice(0, 7);
+            },
+            error: (err) => {
+              console.error('Error al obtener baterías:', err);
+              this.batteries = [];
+            }
+          });
         });
       } else {
         this.client = null;
         this.initials = '';
+        this.batteries = [];
       }
     });
   }
 
   ngOnInit() {
+    //
   }
 
   getInitials(name: string, lastname: string): string {

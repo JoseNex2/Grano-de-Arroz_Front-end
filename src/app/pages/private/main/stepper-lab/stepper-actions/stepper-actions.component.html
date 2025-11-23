@@ -7,6 +7,7 @@
                         name="estado"
                         value="aprobado"
                         [(ngModel)]="estado"
+                        [disabled]="isLast"
                         inputId="aprobado" />
                 <label for="aprobado">Aprobado</label>
             </div>
@@ -16,13 +17,14 @@
                         name="estado"
                         value="desaprobado"
                         [(ngModel)]="estado"
+                        [disabled]="isLast"
                         inputId="desaprobado" />
                 <label for="desaprobado">Desaprobado</label>
             </div>
         </div>
         <div class="flex-1" variant="on">
             <p-float-label>Comentario técnico:</p-float-label>
-            <textarea pTextarea id="over_label" rows="5" cols="30" [(ngModel)]="comentario" style="resize: none" class="w-full"></textarea>
+            <textarea pTextarea id="over_label" rows="5" cols="30" [(ngModel)]="comentario" [disabled]="isLast" style="resize: none" class="w-full"></textarea>
             <div class="text-xs text-gray-600 mt-1 flex items-center gap-1" *ngIf="(estado || '').toLowerCase() === 'desaprobado' && ((comentario || '').trim().length === 0)">
                 <span class="text-red-600">*</span>
                 <span>Se debe realizar un comentario.</span>

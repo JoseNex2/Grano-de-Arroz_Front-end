@@ -69,6 +69,13 @@ export class BatteryService {
         return this.http.get<ApiResponse<any>>(`${this.apiUrl}/battery/batterysearchwithid`, { params });
     }
 
+    getBatteriesByUserId(id: number): Observable<ApiResponse<any>> {
+        return this.http.get<ApiResponse<any>>(
+            `${this.apiUrl}/battery/batterysearchbyclientid`,
+            { params: { ClientId: id } }
+        );
+    }
+
     getPercentsOfAnalisis(): Observable<ApiResponse<any>> {
         return this.http.get<ApiResponse<any>>(`${this.apiUrl}/battery/getbatteryanalysispercentageasync`);
     }
