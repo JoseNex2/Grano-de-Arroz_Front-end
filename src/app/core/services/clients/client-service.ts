@@ -27,4 +27,11 @@ export class ClientService {
     updateClient(id: number, body: any): Observable<any> {
         return this.http.put(`${this.apiUrl}/client/clientupdate?id=${id}`, body);
     }
+
+    getClientById(id: number): Observable<any> {
+        return this.http.get(`${this.apiUrl}/client/clientsearch`, {
+            params: { id: id }
+        });
+    }
+
 }

@@ -1,0 +1,81 @@
+<app-breadcrumb [breadcrumbItems]="steps"></app-breadcrumb>
+
+<app-titles-subtitles title="Perfil de cliente" subtitle="Visualiza los datos y consumos del cliente.">
+</app-titles-subtitles>
+
+@if (client){
+
+<div class="flex">
+    <div class="flex items-center bg-white w-full rounded-3xl p-6 mt-8">
+        <div class="w-36 h-36 ml-16 rounded-full border-4 border-gray-300 shadow-md flex items-center justify-center">
+              <span class="text-3xl font-medium text-gray-600">
+                {{ initials }}
+              </span>
+        </div>
+        <div class="p-2 mb-2 flex-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto w-full">
+                <div>
+                    <label class="block mb-1 text-sm text-gray-400 font-semibold">Nombre</label>
+                    <input
+                            pInputText
+                            class="w-full"
+                            [disabled]="true"
+                            [value]="client.name"
+                    />
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm text-gray-400 font-semibold">Apellido</label>
+                    <input
+                            pInputText
+                            class="w-full"
+                            [disabled]="true"
+                            [value]="client.lastName"
+                    />
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm text-gray-400 font-semibold">Email</label>
+                    <input
+                            pInputText
+                            class="w-full"
+                            [disabled]="true"
+                            [value]="client.email"
+                    />
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm text-gray-400 font-semibold">Teléfono</label>
+                    <input
+                            pInputText
+                            class="w-full"
+                            [disabled]="true"
+                            [value]="client.phoneNumber"
+                    />
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm text-gray-400 font-semibold">DNI</label>
+                    <input
+                            pInputText
+                            class="w-full"
+                            [disabled]="true"
+                            [value]="client.nationalId"
+                    />
+                </div>
+                <div>
+                    <p-button label="Editar" icon="pi pi-pencil" class="w-full"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="flex items-center bg-white w-full rounded-3xl p-6 mt-8">
+        <p-table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Consumo</th>
+                </tr>
+            </thead>
+        </p-table>
+
+    </div>
+}

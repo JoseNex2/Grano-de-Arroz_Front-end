@@ -12,6 +12,7 @@ import { MenuItem } from 'primeng/api';
 import { BatteryAssignModalComponent } from '../../../battery-assign-modal/battery-assign-modal.component';
 import { DialogModule } from 'primeng/dialog';
 import { Menu, MenuModule } from 'primeng/menu';
+import { ClientStore } from '../../../../../../core/stores/client-store';
 
 
 @Component({
@@ -32,7 +33,11 @@ export class CustomerTableComponent implements OnInit {
   menuItems: MenuItem[] = [];
   
 
-  constructor(private readonly router: Router, private readonly clientService: ClientService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly clientService: ClientService,
+    private readonly clientStore: ClientStore,
+  ) {}
 
   ngOnInit() {
     this.loadTable();
@@ -63,9 +68,9 @@ export class CustomerTableComponent implements OnInit {
     return [
       {
         label: 'Ver perfil',
-        icon: 'pi pi-pencil',
+        icon: 'pi pi-user',
         command: () => {
-          this.onEdit(client);
+          this.goToProfile(client);
         }
       },
 
@@ -107,7 +112,10 @@ export class CustomerTableComponent implements OnInit {
   }
 
   
-
+  goToProfile(client: ClientInterface) {
+    this.clientStore.setSelectedClientId(client.id);
+    this.router.navigate(['/inicio/clientes/perfil-de-clientes']);
+  }
 
   onMenuButtonClick(event: MouseEvent, client: ClientInterface) {
     event.preventDefault();
@@ -116,4 +124,5 @@ export class CustomerTableComponent implements OnInit {
     this.menuItems = this.getRowMenuItems(client);
     this.rowMenu.toggle(event);
   }
+
 }
