@@ -6,7 +6,7 @@ import {CustomerTableComponent} from "./components/customer-table/customer-table
 import {TitlesSubtitlesComponent} from "../../shared/titles-subtitles/titles-subtitles.component";
 
 @Component({
-  selector: 'app-customer',
+  selector: 'app-perfil-cliente',
     imports: [
         BreadcrumbComponent,
         CustomerTableComponent,
@@ -19,6 +19,6 @@ import {TitlesSubtitlesComponent} from "../../shared/titles-subtitles/titles-sub
 export class CustomerComponent {
   steps: BreadcrumbItem[] = [
     { label: 'Inicio', route: '/inicio' },
-    { label: 'Clientes' } // Página actual
+    { label: 'Clientes' }
   ];
 }

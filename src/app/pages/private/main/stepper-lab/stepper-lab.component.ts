@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ReportService } from '../../../../core/services/reports/reportService';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'analizar-bateria',
@@ -19,7 +20,8 @@ import { Router } from '@angular/router';
     Step,
     ReportChartComponent,
     StepperActionsComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './stepper-lab.component.html',
   styleUrl: './stepper-lab.component.css',
@@ -54,6 +56,29 @@ export class StepperLabComponent {
     if (e === 'desaprobado') return 'desaprobado';
     // Default and any other value -> aprobado
     return 'aprobado';
+  }
+
+  getPreviewData(): Array<{ nombre: string; estado: string; comentario: string }> {
+    const raw = this.measurementsForm.value as any;
+    const paramNames: Record<string, string> = {
+      tension: 'Tensión',
+      temperatura: 'Temperatura',
+      densidad: 'Densidad',
+      resistencia: 'Resistencia',
+      cca: 'CCA'
+    };
+
+    return Object.keys(paramNames).map(key => {
+      const group = raw[key] || {};
+      const estado = (group.estado || 'aprobado').toString().toLowerCase();
+      const estadoDisplay = estado === 'desaprobado' ? 'Desaprobado' : 'Aprobado';
+      
+      return {
+        nombre: paramNames[key],
+        estado: estadoDisplay,
+        comentario: group.comentario || ''
+      };
+    });
   }
 
   onSubmitFinal(): void {

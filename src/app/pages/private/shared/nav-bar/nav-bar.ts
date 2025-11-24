@@ -22,7 +22,7 @@ export class NavBar implements OnInit{
 
   ngOnInit() {
   this.items= [
-    {label: 'Cerrar sesión', icon: 'pi pi-sign-out', command: () => {this.authService.logout();}}
+    {label: 'Cerrar sesión', icon: 'pi pi-sign-out', styleClass: 'logout-item', command: () => {this.authService.logout();}}
   ]
   }
 
