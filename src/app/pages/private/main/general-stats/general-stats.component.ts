@@ -5,13 +5,15 @@ import {BreadcrumbItem} from "../../../../core/interfaces/breadcrumbitem";
 import {
   EvaluationStatusChartsComponent
 } from "../home/home-components/evaluation-status-charts/evaluation-status-charts.component";
+import {SelledBatteryPieGraphComponent} from "../../shared/selled-battery-pie-graph/selled-battery-pie-graph.component";
 
 @Component({
   selector: 'metricas-generales',
   imports: [
     BreadcrumbComponent,
     TitlesSubtitlesComponent,
-    EvaluationStatusChartsComponent
+    EvaluationStatusChartsComponent,
+    SelledBatteryPieGraphComponent
   ],
   templateUrl: './general-stats.component.html',
   styleUrl: './general-stats.component.css'
