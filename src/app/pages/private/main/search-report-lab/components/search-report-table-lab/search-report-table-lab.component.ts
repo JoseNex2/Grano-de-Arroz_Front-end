@@ -95,14 +95,6 @@ export class SearchReportTableLabComponent implements OnInit {
           });
         }
       },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'No se pudo obtener el reporte. Intente nuevamente',
-          life: 3000
-        });
-      },
     });
   }
 
