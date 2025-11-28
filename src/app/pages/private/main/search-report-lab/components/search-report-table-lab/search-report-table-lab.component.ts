@@ -46,7 +46,7 @@ export class SearchReportTableLabComponent implements OnInit {
 
           const gda = b.ChipId ?? b.chipId ?? b.chipID ?? b.GDA ?? b.gda ?? b.id ?? '';
 
-          const estadoRaw = b.Status ?? b.status ?? 'Pendiente';
+          const estadoRaw = b.reportState ?? 'Pendiente';
           const estado = typeof estadoRaw === 'string' ? estadoRaw : 'Pendiente';
 
           const fechaRaw = b.SaleDate ?? b.saleDate ?? b.ReportDate ?? b.reportDate ?? b.date ?? b.createdAt ?? null;
@@ -61,8 +61,7 @@ export class SearchReportTableLabComponent implements OnInit {
             fecha,
           };
         });
-        // Defer assignment to avoid ExpressionChangedAfterItHasBeenCheckedError
-        setTimeout(() => { this.rows = mapped; });
+          setTimeout(() => { this.rows = mapped; });
       } else {
         // Defer clearing as well to keep updates outside current CD tick
         setTimeout(() => { this.rows = []; });
@@ -110,8 +109,8 @@ export class SearchReportTableLabComponent implements OnInit {
   getSeverity(status: string): string {
     const s = (status || '').toString().toLowerCase();
     switch (s) {
-      case 'aprobada': return 'success';
-      case 'revocada': return 'danger';
+      case 'Aprobado': return 'success';
+      case 'Desaprobado': return 'danger';
       case 'pendiente': return 'warning';
       default: return 'secondary';
     }

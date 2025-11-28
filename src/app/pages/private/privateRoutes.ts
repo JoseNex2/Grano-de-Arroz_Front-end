@@ -12,6 +12,8 @@ import {rutaClientes} from "./main/routes/rutaClientes";
 import {rutaUsuarios} from "./main/routes/rutaUsuarios";
 import {rutaReportes} from "./main/routes/rutaReportes";
 import {StepperLabComponent} from "./main/stepper-lab/stepper-lab.component";
+import {ReportHistoryComponent} from "./main/report-history/report-history.component";
+import {GeneralStatsComponent} from "./main/general-stats/general-stats.component";
 
 
 
@@ -26,7 +28,9 @@ export const privateRoutes: Routes = [
       { path: '', children: rutaReportes },
       { path: 'prueba-bateria',   component: BatteryAssignModalComponent},
       { path: 'search-report',   component: SearchReportComponent },
-      {path: 'analizar-bateria', component: StepperLabComponent}
+      { path: 'analizar-bateria', component: StepperLabComponent},
+      { path: 'registros-historicos', component: ReportHistoryComponent},
+      {path: 'metricas-generales', component: GeneralStatsComponent}
     ],
   },
 ];

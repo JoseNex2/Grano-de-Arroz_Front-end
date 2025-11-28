@@ -10,7 +10,7 @@ export const rutaUsuarios: Routes = [
         path: 'usuarios',
         children: [
             { path: '', component: UserComponent },
-            { path: 'registro-de-usuarios', component: UserRegistrationComponent }, // ✅ Corregido
+            { path: 'registro-de-usuarios', component: UserRegistrationComponent },
         ],
     },
 ];
