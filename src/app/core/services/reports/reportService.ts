@@ -39,4 +39,8 @@ export class ReportService {
     );
   }
 
+  getAllReports(): Observable<ApiResponse<any>> {
+    return this.http.get<ApiResponse<any>>(`${this.apiUrl}/report/getreporthistory`);
+  }
+
 }

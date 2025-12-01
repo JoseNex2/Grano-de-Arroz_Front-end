@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import {Login} from './login/login';
+import { RouterOutlet } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-auth',
   imports: [
-    Login
+    RouterOutlet,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './auth.html',
   styleUrl: './auth.css'
 })

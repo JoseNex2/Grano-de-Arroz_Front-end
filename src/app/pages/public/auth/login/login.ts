@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../core/services/auth/authService';
@@ -18,7 +18,7 @@ interface DecodedToken {
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, Password, ToastModule],
+  imports: [ReactiveFormsModule, CommonModule, Password, ToastModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
   providers: [MessageService]   // 👈 necesario si no lo pusiste en app.module
