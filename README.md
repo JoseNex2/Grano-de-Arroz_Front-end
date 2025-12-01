@@ -1,59 +1,81 @@
-# GranoDeArrozFrontEnd
+# Grano de Arroz — Front-end
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+Cliente web construido con Angular (standalone components), PrimeNG y Tailwind CSS para la interfaz de usuario del proyecto "Grano de Arroz".
 
-## Development server
+## Resumen
+Aplicación SPA con rutas públicas y privadas, gestión de usuarios y componentes principales para administración (clientes, tablas, menús). Pensada para usarse con el backend del proyecto principal.
 
-To start a local development server, run:
+## Características principales
+- Angular (componentes standalone)
+- UI con PrimeNG (tema Aura) + Tailwind CSS
+- Rutas públicas y privadas
+- Layout con componentes reutilizables: NavBar, MenuBar, Main
+- Tablas y manejo de datos de clientes
 
-```bash
+## Estructura clave
+- src/main.ts — arranque
+- src/app/app.ts — componente raíz
+- src/app/app.config.ts — providers globales (router, PrimeNG, animaciones)
+- src/app/app.routes.ts — rutas principales
+- src/app/pages/public/publicRoutes.ts — rutas públicas
+- src/app/pages/private/privateRoutes.ts — rutas protegidas
+- src/app/pages/private/main — área privada (Main, CustomerComponent, CustomerTableComponent)
+- src/styles.css — estilos globales (Tailwind + tema PrimeNG)
+
+## Requisitos
+- Node.js (recomendado LTS, v18+)
+- npm (o yarn)
+- Angular CLI (opcional)
+
+## Instalación
+1. Clona el repositorio:
+   git clone <repository-url>
+2. Entra al proyecto:
+   cd Grano-de-Arroz_Front-end
+3. Instala dependencias:
+   npm ci
+
+## Desarrollo
+Inicia el servidor de desarrollo (hot reload):
+npm run start
+o
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abre: http://localhost:4200
 
-## Code scaffolding
+(En Windows: PowerShell o CMD en la carpeta del proyecto)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Build / Producción
+Genera la build:
+npm run build
+o
+ng build --prod
 
-```bash
-ng generate component component-name
-```
+Los artefactos de salida quedan en /dist.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+## Tests
+Pruebas unitarias:
+npm run test
+o
 ng test
-```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
+E2E:
+npm run e2e
+o
 ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Configuración
+- Environment files: src/environments/*.ts
+- Providers globales en src/app/app.config.ts
+- Añade nuevas rutas en publicRoutes o privateRoutes según correspondan
 
-## Additional Resources
+## Contribuir
+- Abrir issues para bugs o mejoras
+- Crear branches por feature/bugfix
+- PRs con descripción, pruebas y lint pasados
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Licencia
+Incluye archivo LICENSE en el repo. Si no hay uno, usar una licencia apropiada (MIT, Apache-2.0, etc.)
+
+## Soporte
+Para preguntas o problemas: abrir un issue en el repositorio con pasos para reproducir y logs relevantes.

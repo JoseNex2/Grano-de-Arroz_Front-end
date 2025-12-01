@@ -79,4 +79,8 @@ export class BatteryService {
     getPercentsOfAnalisis(): Observable<ApiResponse<any>> {
         return this.http.get<ApiResponse<any>>(`${this.apiUrl}/battery/getbatteryanalysispercentageasync`);
     }
+
+    getMetricsSelled(): Observable<ApiResponse<any>> {
+        return this.http.get<ApiResponse<any>>(`${this.apiUrl}/battery/getbatterymetricsporcentageasync`);
+    }
 }
