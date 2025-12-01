@@ -51,21 +51,17 @@ export class ForgotPasswordComponent implements OnInit {
 
     this.emailService.requestPasswordReset(email, baseUrl).subscribe({
       next: (res) => {
-        console.log('Response received:', res);
         if (res.code === 200 || res.code === 201) {
           this.successMsg = res.message || 'Si el mail existe se enviará un correo con las instrucciones para recuperar tu contraseña';
           
-          console.log('About to show toast with message:', this.successMsg);
           this.messageService.add({
             severity: 'success',
             summary: 'Éxito',
             detail: this.successMsg,
             life: 3000
           });
-          console.log('Toast added to MessageService');
           
           this.forgotPasswordForm.reset();
-          console.log('Form reset complete');
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 4000);

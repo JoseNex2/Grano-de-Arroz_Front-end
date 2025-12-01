@@ -28,7 +28,7 @@ export class EmailService {
 
   /**
    * Valida el token de recuperación de contraseña
-   * @param token Token del enlace de recuperación
+   * @param token Token del enlace de recuperació n
    * @returns Observable con la validación del token
    */
   validateResetToken(token: string): Observable<ApiResponse<any>> {
@@ -36,18 +36,21 @@ export class EmailService {
   }
 
   /**
-   * Establece la nueva contraseña
-   * @param id ID del usuario
-   * @param token Token de recuperación (se usa en la URL para validación)
+   * Establece la nueva contraseña usando el token en el header Authorization
+   * @param token Token completo de la URL
    * @param newPassword Nueva contraseña
    * @returns Observable con la respuesta del backend
    */
-  resetPassword(id: string, token: string, newPassword: string): Observable<ApiResponse<any>> {
+  resetPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {
     const payload = {
-      Id: id,
       NewPassword: newPassword
     };
-    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/access/reset-password`, payload);
+    
+    const headers = {
+      'Authorization': token
+    };
+    
+    return this.http.put<ApiResponse<any>>(`${this.apiUrl}/access/passwordrecovery`, payload, { headers });
   }
 
   /**

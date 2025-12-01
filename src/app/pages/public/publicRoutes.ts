@@ -12,7 +12,7 @@ export const publicRoutes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: Login},
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'cambiarContraseña', component: ResetPasswordComponent }
+      { path: 'cambiarContraseña/:token', component: ResetPasswordComponent }
     ]
   }
 ];
