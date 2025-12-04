@@ -1,0 +1,19 @@
+<app-breadcrumb [breadcrumbItems]="steps"></app-breadcrumb>
+<app-titles-subtitles
+  [title]="'Gestión de usuarios'"
+  [subtitle]="'Creá y administrá los usuarios registrados y sus permisos de manera simple y rápida.'">
+</app-titles-subtitles>
+
+<div class="grid grid-cols-12 gap-6 items-start md:min-h-[520px] p-6">
+  <!-- Formulario: 8 columnas -->
+  <div class="col-span-12 md:col-span-8">
+    <app-user-creation-form></app-user-creation-form>
+  </div>
+
+  <!-- Imagen: 2 columnas -->
+  <div class="col-span-12 md:col-start-9 md:col-span-2 place-self-end flex justify-end md:translate-x-[40.25%]">
+    <img src="/images/user-registration/user-registration.svg"
+         alt="UserInterface registration"
+         class="max-w-full h-auto">
+  </div>
+</div>

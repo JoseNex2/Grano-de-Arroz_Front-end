@@ -1,0 +1,42 @@
+<section class="w-full">
+    <div class="flex flex-row h-full bg-white rounded-3xl p-8  shadow-sm gap-4 items-start">
+        <div class="flex flex-col gap-2 min-w-48">
+            <label class="font-medium mt-3 mb-1">Estado</label>
+            <div class="flex items-center gap-2">
+                <p-radioButton
+                        name="estado"
+                        value="aprobado"
+                        [(ngModel)]="estado"
+                        [disabled]="isLast"
+                        inputId="aprobado" />
+                <label for="aprobado">Aprobado</label>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <p-radioButton
+                        name="estado"
+                        value="desaprobado"
+                        [(ngModel)]="estado"
+                        [disabled]="isLast"
+                        inputId="desaprobado" />
+                <label for="desaprobado">Desaprobado</label>
+            </div>
+        </div>
+        <div class="flex-1" variant="on">
+            <p-float-label>Comentario técnico:</p-float-label>
+            <textarea pTextarea id="over_label" rows="5" cols="30" [(ngModel)]="comentario" [disabled]="isLast" style="resize: none" class="w-full"></textarea>
+            <div class="text-xs text-gray-600 mt-1 flex items-center gap-1" *ngIf="(estado || '').toLowerCase() === 'desaprobado' && ((comentario || '').trim().length === 0)">
+                <span class="text-red-600">*</span>
+                <span>Se debe realizar un comentario.</span>
+            </div>
+            <div class="text-red-600 text-sm mt-1" *ngIf="(estado || '').toLowerCase() === 'desaprobado' && ((comentario || '').trim().length === 0) && triedToProceed">
+                El comentario es obligatorio cuando el estado es Desaprobado.
+            </div>
+        </div>
+
+        <div class="flex flex-col mt-8 ml-4 gap-2">
+            <p-button styleClass="w-full" [label]="isLast ? 'Enviar' : 'Siguiente'" (onClick)="onPrimary()" [disabled]="!canProceed()"></p-button>
+            <p-button styleClass="w-full" label="Atras" (onClick)="onBack()" [disabled]="currentStep <= 1"></p-button>
+        </div>
+    </div>
+</section>

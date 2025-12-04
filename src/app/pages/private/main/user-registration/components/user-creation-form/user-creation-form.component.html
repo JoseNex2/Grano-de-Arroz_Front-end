@@ -1,0 +1,171 @@
+<div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm">
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="space-y-8 md:space-y-10">
+        <!-- Nombre -->
+      <div class="grid grid-cols-12 items-center gap-4">
+        <label for="firstName" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Nombre:</label>
+        <div class="col-span-12 md:col-span-10">
+          <input
+            formControlName="Name"
+            pInputText
+            placeholder="Ingrese el nombre del usuario"
+            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('Name')?.invalid && userForm.get('Name')?.touched">
+            <small *ngIf="userForm.get('Name')?.errors?.['required']">
+              El nombre es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('Name')?.errors?.['invalidName']">
+              El nombre solo puede contener letras y espacios.
+            </small>
+            <small *ngIf="userForm.get('Name')?.errors?.['maxlength']">
+              El nombre no puede exceder 30 caracteres.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!--aca iria el apellido -->
+      <div class="grid grid-cols-12 items-center gap-4">
+        <label for="lastName" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Apellido:</label>
+        <div class="col-span-12 md:col-span-10">
+          <input
+            formControlName="Lastname"
+            pInputText
+            placeholder="Ingrese el apellido del usuario"
+            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('Lastname')?.invalid && userForm.get('Lastname')?.touched">
+            <small *ngIf="userForm.get('Lastname')?.errors?.['required']">
+              El apellido es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('Lastname')?.errors?.['invalidLastName']">
+              El apellido solo puede contener letras y espacios.
+            </small>
+            <small *ngIf="userForm.get('Lastname')?.errors?.['maxlength']">
+              El apellido no puede exceder 30 caracteres.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="grid grid-cols-12 items-center gap-4">
+        <label for="email" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Email:</label>
+        <div class="col-span-12 md:col-span-10">
+          <input formControlName="Email"
+            pInputText
+            id="email"
+            type="email"
+            placeholder="Ingrese el email del usuario"
+            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('Email')?.invalid && userForm.get('Email')?.touched">
+            <small *ngIf="userForm.get('Email')?.errors?.['required']">
+              El email es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('Email')?.errors?.['email']">
+              Ingrese un email válido.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- dni -->
+      <div class="grid grid-cols-12 items-center gap-4">
+        <label for="dni" class="col-span-12 md:col-span-2 text-gray-700 font-medium">DNI:</label>
+        <div class="col-span-12 md:col-span-10">
+          <input
+                  formControlName="NationalId"
+            pInputText
+            id="dni"
+            placeholder="Ingrese el DNI del usuario"
+            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('NationalId')?.invalid && userForm.get('NationalId')?.touched">
+            <small *ngIf="userForm.get('NationalId')?.errors?.['required']">
+              El DNI es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('NationalId')?.errors?.['invalidDni']">
+              El DNI debe contener solo números (7-8 dígitos).
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- telefono -->
+      <div class="grid grid-cols-12 items-center gap-4">
+        <label for="phone" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Telefono:</label>
+        <div class="col-span-12 md:col-span-10">
+          <input
+                  formControlName="PhoneNumber"
+            pInputText
+            id="phone"
+            placeholder="Ingresa el número de telefono del usuario"
+            class="w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('PhoneNumber')?.invalid && userForm.get('PhoneNumber')?.touched">
+            <small *ngIf="userForm.get('PhoneNumber')?.errors?.['required']">
+              El teléfono es obligatorio.
+            </small>
+            <small *ngIf="userForm.get('PhoneNumber')?.errors?.['invalidPhone']">
+              El teléfono debe contener solo números (8-15 dígitos).
+            </small>
+          </div>
+        </div>
+      </div>
+
+<!-- Rol - usando p-select en lugar de p-cascadeSelect -->
+      <div class="grid grid-cols-12 items-center gap-4">
+        <label for="role" class="col-span-12 md:col-span-2 text-gray-700 font-medium">Rol:</label>
+        <div class="col-span-12 md:col-span-10">
+            <p-select
+                    inputId="role"
+                    [options]="roleOptions"
+                    formControlName="RoleId"
+                    optionLabel="label"
+                    optionValue="value"
+                    placeholder="Selecciona el rol del usuario"
+                    [appendTo]="'body'"
+                    styleClass="w-full">
+            </p-select>
+
+          <div class="text-red-500 text-sm mt-1"
+               *ngIf="userForm.get('RoleId')?.invalid && userForm.get('RoleId')?.touched">
+            <small *ngIf="userForm.get('RoleId')?.errors?.['required']">
+              El rol es obligatorio.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- botones -->
+      <div class="grid grid-cols-12 items-center gap-4 mt-6">
+        <div class="col-span-12 md:col-span-2"></div>
+        <div class="col-span-12 md:col-span-10">
+          <div class="flex flex-col md:flex-row gap-4 md:items-center">
+            <button
+              type="button"
+              (click)="goBack()"
+              class="w-full md:w-64 px-8 py-3 rounded-md border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 md:mr-auto">
+              Cancelar
+            </button>
+            <button
+
+              type="submit"
+              class="w-full md:w-64 px-8 py-3 rounded-md bg-gray-700 text-white shadow-sm hover:bg-gray-800 md:mr-[2.083%]">
+              {{ isEditMode ? 'Actualizar usuario' : 'Crear usuario' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

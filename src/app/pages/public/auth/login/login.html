@@ -1,0 +1,53 @@
+<div class="flex items-center justify-center">
+  <div class="pr-36">
+    <img src="/images/login/login-image.svg">
+  </div>
+  <div class="bg-white rounded-3xl shadow-lg w-xl h-3/5 p-8 flex flex-col items-center">
+    <div class="mb-4">
+    <img src="/images/login/GDA-logo.svg"/>
+
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">
+      Te damos la bienvenida
+    </h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm" name="loginForm" autocomplete="on">
+      <label class="w-full text-sm font-medium text-gray-600 mb-1">Email</label>
+      <input 
+        formControlName="Email" 
+        type="email"
+        name="email"
+        id="email"
+        autocomplete="email"
+        placeholder="Ingrese el email"
+        class="w-full border border-gray-300 rounded-lg placeholder-opacity-50 text-black placeholder-[#6C6C6C] p-3 py-2 mb-4" />
+
+        <label class="w-full text-sm font-medium text-gray-600 mb-1">Contraseña</label>
+        <div class="w-full mb-4">
+            <p-password
+                    formControlName="Password"
+                    [feedback]="false"
+                    [toggleMask]="true"
+                    styleClass="w-full"
+                    inputStyleClass="w-full border border-gray-300 rounded-lg placeholder-opacity-50 text-black placeholder-[#6C6C6C] p-3 py-2"
+                    placeholder="Ingrese la contraseña">
+            </p-password>
+        </div>
+
+      <div class="flex items-center w-full mb-6">
+        <input formControlName="Remember" id="remember" type="checkbox" class="mr-2" />
+        <label for="remember" class="text-sm text-gray-600">Recordarme</label>
+      </div>
+
+    <button class="w-full bg-gray-700 text-white py-3 rounded-lg hover:bg-gray-900" type="submit">
+      Iniciar sesión
+    </button>
+
+    <a routerLink="/forgot-password" class="mt-4 text-sm text-center flex justify-center text-gray-500 hover:underline">
+      ¿Olvidaste tu contraseña?
+    </a>
+    </form>
+  </div>
+</div>
+<p-toast></p-toast>

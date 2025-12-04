@@ -1,0 +1,18 @@
+<app-breadcrumb [breadcrumbItems]="steps"></app-breadcrumb>
+<app-titles-subtitles
+  [title]="'Generar Reporte'"
+  [subtitle]="
+    'Generá un reporte para que tu batería sea analizada por un especialista'
+  "
+>
+</app-titles-subtitles>
+<div class="max-w-7xl mx-auto mt-8 px-4 lg:px-6">
+  <div class="grid grid-cols-1 lg:grid-cols-9 gap-6 items-start">
+    <section class="lg:col-span-4">
+      <app-search-report-form></app-search-report-form>
+    </section>
+      <section class="lg:col-span-5">
+      <app-search-table></app-search-table>
+    </section>
+  </div>
+</div>

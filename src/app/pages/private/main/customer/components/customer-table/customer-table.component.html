@@ -1,0 +1,102 @@
+<div class="p-6 bg-white rounded-xl shadow-md mt-6">
+  <p-menu
+    #rowMenu
+    [popup]="true"
+    [model]="menuItems"
+    [appendTo]="'body'"
+  ></p-menu>
+
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-lg text-[#1E293B] font-bold">Lista de clientes</h2>
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <i class="pi pi-search text-gray-400"></i>
+        </div>
+        <input
+          type="text"
+          placeholder="Buscar cliente"
+          [(ngModel)]="searchValue"
+          class="border border-gray-300 text-[#64748B] rounded-lg px-3 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-table
+    [value]="client"
+    [paginator]="true"
+    [rows]="5"
+    [globalFilterFields]="['nationalId', 'name', 'lastName', 'email']"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [filterDelay]="0"
+    [filters]="{ global: { value: searchValue, matchMode: 'contains' } }"
+    class="shadow rounded-xl overflow-hidden"
+  >
+    <ng-template pTemplate="header">
+      <tr class="bg-gray-50">
+        <th pSortableColumn="nationalId" class="!text-black">
+          DNI <p-sortIcon field="nationalId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="name" class="!text-black">
+          Nombre <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="lastName" class="!text-black">
+          Apellido <p-sortIcon field="lastName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email" class="!text-black">
+          Email <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th style="width: 40px"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-client>
+      <tr class="hover:bg-gray-100">
+        <td class="text-gray-600">{{ client.nationalId }}</td>
+        <td class="text-gray-600">{{ client.name }}</td>
+        <td class="text-gray-600">{{ client.lastName }}</td>
+        <td class="text-gray-600">{{ client.email }}</td>
+        <td class="text-right">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-ellipsis-v"
+            class="p-button-text p-button-rounded"
+            (click)="onMenuButtonClick($event, client)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorleft">
+      <div class="flex-1"></div>
+    </ng-template>
+
+    <ng-template pTemplate="paginatorright">
+      <button
+        pButton
+        type="button"
+        label="Registrar cliente"
+        icon="pi pi-user-plus"
+        (click)="goToRegister()"
+        class="p-button-raised p-button-secondary mt-4 px-6 py-2 text-white font-semibold ml-4"
+      ></button>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  [(visible)]="showAssignModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="true"
+  [showHeader]="false"
+  [style]="{ width: '62rem', maxWidth: '95vw' }"
+>
+  <app-battery-assign-modal
+    [client]="selectedClient"
+    (closed)="showAssignModal = false"
+  ></app-battery-assign-modal>
+</p-dialog>

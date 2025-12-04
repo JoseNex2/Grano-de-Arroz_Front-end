@@ -1,0 +1,35 @@
+<article
+	class="w-full min-h-[150px] h-full grid grid-cols-[44%_56%]
+	rounded-3xl overflow-hidden bg-white ring-slate-200 transition-all"
+>
+
+	<!-- Bloque izquierda -->
+	<div class="flex flex-col justify-center px-4 py-5 gap-4 bg-[#545557] text-white">
+		<h2 class="text-lg font-light leading-snug tracking-wide select-none">
+			Clientes<br />Registrados
+		</h2>
+		<p class="text-5xl leading-none font-extrabold tabular-nums tracking-tight select-none">
+			{{ totalClients }}
+		</p>
+	</div>
+
+	<!-- Bloque derecha -->
+	<div class="relative flex flex-col bg-white text-[#3E4148] h-full">
+		<div class="flex-1 flex items-center justify-center px-4 pt-3">
+			<img
+				src="/images/total-clients/clients.svg"
+				alt="Registrar cliente"
+				class="max-h-28 w-auto object-contain"
+			/>
+		</div>
+<!-- definir bien el color del hover -->
+		<button
+			type="button"
+			class="flex items-center justify-center gap-2 px-4 pb-3 text-lg font-medium text-[#3E4148] hover:text-blue-500 transition-colors" 
+			(click)="goToRegister()"
+		>
+			Registrar cliente
+			<i class="pi pi-angle-right text-base"></i>
+		</button>
+	</div>
+</article>

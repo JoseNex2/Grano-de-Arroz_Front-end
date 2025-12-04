@@ -1,0 +1,25 @@
+:host ::ng-deep .p-menu-overlay {
+  margin-top: 8px; /* asegúrate que el popup se muestre debajo del botón */
+}
+
+:host ::ng-deep .p-menu .logout-item > .p-menuitem-link,
+:host ::ng-deep .p-menu .p-menuitem-link.logout-item {
+  color: #EF4444; /* texto rojo para Cerrar sesión */
+  font-weight: 600;
+}
+
+:host ::ng-deep .p-menu .logout-item > .p-menuitem-link .p-menuitem-icon,
+:host ::ng-deep .p-menu .p-menuitem-link.logout-item .p-menuitem-icon {
+  color: #EF4444; /* icono rojo también */
+}
+
+:host ::ng-deep .p-menu .logout-item > .p-menuitem-link:not(.p-disabled):hover,
+:host ::ng-deep .p-menu .p-menuitem-link.logout-item:not(.p-disabled):hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: #DC2626; /* tono más oscuro al hover */
+}
+
+:host ::ng-deep .p-menu .logout-item > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon,
+:host ::ng-deep .p-menu .p-menuitem-link.logout-item:not(.p-disabled):hover .p-menuitem-icon {
+  color: #DC2626;
+}
