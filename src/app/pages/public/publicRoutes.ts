@@ -3,6 +3,7 @@ import {Login} from './auth/login/login';
 import {Auth} from './auth/auth';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import { CreatePasswordComponent } from './create-password/create-password.component';
 
 export const publicRoutes: Routes = [
   {
@@ -12,7 +13,8 @@ export const publicRoutes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: Login},
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'cambiarContraseña/:token', component: ResetPasswordComponent }
+      { path: 'cambiarContraseña/:token', component: ResetPasswordComponent },
+      { path: 'crearContraseña/:token', component: CreatePasswordComponent }
     ]
   }
 ];

@@ -68,4 +68,22 @@ export class EmailService {
     };
     return this.http.post<ApiResponse<any>>(`${this.apiUrl}/access/passwordupdate`, payload);
   }
+
+  /**
+   * Crea/actualiza la contraseña usando el token del email
+   * @param token Token del enlace de bienvenida
+   * @param newPassword Nueva contraseña
+   * @returns Observable con la respuesta del backend
+   */
+  createPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {
+    const payload = {
+      NewPassword: newPassword,
+    };
+
+    const headers = {
+      'Authorization': token
+    };
+
+    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/access/passwordupdate`, payload, { headers });
+  }
 }
