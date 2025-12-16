@@ -32,6 +32,11 @@ export class ResetPasswordComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
       
+      // Reemplazar espacios por + (problema de decodificación de URL)
+      if (this.token) {
+        this.token = this.token.replace(/ /g, '+');
+      }
+      
       if (!this.token) {
         this.messageService.add({
           severity: 'error',
