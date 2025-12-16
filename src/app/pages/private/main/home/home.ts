@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { WelcomeCardComponent } from './home-components/welcome-card/welcome-card.component';
 import { BatteryCardComponent } from './home-components/battery-card/battery-card.component';
-import { HistoryTableComponent } from '../../shared/history-table/history-table.component';
+import { ReportHistoryComponent } from '../report-history/report-history.component';
 import {SalesCard} from "./home-components/sales-card/sales-card";
 import {WelcomeLabComponent} from "./home-components/welcome-lab/welcome-lab.component";
 import {
@@ -10,7 +10,7 @@ import {
 
 @Component({
   selector: 'app-home',
-    imports: [WelcomeCardComponent, BatteryCardComponent, HistoryTableComponent, SalesCard, WelcomeLabComponent, EvaluationStatusChartsComponent,],
+    imports: [WelcomeCardComponent, BatteryCardComponent, ReportHistoryComponent, SalesCard, WelcomeLabComponent, EvaluationStatusChartsComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
   standalone: true,

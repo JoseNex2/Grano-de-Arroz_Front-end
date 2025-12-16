@@ -91,12 +91,24 @@ export class SearchTableComponent implements OnInit {
   }
 
   getSeverity(status: string): string {
-    const s = (status || '').toString().toLowerCase();
+    const s = (status || '').toString().trim().toLowerCase();
     switch (s) {
-      case 'aprobada': return 'success';
-      case 'revocada': return 'danger';
-      case 'pendiente': return 'warning';
-      default: return 'secondary';
+      case 'aprobado':
+      case 'aprobada':
+        return 'success';
+      case 'desaprobado':
+      case 'desaprobada':
+      case 'revocado':
+      case 'revocada':
+      case 'rechazado':
+      case 'rechazada':
+        return 'danger';
+      case 'pendiente':
+      case 'por evaluar':
+      case 'por_evaluar':
+        return 'warning';
+      default:
+        return 'secondary';
     }
   }
 }
