@@ -13,8 +13,8 @@ export const publicRoutes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: Login},
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'cambiarContrasena/:token', component: ResetPasswordComponent },
-      { path: 'crearContrasena/:token', component: CreatePasswordComponent }
+      { path: 'cambiarContrasena', component: ResetPasswordComponent },
+      { path: 'crearContrasena', component: CreatePasswordComponent }
     ]
   }
 ];
