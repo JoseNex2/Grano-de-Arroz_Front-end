@@ -1,18 +1,22 @@
-<app-breadcrumb [breadcrumbItems]="steps"></app-breadcrumb>
-<app-titles-subtitles
-        [title]="'Registros Históricos'"
-        [subtitle]="
-    'Accedé al historial completo de los reportes generados por sucursal.'
-  ">
-</app-titles-subtitles>
+@if (showHeader) {
+  <app-breadcrumb [breadcrumbItems]="steps"></app-breadcrumb>
+  <app-titles-subtitles
+          [title]="'Registros Históricos'"
+          [subtitle]="
+      'Accedé al historial completo de los reportes generados por sucursal.'
+    ">
+  </app-titles-subtitles>
+}
 
 <div class="mt-6 bg-white rounded-3xl shadow-sm p-6">
-  <div class="flex flex-col gap-1 mb-4">
-    <h3 class="text-lg font-semibold text-gray-900">Historial de evaluaciones</h3>
-    <p class="text-sm text-gray-500">
-      Consulta todas las órdenes evaluadas con su estado actual.
-    </p>
-  </div>
+  @if (showHeader) {
+    <div class="flex flex-col gap-1 mb-4">
+      <h3 class="text-lg font-semibold text-gray-900">Historial de evaluaciones</h3>
+      <p class="text-sm text-gray-500">
+        Consulta todas las órdenes evaluadas con su estado actual.
+      </p>
+    </div>
+  }
 
   <p-table
     [value]="reports"

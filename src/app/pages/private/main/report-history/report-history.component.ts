@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BreadcrumbComponent } from "../../shared/breadcrumb/breadcrumb";
 import { TitlesSubtitlesComponent } from "../../shared/titles-subtitles/titles-subtitles.component";
@@ -10,6 +10,7 @@ import { ApiResponse } from "../../../../core/interfaces/api-response";
 
 @Component({
   selector: 'registros-historicos',
+  standalone: true,
   imports: [
     BreadcrumbComponent,
     TitlesSubtitlesComponent,
@@ -22,6 +23,7 @@ import { ApiResponse } from "../../../../core/interfaces/api-response";
   styleUrl: './report-history.component.css'
 })
 export class ReportHistoryComponent implements OnInit {
+  @Input() showHeader: boolean = true;
   steps: BreadcrumbItem[] = [
     { label: 'Inicio', route: '/inicio' },
     { label: 'Registro Histórico'},
