@@ -30,7 +30,10 @@
                     <td class="px-6 py-4 text-sm text-gray-900">{{ row.cliente }}</td>
                     <td class="px-6 py-4 text-sm text-gray-700">{{ row.gda }}</td>
                     <td class="px-6 py-4 text-sm text-gray-700">
-                        <p-tag [value]="row.estado" [severity]="row.severity"></p-tag>
+                        <span class="px-2 py-1 rounded-full text-xs font-semibold"
+                              [ngClass]="getStatusClasses(row.estado)">
+                            {{ row.estado }}
+                        </span>
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-700">{{ row.fecha }}</td>
                     <td class="px-4 py-3 text-right">

@@ -70,15 +70,15 @@ export class ReportHistoryComponent implements OnInit {
     severity: string;
   }> {
     return list.map((item: any) => {
-      const odt = item.chipId ?? '-';
-      const batteryType = item.typeBattery ?? '-';
-      const clientName = item.ClientName ?? item.clientName ?? item.client?.name ?? '';
-      const clientLast = item.ClientLastName ?? item.clientLastName ?? item.client?.lastName ?? '';
-      const evaluationDateRaw = item.reportDate ?? null;
+      const odt = item.chipId ?? item.ChipId ?? item.gda ?? item.GDA ?? '-';
+      const batteryType = item.typeBattery ?? item.type ?? '-';
+      const clientName = item.ClientName ?? item.clientName ?? item.client?.name ?? item.client?.firstName ?? '';
+      const clientLast = item.ClientLastName ?? item.clientLastName ?? item.client?.lastName ?? item.client?.surname ?? '';
+      const evaluationDateRaw = item.reportDate ?? item.ReportDate ?? item.saleDate ?? item.SaleDate ?? null;
       const evaluationDate = evaluationDateRaw
         ? (this.datePipe.transform(evaluationDateRaw, 'dd/MM/yyyy') ?? evaluationDateRaw)
         : '-';
-      const status = (item.reportState ?? 'Pendiente').toString();
+      const status = (item.reportState ?? item.status ?? 'Pendiente').toString();
 
       return {
         odt: odt || '-',
@@ -92,18 +92,37 @@ export class ReportHistoryComponent implements OnInit {
   }
 
   private getSeverity(status: string): string {
-    const normalized = (status || '').toLowerCase();
-    switch (normalized) {
+    const s = (status || '').toString().trim().toLowerCase();
+    switch (s) {
       case 'aprobado':
       case 'aprobada':
         return 'success';
       case 'desaprobado':
+      case 'desaprobada':
       case 'revocado':
+      case 'revocada':
+      case 'rechazado':
+      case 'rechazada':
         return 'danger';
       case 'pendiente':
+      case 'por evaluar':
+      case 'por_evaluar':
+      case 'no iniciado':
         return 'warning';
       default:
         return 'secondary';
     }
+  }
+
+  getStatusClasses(status: string): { [key: string]: boolean } {
+    const s = (status || '').toString().trim();
+    const lowerStatus = s.toLowerCase();
+    
+    return {
+      'bg-green-100 text-green-700': lowerStatus === 'aprobado' || lowerStatus === 'aprobada',
+      'bg-yellow-100 text-yellow-700': lowerStatus === 'pendiente' || lowerStatus === 'por evaluar' || lowerStatus === 'por_evaluar' || lowerStatus === 'no iniciado',
+      'bg-red-100 text-red-700': lowerStatus === 'desaprobado' || lowerStatus === 'desaprobada' || lowerStatus === 'revocado' || lowerStatus === 'revocada' || lowerStatus === 'rechazado' || lowerStatus === 'rechazada',
+      'bg-gray-100 text-gray-700': !(lowerStatus === 'aprobado' || lowerStatus === 'aprobada' || lowerStatus === 'pendiente' || lowerStatus === 'por evaluar' || lowerStatus === 'por_evaluar' || lowerStatus === 'no iniciado' || lowerStatus === 'desaprobado' || lowerStatus === 'desaprobada' || lowerStatus === 'revocado' || lowerStatus === 'revocada' || lowerStatus === 'rechazado' || lowerStatus === 'rechazada')
+    };
   }
 }

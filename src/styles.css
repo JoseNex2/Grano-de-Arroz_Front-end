@@ -50,3 +50,26 @@
   color: #1f2937;   /* Gris oscuro, se lee mejor */
   /* semibold */
 }
+
+/* Override PrimeNG warning tag to show yellow instead of gray */
+::ng-deep .p-tag.p-tag-warning,
+::ng-deep .p-tag[severity="warning"],
+::ng-deep [data-pc-name="tag"][data-pc-section="root"][class*="warning"],
+::ng-deep .p-tag[data-p-severity="warning"] {
+  background-color: #fef3c7 !important; /* yellow-100 */
+  color: #b45309 !important; /* yellow-700 */
+  border-color: #fde68a !important;
+}
+
+::ng-deep .p-tag.p-tag-warning .p-tag-icon,
+::ng-deep .p-tag[severity="warning"] .p-tag-icon,
+::ng-deep [data-pc-name="tag"][class*="warning"] [data-pc-section="icon"] {
+  color: #b45309 !important;
+}
+
+/* También para el tema Aura de PrimeNG v20 */
+::ng-deep [data-pc-name="tag"]:has([data-pc-section="label"]:contains("Pendiente")),
+::ng-deep p-tag[ng-reflect-severity="warning"] {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+}

@@ -119,4 +119,16 @@ export class SearchReportTableLabComponent implements OnInit {
         return 'secondary';
     }
   }
+
+  getStatusClasses(status: string): { [key: string]: boolean } {
+    const s = (status || '').toString().trim();
+    const lowerStatus = s.toLowerCase();
+    
+    return {
+      'bg-green-100 text-green-700': lowerStatus === 'aprobado' || lowerStatus === 'aprobada',
+      'bg-yellow-100 text-yellow-700': lowerStatus === 'pendiente' || lowerStatus === 'por evaluar' || lowerStatus === 'por_evaluar',
+      'bg-red-100 text-red-700': lowerStatus === 'desaprobado' || lowerStatus === 'desaprobada' || lowerStatus === 'revocado' || lowerStatus === 'revocada' || lowerStatus === 'rechazado' || lowerStatus === 'rechazada',
+      'bg-gray-100 text-gray-700': !(lowerStatus === 'aprobado' || lowerStatus === 'aprobada' || lowerStatus === 'pendiente' || lowerStatus === 'por evaluar' || lowerStatus === 'por_evaluar' || lowerStatus === 'desaprobado' || lowerStatus === 'desaprobada' || lowerStatus === 'revocado' || lowerStatus === 'revocada' || lowerStatus === 'rechazado' || lowerStatus === 'rechazada')
+    };
+  }
 }

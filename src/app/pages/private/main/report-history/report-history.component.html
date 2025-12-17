@@ -41,7 +41,10 @@
         <td class="px-4 py-3 text-sm text-gray-700">{{ report.client }}</td>
         <td class="px-4 py-3 text-sm text-gray-700">{{ report.evaluationDate }}</td>
         <td class="px-4 py-3">
-          <p-tag [value]="report.status" [severity]="report.severity"></p-tag>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold"
+                [ngClass]="getStatusClasses(report.status)">
+            {{ report.status }}
+          </span>
         </td>
       </tr>
     </ng-template>
