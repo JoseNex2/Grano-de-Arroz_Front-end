@@ -106,15 +106,23 @@ export class UserCreationFormComponent implements OnInit{
   }
 
   loadUserData(params: any) {
+    // Guardar el nombre del rol para mapearlo después cuando se carguen los roles
+    this.roleNameFromParams = params['role'] || null;
+    
     const userData = {
       Name: params['name'] || '',
       Lastname: params['lastname'] || '',
       Email: params['email'] || '',
       NationalId: params['nationalId'] || '',
       PhoneNumber: params['phoneNumber'] || '',
-      RoleId: params['role'] || ''
+      RoleId: '' // Se establecerá cuando se carguen los roles
     };
     this.userForm.patchValue(userData);
+    
+    // Si los roles ya están cargados, mapear el rol inmediatamente
+    if (this.roleOptions.length > 0 && this.roleNameFromParams) {
+      this.mapRoleNameToId();
+    }
   }
 
   initializeForm() {
@@ -145,6 +153,7 @@ export class UserCreationFormComponent implements OnInit{
   selectedRoleId: number | null = null;
 
   roleOptions: { label: string; value: number }[] = [];
+  private roleNameFromParams: string | null = null;
 
   loadRoles() {
     this.roleService.getRoles().subscribe({
@@ -155,11 +164,27 @@ export class UserCreationFormComponent implements OnInit{
             id: r.id
           }));
 
-         this.roleOptions = mapRolesForDropdown(aux)
+         this.roleOptions = mapRolesForDropdown(aux);
+         
+         // Si estamos en modo edición y tenemos un nombre de rol, mapearlo al ID
+         if (this.isEditMode && this.roleNameFromParams) {
+           this.mapRoleNameToId();
+         }
         }
       },
       error: (err) => console.error('Error cargando roles:', err)
     });
+  }
+
+  private mapRoleNameToId() {
+    if (!this.roleNameFromParams || this.roleOptions.length === 0) return;
+    
+    // Buscar el rol que coincida con el nombre (label) en roleOptions
+    const role = this.roleOptions.find(r => r.label === this.roleNameFromParams);
+    
+    if (role) {
+      this.userForm.patchValue({ RoleId: role.value });
+    }
   }
 
   onSubmit() {

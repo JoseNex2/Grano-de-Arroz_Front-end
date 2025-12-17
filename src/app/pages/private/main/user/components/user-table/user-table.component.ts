@@ -62,14 +62,25 @@ export class UserTableComponent implements OnInit {
   showMenu(event: MouseEvent, user: any) {
     this.selectedUser = user;
     this.menuItems = [
-      { label: 'Editar', icon: 'pi pi-pencil', command: () => this.onEdit(this.selectedUser) },
+      // { label: 'Editar', icon: 'pi pi-pencil', command: () => this.onEdit(this.selectedUser) },
       { label: 'Eliminar', icon: 'pi pi-trash', command: () => this.onDelete(this.selectedUser) },
     ];
     this.contextMenu.toggle(event);
   }
 
   onEdit(user: any) {
-    console.log('Editar usuario:', user);
+    this.router.navigate(['/inicio/usuarios/registro-de-usuarios'], {
+      queryParams: {
+        edit: 'true',
+        id: user.id,
+        name: user.name,
+        lastname: user.lastname,
+        email: user.email,
+        nationalId: user.nationalId,
+        phoneNumber: user.phoneNumber,
+        role: user.role
+      }
+    });
   }
 
   onDelete(c: any) {
