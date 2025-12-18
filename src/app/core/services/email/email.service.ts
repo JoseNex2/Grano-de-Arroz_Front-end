@@ -70,7 +70,7 @@ export class EmailService {
   }
 
   /**
-   * Crea/actualiza la contraseña usando el token del email (mismo endpoint que resetPassword)
+   * Crea/actualiza la contraseña usando el token del email
    * @param token Token del enlace de bienvenida
    * @param newPassword Nueva contraseña
    * @returns Observable con la respuesta del backend
