@@ -70,20 +70,20 @@ export class EmailService {
   }
 
   /**
-   * Crea/actualiza la contraseña usando el token del email
+   * Crea/actualiza la contraseña usando el token del email (mismo endpoint que resetPassword)
    * @param token Token del enlace de bienvenida
    * @param newPassword Nueva contraseña
    * @returns Observable con la respuesta del backend
    */
   createPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {
     const payload = {
-      NewPassword: newPassword,
+      NewPassword: newPassword
     };
 
     const headers = {
       'Authorization': token
     };
 
-    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/access/passwordupdate`, payload, { headers });
+    return this.http.put<ApiResponse<any>>(`${this.apiUrl}/access/passwordrecovery`, payload, { headers });
   }
 }
