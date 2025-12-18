@@ -51,7 +51,6 @@ export class CreatePasswordComponent implements OnInit {
     });
 
     this.createPasswordForm = this.fb.group({
-      currentPassword: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8), CreatePasswordComponent.passwordValidator]],
       confirmPassword: ['', [Validators.required]]
     }, { validators: CreatePasswordComponent.passwordMatchValidator });

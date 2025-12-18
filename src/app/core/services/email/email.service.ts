@@ -77,13 +77,13 @@ export class EmailService {
    */
   createPassword(token: string, newPassword: string): Observable<ApiResponse<any>> {
     const payload = {
-      NewPassword: newPassword,
+      NewPassword: newPassword
     };
 
     const headers = {
       'Authorization': token
     };
 
-    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/access/passwordupdate`, payload, { headers });
+    return this.http.put<ApiResponse<any>>(`${this.apiUrl}/access/passwordrecovery`, payload, { headers });
   }
 }
